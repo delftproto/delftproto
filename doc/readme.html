@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+	
+	<head>
+		
+		<title>DelftProto</title>
+		
+		<meta name="language" content="en" />
+		
+		<style type="text/css">
+			
+			body {
+				background-color: white;
+				color: black;
+				font-family: sans-serif;
+			}
+			
+			a, a:visited  {
+				color: rgb(0,166,214);
+				text-decoration: underline;
+			}
+			
+			a:hover, a:active  {
+				color: rgb(0,83,107);
+			}
+			
+			#title {
+				border-bottom: 1px solid rgb(0,166,214);
+				font-size: 80px;
+			}
+			
+			#footer {
+				border-top: 1px solid rgb(0,166,214);
+				font-size: small;
+			}
+			
+			.Delft, .Proto {
+				font-family: 'Bookman Old Style', serif;
+			}
+			
+			.Delft {
+				color: black;
+			}
+			
+			.Proto {
+				color: rgb(0,166,214);
+			}
+			
+			h1, h2 {
+				font-family: 'Bookman Old Style', serif;
+			}
+			
+			h1 {
+				font-size: 35px;
+			}
+			
+			h2 {
+				font-size: 25px;
+			}
+			
+			p.code {
+				font-family: 'Courier New', monospace;
+				color: #666;
+				margin-left: 5px;
+				border: 1px solid #ccc;
+				padding: 10px;
+			}
+			
+			p.code a {
+				color: #666;
+			}
+			
+			#menu {
+				color: rgb(0,166,214);
+				text-align: right;
+				font-size: small;
+			}
+			
+			#menu a {
+				text-decoration: none;
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+		
+		<div id="title">
+			<span class="Delft">Delft</span><span class="Proto">Proto</span>
+		</div>
+		
+		<div id="menu">
+			<a href="#introduction">Introduction</a>
+			<span>&mdash;</span>
+			<a href="#download">Download</a>
+			<span>&mdash;</span>
+			<a href="#documentation">Documentation</a>
+		</div>
+		
+		<h1 id="introduction">Introduction</h1>
+		
+		<h2>Proto language</h2>
+		<p>
+			Proto is a language for programming large networks of simple devices.
+			This language allows the programmer to program the whole network to do complex things, with literally a few lines of code.
+		</p>
+		
+		<h2>MIT Proto</h2>
+		<p>
+			<a href="http://proto.bbn.com/">MIT Proto</a> was the first implementation and the origin of the Proto language.
+			It provides a compiler, virtual machine 'kernel' and a simulator.
+		</p>
+		
+		<h2><span class="Delft">Delft</span><span class="Proto">Proto</span></h2>
+		<p>
+			<span class="Delft">Delft</span><span class="Proto">Proto</span> is another implementation of the Proto language.
+			It is currently being developed at the Delft University of Technology.
+			At this time, we are focusing on our virtual machine implementation,
+			which &mdash;even tough still under development&mdash; is already successfully used on some devices.
+			In the near future, a compiler and simulator will also be provided.
+			We already made significant progress in developing the compiler
+			and its source code will soon be publicly available.
+		</p>
+		
+		
+		<h1 id="download">Download</h1>
+		
+		<h2>Source Code Repository</h2>
+		<p>
+			To get the source code, clone our <a href="http://git-scm.com/">git</a> repository:
+		</p>
+		<p class="code">
+			git clone <a href="http://github.com/delftproto/delftproto.git/">http://github.com/delftproto/delftproto.git/</a> delftproto
+		</p>
+		
+		
+		<h1 id="documentation">Documentation</h1>
+		
+		<h2>Online</h2>
+		<p>
+			The documentation is available online at <a href="http://delftproto.nl/doc/">http://delftproto.nl/doc/</a>.
+		</p>
+		
+		<h2>From Source</h2>
+		<p>
+			The documentation can be generated from the source distribution by running <code>make</code> in the <code>/doc/</code> directory.
+			Apart from <a href="http://www.gnu.org/software/make/">GNU Make</a>, you need <a href="http://doxygen.org/">Doxygen</a>, <a href="http://www.graphviz.org/">Graphviz Dot</a> and <a href="http://www.latex-project.org/">(pdf)LaTeX</a>.
+		</p>
+		
+		<div id="footer">
+			<span class="Delft">Delft</span><span class="Proto">Proto</span>
+			is maintained by Maurice Bos &#x27E8;<a href="mailto:maurice@delftproto.nl">maurice@delftproto.nl</a>&#x27E9;
+		</div>
+		
+	</body>
+	
+</html>

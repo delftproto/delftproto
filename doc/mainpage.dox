@@ -1,0 +1,49 @@
+// This file is part of DelftProto.
+// 
+// DelftProto is free software: you can redistribute it and/or modify it under
+// the terms of the GNU Lesser General Public License as published by the Free
+// Software Foundation, either version 3 of the License, or (at your option) any
+// later version.
+// 
+// DelftProto is distributed in the hope that it will be useful, but WITHOUT ANY
+// WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+// PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public License along
+// with DelftProto.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+
+\mainpage DelftProto Virtual %Machine Documentation
+
+For a list of all implemented Proto bytecode instructions, see the Instructions namespace.
+
+To read about the inner workings of the virtual machine, you might want to start at the Machine class.
+
+If you want to use the VM on your platform, see the \ref platforms.
+Furthermore, if you want to make an extension, see \ref extending.
+
+
+\page platforms Using the VM
+
+\todo Write documentation about implementing the VM.
+
+This page explains how to implement the VM for a specific platform.
+
+Unfortunately, this page is still under construction.
+
+
+\page extensions Extensions
+
+\todo Write documentation about extensions.
+
+\section extending Extending the VM
+
+This should explain how to extend the Machine and Neighbour classes.
+However, this page is currently useless. Sorry!
+
+\section usingextensions Using extensions
+
+Unfortunately, this section is still empty.
+
+*/
