@@ -48,8 +48,7 @@ namespace Instructions {
 		machine.      stack.reset(    stack_size+1);
 		machine.environment.reset(environment_size);
 		
-		machine.this_machine = machine.hood.add(machine.id);
-		machine.current_neighbour = machine.hood.end();
+		machine.hood.add(machine.id);
 		
 		Instruction callback = machine.callbacks.pop();
 		machine.callbacks.reset(3); //TODO: ...

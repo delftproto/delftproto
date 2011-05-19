@@ -13,7 +13,7 @@
 // with DelftProto.  If not, see <http://www.gnu.org/licenses/>.
 
 /// \file
-/// Provides the NeighbourList class.
+/// Provides the NeighbourHood class.
 
 #ifndef __NEIGHBOURLIST_HPP
 #define __NEIGHBOURLIST_HPP
@@ -29,18 +29,19 @@
  * 
  * \todo Add documentation and some examples.
  */
-class NeighbourList {
+class NeighbourHood {
 	
 	protected:
 		
-		struct NeighbourListElement {
+		struct NeighbourHoodElement {
 			Neighbour neighbour;
-			NeighbourListElement * next;
-			NeighbourListElement * previous;
-			inline NeighbourListElement(MachineId const & id, Size imports) : neighbour(id,imports), next(0), previous(0) {}
+			NeighbourHoodElement * next;
+			NeighbourHoodElement * previous;
+			inline NeighbourHoodElement(MachineId const & id, Size imports) : neighbour(id,imports), next(0), previous(0) {}
 		};
 		
-		NeighbourListElement * first;
+		NeighbourHoodElement * first;
+		NeighbourHoodElement * last;
 		
 		Size list_size;
 		
@@ -50,11 +51,12 @@ class NeighbourList {
 		
 		class iterator {
 			protected:
-				NeighbourListElement * element;
-				inline iterator(NeighbourListElement * element) : element(element) {}
+				NeighbourHoodElement * element;
+				inline iterator(NeighbourHoodElement * element) : element(element) {}
 				friend class const_iterator;
-				friend class NeighbourList;
+				friend class NeighbourHood;
 			public:
+				inline iterator() {}
 				inline iterator & operator ++ (     ) {                     element = element->next    ; return *this; }
 				inline iterator   operator ++ (int x) { iterator i = *this; element = element->next    ; return  i   ; }
 				inline iterator & operator -- (     ) {                     element = element->previous; return *this; }
@@ -68,11 +70,12 @@ class NeighbourList {
 		
 		class const_iterator {
 			protected:
-				NeighbourListElement const * element;
-				inline const_iterator(NeighbourListElement const * element) : element(element) {}
+				NeighbourHoodElement const * element;
+				inline const_iterator(NeighbourHoodElement const * element) : element(element) {}
 				inline const_iterator(iterator const & i) : element(i.element) {}
-				friend class NeighbourList;
+				friend class NeighbourHood;
 			public:
+				inline const_iterator() {}
 				inline const_iterator & operator ++ (     ) {                           element = element->next    ; return *this; }
 				inline const_iterator   operator ++ (int x) { const_iterator i = *this; element = element->next    ; return  i   ; }
 				inline const_iterator & operator -- (     ) {                           element = element->previous; return *this; }
@@ -84,9 +87,9 @@ class NeighbourList {
 				inline operator Neighbour const * () const { return &(element->neighbour); }
 		};
 		
-		explicit NeighbourList(Size imports = 0) : first(0), list_size(0), imports(0) { reset(imports); }
+		explicit inline NeighbourHood(Size imports = 0) : first(0), last(0), list_size(0), imports(imports) {}
 		
-		void reset(Size imports){
+		inline void reset(Size imports){
 			iterator i = first;
 			while(i != end()) i = remove(i);
 			this->imports = imports;
@@ -117,23 +120,25 @@ class NeighbourList {
 		}
 		
 		inline iterator add(MachineId const & id) {
-			NeighbourListElement * n = Memory<NeighbourListElement>::allocate();
-			new (n) NeighbourListElement(id,imports);
-			if (first) first->previous = n;
-			n->next = first;
-			first = n;
+			NeighbourHoodElement * n = Memory<NeighbourHoodElement>::allocate();
+			new (n) NeighbourHoodElement(id,imports);
+			if (last) last->next = n;
+			n->previous = last;
+			last = n;
+			if (!first) first = n;
 			list_size++;
-			return first;
+			return n;
 		}
 		
 		inline iterator remove(iterator neighbour) {
-			NeighbourListElement * n = neighbour.element;
+			NeighbourHoodElement * n = neighbour.element;
 			if (n->previous) n->previous->next = n->next;
 			if (n->next    ) n->next->previous = n->previous;
 			if (n == first) first = n->next;
+			if (n == last ) last  = n->previous;
 			iterator next = n->next;
-			n->~NeighbourListElement();
-			Memory<NeighbourListElement>::deallocate(n);
+			n->~NeighbourHoodElement();
+			Memory<NeighbourHoodElement>::deallocate(n);
 			list_size--;
 			return next;
 		}

@@ -24,7 +24,7 @@
 #include <state.hpp>
 #include <script.hpp>
 #include <neighbour.hpp>
-#include <neighbourlist.hpp>
+#include <neighbourhood.hpp>
 #include <instructions.hpp>
 #include <machineextension.hpp>
 #include <machineid.hpp>
@@ -53,7 +53,7 @@ class Machine : public MachineExtension {
 		Array<State> state;
 		
 		/// The list of all the neighbours.
-		NeighbourList hood;
+		NeighbourHood hood;
 		
 	protected:
 		
@@ -62,9 +62,6 @@ class Machine : public MachineExtension {
 		
 		/// Boolean indicating whether execution (installation or a single run) has finished.
 		bool is_finished;
-		
-		/// A pointer to the Neighbour representing this machine.
-		Neighbour * this_machine;
 		
 		/// The callback stack.
 		/**
@@ -77,7 +74,7 @@ class Machine : public MachineExtension {
 		/**
 		 * Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed.
 		 */
-		NeighbourList::iterator current_neighbour;
+		NeighbourHood::iterator current_neighbour;
 		
 		friend void Instructions::DEF_VM(Machine &);
 		friend class HoodInstructions;
@@ -85,7 +82,7 @@ class Machine : public MachineExtension {
 	public:
 		
 		/// The constructor.
-		Machine() : instruction_pointer(0), this_machine(hood.add(id)), callbacks(1), current_neighbour(hood.end()) {}
+		Machine() : instruction_pointer(0), callbacks(1) { hood.add(id); }
 		
 		/// \name Execution control
 		/// \{
@@ -229,7 +226,7 @@ class Machine : public MachineExtension {
 			
 			/// Get the Neighbour representing this machine.
 			inline Neighbour & thisMachine() {
-				return *this_machine;
+				return *hood.begin();
 			}
 			
 		/// \}
