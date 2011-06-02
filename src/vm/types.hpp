@@ -41,6 +41,10 @@ typedef unsigned char Int8;
 /// A 16 bit unsigned integer (two bytes).
 typedef unsigned short Int16;
 
+/// \class Int
+/// A unsigned integer.
+typedef unsigned int Int;
+
 /// \class Alignment
 /// The memory is aligned by this type.
 typedef unsigned char Alignment;

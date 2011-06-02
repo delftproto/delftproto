@@ -22,6 +22,7 @@ typedef unsigned int   Index;
 typedef unsigned int   Counter;
 typedef unsigned char  Int8;
 typedef unsigned short Int16;
+typedef unsigned int   Int;
 typedef float          Number;
 typedef unsigned short Alignment;
 

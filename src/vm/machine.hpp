@@ -189,12 +189,36 @@ class Machine : public MachineExtension {
 		/// \name Low level
 		/// \{
 			
+			/// Read the next byte(s) as an unsigned integer.
+			/**
+			 * Using the Variable Length Quantity (VLQ)
+			 * format as used in the MIDI file format.
+			 * 
+			 * \see http://en.wikipedia.org/wiki/Variable-length_quantity
+			 */
+			inline Int nextInt() {
+				Int value = 0;
+				while(true){
+					Int8 next = *instruction_pointer++;
+					value |= next & 0x7F;
+					if (next & 0x80) value <<= 7;
+					else break;
+				}
+				return value;
+			}
+			
 			/// Read the next byte as an unsigned 8-bit integer.
+			/**
+			 * \deprecated Use nextInt() instead.
+			 */
 			inline Int8 nextInt8() {
 				return *instruction_pointer++;
 			}
 			
 			/// Read the next two bytes as an unsigned 16-bit integer (big endian).
+			/**
+			 * \deprecated Use nextInt() instead.
+			 */
 			inline Int16 nextInt16() {
 				Int16 data  = static_cast<Int16>(nextInt8()) << 8;
 				      data += nextInt8();
