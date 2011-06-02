@@ -106,7 +106,7 @@ class Machine : public MachineExtension {
 			
 			/// Start an installation script.
 			/**
-			 * \note This does not execute an the installation script, it only prepares it. Call step() while not finished() to execute it.
+			 * \note This does not execute the installation script, it only prepares it. Call step() while not finished() to execute it.
 			 * 
 			 * \param script A pointer to the installation script.
 			 */
