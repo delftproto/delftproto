@@ -23,6 +23,7 @@
 #include <stack.hpp>
 #include <state.hpp>
 #include <script.hpp>
+#include <thread.hpp>
 #include <neighbour.hpp>
 #include <neighbourhood.hpp>
 #include <instructions.hpp>
@@ -48,6 +49,18 @@ class Machine : public MachineExtension {
 		
 		/// The globals.
 		Stack<Data> globals;
+		
+		/// The threads.
+		/**
+		 * \see Thread
+		 */
+		Array<Thread> threads;
+		
+		/// The (index of the) current thread when executing a run.
+		/**
+		 * When not running, this is the index of the thread that will be checked first for the next run.
+		 */
+		Thread::Id current_thread;
 		
 		/// The state variables.
 		Array<State> state;
@@ -77,6 +90,10 @@ class Machine : public MachineExtension {
 		NeighbourHood::iterator current_neighbour;
 		
 		friend void Instructions::DEF_VM(Machine &);
+#if MIT_COMPATIBILITY != MIT_ONLY
+		friend void Instructions::DEF_VM_EX(Machine &);
+#endif
+		friend void Instructions::EXIT(Machine &);
 		friend class HoodInstructions;
 		
 	public:
@@ -99,19 +116,39 @@ class Machine : public MachineExtension {
 				callbacks.push(0);
 			}
 			
-			/// Start a single run.
+			/// Start the next scheduled task.
 			/**
-			 * \note This does not execute an entire run, it only prepares it. Call step() while not finished() to execute it.
+			 * \note This does not execute Proto code, it only prepares the next run. Call step() while not finished() to execute it.
 			 */
 			inline void run() {
-				is_finished = false;
-				call(instruction_pointer);
-				for(size_t i = 0; i < state.size(); i++){
-					if (!state[i].is_executed) state[i].data.reset();
-					state[i].is_executed = false;
+				is_finished = true;
+				for(Size i = 0; i < threads.size(); i++){
+					if (threads[current_thread].pending()){
+						threads[current_thread].untrigger();
+						jump(globals.peek(current_thread).asAddress());
+						callbacks.push(run_callback);
+						is_finished = false;
+						return;
+					}
+					current_thread++;
+					if (current_thread >= threads.size()) current_thread = 0;
 				}
 			}
 			
+		protected:
+			static void run_callback(Machine & machine){
+				machine.threads[machine.current_thread].result = machine.stack.pop();
+				for(Size i = 0; i < machine.state.size(); i++){
+					if (machine.state[i].thread == machine.current_thread){
+						if (!machine.state[i].is_executed) machine.state[i].data.reset();
+						machine.state[i].is_executed = false;
+					}
+				}
+				machine.current_thread++;
+				if (machine.current_thread >= machine.threads.size()) machine.current_thread = 0;
+			}
+			
+		public:
 			/// Execute the next instruction.
 			/**
 			 * \note Do not use this function when already finished().
@@ -166,8 +203,8 @@ class Machine : public MachineExtension {
 			inline void retn() {
 				Instruction callback = callbacks.pop();
 				Data result = stack.pop();
-				jump(stack.popAddress());
-				if (!callbacks.empty() || callback) stack.push(result);
+				if (!callbacks.empty()) jump(stack.popAddress());
+				if (!(callbacks.empty() && !callback)) stack.push(result);
 				if (callback) callback(*this);
 			}
 			

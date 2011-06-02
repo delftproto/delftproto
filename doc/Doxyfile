@@ -82,6 +82,7 @@ INPUT                 += ../src/vm
 INPUT                 += ../src/vm/instructions/flow.cpp
 INPUT                 += ../src/vm/instructions/environment.cpp
 INPUT                 += ../src/vm/instructions/globals.cpp
+INPUT                 += ../src/vm/instructions/threads.cpp
 INPUT                 += ../src/vm/instructions/literals.cpp
 INPUT                 += ../src/vm/instructions/math.cpp
 INPUT                 += ../src/vm/instructions/tuple.cpp

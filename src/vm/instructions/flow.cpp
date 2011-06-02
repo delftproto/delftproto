@@ -23,6 +23,7 @@ namespace Instructions {
 	/// \name Control flow
 	/// \{
 	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// Define the VM requirements.
 	/**
 	 * This should be executed before any other instruction.
@@ -33,6 +34,8 @@ namespace Instructions {
 	 * \param Int8 The number of state variables.
 	 * \param Int16 The size of the execution stack.
 	 * \param Int8 The size of the environment stack.
+	 * 
+	 * \deprecated_mitproto{DEF_VM_EX}
 	 */
 	void DEF_VM(Machine & machine){
 		/*Size export_length    =*/ machine.nextInt8 (); //TODO: ...
@@ -42,11 +45,15 @@ namespace Instructions {
 		Size       stack_size = machine.nextInt16();
 		Size environment_size = machine.nextInt8 ();
 		
-		machine.       hood.reset(    exports_size);
-		machine.    globals.reset(    globals_size);
-		machine.      state.reset(      state_size);
-		machine.      stack.reset(    stack_size+1);
+		machine.      stack.reset(      stack_size);
 		machine.environment.reset(environment_size);
+		machine.    globals.reset(    globals_size);
+		machine.    threads.reset(               1);
+		machine.      state.reset(      state_size);
+		machine.       hood.reset(    exports_size);
+		
+		machine.current_thread = 0;
+		machine.threads[0].activate();
 		
 		machine.hood.add(machine.id);
 		
@@ -54,15 +61,45 @@ namespace Instructions {
 		machine.callbacks.reset(3); //TODO: ...
 		machine.callbacks.push(callback);
 	}
+#endif
+	
+#if MIT_COMPATIBILITY != MIT_ONLY
+	/// Define the (extended) VM requirements.
+	/**
+	 * This should be executed before any other instruction.
+	 * 
+	 * \param Int The size of the execution stack.
+	 * \param Int The size of the environment stack.
+	 * \param Int The number of globals.
+	 * \param Int The number of threads.
+	 * \param Int The number of state variables.
+	 * \param Int The number of exports.
+	 * \param Int The maximum execution depth (for instructions that execute functions, such as MAP).
+	 */
+	void DEF_VM_EX(Machine & machine){
+		machine.      stack.reset(machine.nextInt());
+		machine.environment.reset(machine.nextInt());
+		machine.    globals.reset(machine.nextInt());
+		machine.    threads.reset(machine.nextInt());
+		machine.      state.reset(machine.nextInt());
+		machine.       hood.reset(machine.nextInt());
+		
+		machine.current_thread = 0;
+		
+		machine.hood.add(machine.id);
+		
+		Instruction callback = machine.callbacks.pop();
+		machine.callbacks.reset(machine.nextInt());
+		machine.callbacks.push(callback);
+	}
+#endif
 	
 	/// Exit the installation script.
 	/**
 	 * This must be the last instruction of an installation script.
 	 */
 	void EXIT(Machine & machine){
-		machine.stack.push(machine.globals.peek());
-		machine.stack.push(Data());
-		machine.retn();
+		machine.callbacks.pop(machine.callbacks.size());
 	}
 	
 	/// Return from a function.

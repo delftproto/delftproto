@@ -34,7 +34,7 @@
  * Opcodes are declared as the name of the instruction with \c _OP appended.
  * 
  * \note
- * Int8, Int16 and IEEE754binary32 parameters are read from the byte(s) following the opcode.
+ * Int, Int8, Int16 and IEEE754binary32 parameters are read from the byte(s) following the opcode.
  * Address, Number, Tuple and Data parameters are taken from the execution stack.
  * %Stack parameters should be pushed in the same order as they are listed in this documentation.
  * 

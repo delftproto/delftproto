@@ -19,6 +19,7 @@
 #define __STATE_HPP
 
 #include <data.hpp>
+#include <thread.hpp>
 
 /// A state variable.
 /**
@@ -33,9 +34,12 @@ class State {
 		
 		/// A boolean indicating wheter this state variable was used in the last round (true) or not (false).
 		/**
-		 * When a state variable is not used in a round, it is reset by the machine.
+		 * When a state variable is not used in a run of the thread this state variable belongs to, it is reset by the machine.
 		 */
 		bool is_executed;
+		
+		/// The thread that this state variable belongs to.
+		Thread::Id thread;
 		
 		/// The default constructor.
 		State() : is_executed(false) {}

@@ -25,6 +25,7 @@
 #include <instructions/flow.cpp>
 #include <instructions/environment.cpp>
 #include <instructions/globals.cpp>
+#include <instructions/threads.cpp>
 #include <instructions/literals.cpp>
 #include <instructions/math.cpp>
 #include <instructions/tuple.cpp>
