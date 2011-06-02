@@ -99,7 +99,7 @@ class Machine : public MachineExtension {
 	public:
 		
 		/// The constructor.
-		Machine() : instruction_pointer(0), callbacks(1) { hood.add(id); }
+		Machine() : instruction_pointer(0), callbacks(1) {}
 		
 		/// \name Execution control
 		/// \{
