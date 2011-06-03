@@ -59,6 +59,14 @@ template<typename Element> class Array {
 			for(Size i = 0; i < array_size; i++) new (&array[i]) Element();
 		}
 		
+		/// Clear the array.
+		/**
+		 * All elements will be reset to their default value.
+		 */
+		inline void clear() {
+			for(Size i = 0; i < array_size; i++) array[i] = Element();
+		}
+		
 		inline operator Element       * ()       { return array; } ///< Access the elements of the Array.
 		inline operator Element const * () const { return array; } ///< Constant access to the elements of the Array. 
 		
