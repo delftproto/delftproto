@@ -48,26 +48,25 @@ namespace Instructions {
 	}
 	
 	namespace {
-		Tuple map_values;
-		Address map_function;
-		Tuple * map_result;
-		Index map_index;
-		
 		void map_step(Machine & machine){
 			machine.environment.pop(1);
-			if (map_result == &map_values) {
-				(*map_result)[map_index] = machine.stack.pop();
+			Data new_element = machine.stack.pop();
+			Tuple & result = machine.stack.peek(0).asTuple();
+			Tuple & values = machine.stack.peek(1).asTuple();
+			result.push(new_element);
+			if (result.size() < values.size()){
+				machine.environment.push(values[result.size()]);
+				Address filter = machine.stack.peek(2).asAddress();
+				machine.call(filter, map_step);
 			} else {
-				map_result->push(machine.stack.pop());
-			}
-			if (++map_index < map_values.size()){
-				machine.environment.push(map_values[map_index]);
-				machine.call(map_function, map_step);
+				Data result = machine.stack.popTuple();
+				machine.stack.popTuple();
+				machine.stack.popAddress();
+				machine.stack.push(result);
 			}
 		}
 	}
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
 	/// Map all elements of a Tuple using a function.
 	/**
 	 * The given function will be called for every element in the tuple.
@@ -79,75 +78,43 @@ namespace Instructions {
 	 * \return Tuple The tuple with all the mapped elements.
 	 */
 	void TUP_MAP(Machine & machine){
-		map_values = machine.stack.popTuple();
-		map_function = machine.stack.popAddress();
-		if (map_values.instances() == 1){
-			map_result = &map_values;
-			machine.stack.push(map_values);
+		Tuple & values = machine.stack.peek(0).asTuple();
+		if (values.empty()){
+			machine.stack.popTuple();
+			machine.stack.popAddress();
+			machine.stack.push(Tuple());
 		} else {
-			machine.stack.push(Tuple(map_values.size()));
-			map_result = &machine.stack.peek().asTuple();
-		}
-		map_index = 0;
-		if (!map_values.empty()){
-			machine.environment.push(map_values[0]);
-			machine.call(map_function, map_step);
+			Address filter = machine.stack.peek(1).asAddress();
+			machine.stack.push(Tuple(values.size()));
+			machine.environment.push(values[0]);
+			machine.call(filter, map_step);
 		}
 	}
-#endif
 	
 #if MIT_COMPATIBILITY != NO_MIT
 	/// \deprecated_mitproto{TUP_MAP}
 	void MAP(Machine & machine){
-		map_result = &machine.globals[machine.nextInt8()].asTuple();
-		map_values = machine.stack.popTuple();
-		map_function = machine.stack.popAddress();
-		*map_result = Tuple(map_values.size());
-		machine.stack.push(*map_result);
-		map_index = 0;
-		if (!map_values.empty()){
-			machine.environment.push(map_values[0]);
-			machine.call(map_function, map_step);
-		}
+		machine.nextInt8();
+		TUP_MAP(machine);
 	}
 #endif
 	
 	namespace {
-		Tuple fold_values;
-		Index fold_index;
-		Data * fold_result;
-		Address fold_fuse;
-		Data fold_dummy_result;
-		
-		void fold_step(Machine & machine);
-		
-		void fold(Machine & machine, Data & result) {
-			fold_values = machine.stack.popTuple();
-			result = machine.stack.pop();
-			Address fuse = machine.stack.popAddress();
-			
-			fold_index = 0;
-			fold_result = &result;
-			fold_fuse = fuse;
-			
-			if (fold_values.empty()){
-				machine.stack.push(*fold_result);
-			} else {
-				machine.environment.push(*fold_result);
-				machine.environment.push(fold_values[0]);
-				machine.call(fold_fuse, fold_step);
-			}
-		}
-		
 		void fold_step(Machine & machine) {
 			machine.environment.pop(2);
-			*fold_result = machine.stack.pop().copy();
+			Data      result      = machine.stack.pop();
+			Number  & fold_index  = machine.stack.peek(0).asNumber ();
+			Tuple   & fold_values = machine.stack.peek(1).asTuple  ();
+			Address & fold_fuse   = machine.stack.peek(2).asAddress();
 			if (++fold_index < fold_values.size()){
-				machine.environment.push(*fold_result);
-				machine.environment.push(fold_values[fold_index]);
+				machine.environment.push(result);
+				machine.environment.push(fold_values[Index(fold_index)]);
 				machine.call(fold_fuse, fold_step);
 			} else {
-				machine.stack.push(*fold_result);
+				machine.stack.popNumber();
+				machine.stack.popTuple();
+				machine.stack.popAddress();
+				machine.stack.push(result);
 			}
 		}
 	}
@@ -177,15 +144,29 @@ namespace Instructions {
 	 * \param Data The value to start with.
 	 * \param Tuple The tuple to fold.
 	 * 
-	 * \return Data the result of the folding process.
+	 * \return Data The result of the folding process.
 	 */
 	void FOLD(Machine & machine){
-		fold(machine, fold_dummy_result);
+		Tuple   fold_values = machine.stack.pop().asTuple();
+		Data    result      = machine.stack.pop();
+		Address fold_fuse   = machine.stack.peek().asAddress();
+		
+		if (fold_values.empty()){
+			machine.stack.popAddress();
+			machine.stack.push(result);
+		} else {
+			machine.stack.push(fold_values);
+			machine.stack.push(0);
+			machine.environment.push(result);
+			machine.environment.push(fold_values[0]);
+			machine.call(fold_fuse, fold_step);
+		}
 	}
 	
 	/// \deprecated_mitproto{FOLD}
 	void VFOLD(Machine & machine){
-		fold(machine, machine.globals[machine.nextInt8()]);
+		machine.nextInt8();
+		FOLD(machine);
 	}
 	
 	/// \}
