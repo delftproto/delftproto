@@ -93,7 +93,7 @@ class Machine : public MachineExtension {
 		/**
 		 * Used by the hood folding instructions.
 		 */
-		Size current_import;
+		Index current_import;
 		
 		friend void Instructions::DEF_VM(Machine &);
 #if MIT_COMPATIBILITY != MIT_ONLY
