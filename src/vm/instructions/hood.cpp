@@ -18,104 +18,86 @@
 #include <machine.hpp>
 #include <instructions.hpp>
 
-class HoodInstructions {
+struct HoodInstructions {
 	
-	protected:
+	static void fold_hood(Machine & machine) {
+		Index import_index = machine.nextInt8();
+		Data export_value = machine.stack.pop();
+		Data result = machine.stack.pop();
+		Address fuse = machine.stack.peek().asAddress();
 		
-		static Index export_index;
-		static Data * result;
-		static Address filter;
-		static Address fuse;
+		machine.current_import = import_index;
 		
-	public:
+		machine.thisMachine().imports[import_index] = export_value;
 		
-		static Data dummy_result;
+		machine.current_neighbour = machine.hood.begin();
 		
-		static void fold_hood(Machine & machine, Data & result) {
-			Index export_index = machine.nextInt8();
-			Data export_value = machine.stack.pop();
-			result = machine.stack.pop();
-			Address fuse = machine.stack.popAddress();
-			
-			HoodInstructions::export_index = export_index;
-			HoodInstructions::result = &result;
-			HoodInstructions::fuse = fuse;
-			
-			machine.thisMachine().imports[export_index] = export_value;
-			
-			machine.current_neighbour = machine.hood.begin();
-			
-			machine.environment.push(result);
-			machine.environment.push(export_value);
+		machine.environment.push(result);
+		machine.environment.push(export_value);
+		machine.call(fuse,fold_hood_step);
+	}
+	
+	static void fold_hood_step(Machine & machine) {
+		machine.environment.pop(2);
+		if (++machine.current_neighbour != machine.hood.end()){
+			machine.environment.push(machine.stack.pop());
+			machine.environment.push(machine.current_neighbour->imports[machine.current_import]);
+			Address fuse = machine.stack.peek().asAddress();
 			machine.call(fuse,fold_hood_step);
+		} else {
+			Data result = machine.stack.pop();
+			machine.stack.pop(1);
+			machine.stack.push(result);
 		}
+	}
+	
+	static void fold_hood_plus(Machine & machine) {
+		Index import_index = machine.nextInt8();
+		Data export_value = machine.stack.pop();
+		Address filter = machine.stack.peek().asAddress();
 		
-		static void fold_hood_step(Machine & machine) {
-			machine.environment.pop(2);
-			*result = machine.stack.pop();
-			if (++machine.current_neighbour != machine.hood.end()){
-				machine.environment.push(*result);
-				machine.environment.push(machine.current_neighbour->imports[export_index]);
-				machine.call(fuse,fold_hood_step);
-			} else {
-				machine.stack.push(*result);
-			}
+		machine.current_import = import_index;
+		
+		machine.thisMachine().imports[import_index] = export_value;
+		
+		machine.current_neighbour = machine.hood.begin();
+		
+		machine.environment.push(export_value);
+		machine.call(filter,fold_hood_plus_first_filter);
+	}
+	
+	static void fold_hood_filter_next(Machine & machine){
+		if (++machine.current_neighbour != machine.hood.end()){
+			machine.environment.push(machine.current_neighbour->imports[machine.current_import]);
+			Address filter = machine.stack.peek(1).asAddress();
+			machine.call(filter,fold_hood_plus_step_filter);
+		} else {
+			Data result = machine.stack.pop();
+			machine.stack.pop(2);
+			machine.stack.push(result);
 		}
-		
-		static void fold_hood_plus(Machine & machine, Data & result) {
-			Index export_index = machine.nextInt8();
-			Data export_value = machine.stack.pop();
-			Address filter = machine.stack.popAddress();
-			Address fuse = machine.stack.popAddress();
-			
-			HoodInstructions::export_index = export_index;
-			HoodInstructions::result = &result;
-			HoodInstructions::filter = filter;
-			HoodInstructions::fuse = fuse;
-			
-			machine.thisMachine().imports[export_index] = export_value;
-			
-			machine.current_neighbour = machine.hood.begin();
-			
-			machine.environment.push(export_value);
-			machine.call(filter,fold_hood_plus_first_filter);
-		}
-		
-		static void fold_hood_filter_next(Machine & machine){
-			*result = machine.stack.pop();
-			if (++machine.current_neighbour != machine.hood.end()){
-				machine.environment.push(machine.current_neighbour->imports[export_index]);
-				machine.call(filter,fold_hood_plus_step_filter);
-			} else {
-				machine.stack.push(*result);
-			}
-		}
-		
-		static void fold_hood_plus_first_filter(Machine & machine){
-			machine.environment.pop(1);
-			fold_hood_filter_next(machine);
-		}
-		
-		static void fold_hood_plus_step_filter(Machine & machine){
-			machine.environment.pop(1);
-			Data import = machine.stack.pop();
-			machine.environment.push(*result);
-			machine.environment.push(import);
-			machine.call(fuse,fold_hood_plus_step_fuse);
-		}
-		
-		static void fold_hood_plus_step_fuse(Machine & machine){
-			machine.environment.pop(2);
-			fold_hood_filter_next(machine);
-		}
-		
+	}
+	
+	static void fold_hood_plus_first_filter(Machine & machine){
+		machine.environment.pop(1);
+		fold_hood_filter_next(machine);
+	}
+	
+	static void fold_hood_plus_step_filter(Machine & machine){
+		machine.environment.pop(1);
+		Data import = machine.stack.pop();
+		machine.environment.push(machine.stack.pop());
+		machine.environment.push(import);
+		Address fuse   = machine.stack.peek(1).asAddress();
+		machine.call(fuse,fold_hood_plus_step_fuse);
+	}
+	
+	static void fold_hood_plus_step_fuse(Machine & machine){
+		machine.environment.pop(2);
+		fold_hood_filter_next(machine);
+	}
+	
 };
-
-Index   HoodInstructions::export_index;
-Data *  HoodInstructions::result;
-Address HoodInstructions::filter;
-Address HoodInstructions::fuse;
-Data    HoodInstructions::dummy_result;
 
 namespace Instructions {
 	
@@ -154,13 +136,13 @@ namespace Instructions {
 	 * \return Data the result of the folding process.
 	 */
 	void FOLD_HOOD(Machine & machine){
-		HoodInstructions::fold_hood(machine,HoodInstructions::dummy_result);
+		HoodInstructions::fold_hood(machine);
 	}
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD(Machine & machine){
-		Data & result = machine.globals[machine.nextInt8()];
-		HoodInstructions::fold_hood(machine,result);
+		machine.nextInt8();
+		HoodInstructions::fold_hood(machine);
 	}
 	
 	/// Filter and fold all imported values for a specific neighbourhood variable and update the corresponding export.
@@ -195,13 +177,13 @@ namespace Instructions {
 	 * \return Data the result of the folding process.
 	 */
 	void FOLD_HOOD_PLUS(Machine & machine){
-		HoodInstructions::fold_hood_plus(machine,HoodInstructions::dummy_result);
+		HoodInstructions::fold_hood_plus(machine);
 	}
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD_PLUS(Machine & machine){
-		Data & result = machine.globals[machine.nextInt8()];
-		HoodInstructions::fold_hood_plus(machine,result);
+		machine.nextInt8();
+		HoodInstructions::fold_hood_plus(machine);
 	}
 	
 	/// \}

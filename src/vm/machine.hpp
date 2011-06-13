@@ -89,6 +89,12 @@ class Machine : public MachineExtension {
 		 */
 		NeighbourHood::iterator current_neighbour;
 		
+		/// The (index of the) current import/export, when executing a hood instruction.
+		/**
+		 * Used by the hood folding instructions.
+		 */
+		Size current_import;
+		
 		friend void Instructions::DEF_VM(Machine &);
 #if MIT_COMPATIBILITY != MIT_ONLY
 		friend void Instructions::DEF_VM_EX(Machine &);
