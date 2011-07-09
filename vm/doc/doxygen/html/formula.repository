@@ -1,0 +1,38 @@
+\form#0:$\displaystyle +\infty$
+\form#1:$\displaystyle -\infty$
+\form#2:$\displaystyle a$
+\form#3:$\displaystyle b$
+\form#4:$\displaystyle \left\lbrace\begin{array}{ll}1&a=b\\0&a\neq b\end{array}\right.$
+\form#5:$\displaystyle \left\lbrace\begin{array}{ll}1&a\neq b\\0&a=b\end{array}\right.$
+\form#6:$\displaystyle \left\lbrace\begin{array}{ll}1&a<b\\0&a\geq b\end{array}\right.$
+\form#7:$\displaystyle \left\lbrace\begin{array}{ll}1&a\leq b\\0&a>b\end{array}\right.$
+\form#8:$\displaystyle \left\lbrace\begin{array}{ll}1&a>b\\0&a\leq b\end{array}\right.$
+\form#9:$\displaystyle \left\lbrace\begin{array}{ll}1&a\geq b\\0&a<b\end{array}\right.$
+\form#10:$\displaystyle a + b$
+\form#11:$\displaystyle a - b$
+\form#12:$\displaystyle a \cdot b$
+\form#13:$\displaystyle \frac a b$
+\form#14:$\displaystyle |a|$
+\form#15:$\displaystyle \max\lbrace a,b\rbrace$
+\form#16:$\displaystyle \min\lbrace a,b\rbrace$
+\form#17:$\displaystyle a^b$
+\form#18:$\displaystyle x \equiv a \pmod{|b|},\quad \left\lbrace\begin{array}{ll} -|b| < x \leq 0 & a < 0 \\ 0 \leq x < |b| & a \geq 0 \end{array}\right.$
+\form#19:$\displaystyle x \equiv a \pmod{|b|},\quad 0 \leq x < |b|$
+\form#20:$\displaystyle \left\lfloor a \right\rfloor$
+\form#21:$\displaystyle \left\lceil a \right\rceil$
+\form#22:$\displaystyle \log_e a$
+\form#23:$\displaystyle \sqrt a$
+\form#24:$\displaystyle \sin a$
+\form#25:$\displaystyle \cos a$
+\form#26:$\displaystyle \tan a$
+\form#27:$\displaystyle \sinh a$
+\form#28:$\displaystyle \cosh a$
+\form#29:$\displaystyle \tanh a$
+\form#30:$\displaystyle \arcsin a$
+\form#31:$\displaystyle \arccos a$
+\form#32:$\displaystyle y$
+\form#33:$\displaystyle x$
+\form#34:$\displaystyle \arctan \frac y x$
+\form#35:$\displaystyle min$
+\form#36:$\displaystyle max$
+\form#37:$\displaystyle x \sim U(min,max)$
