@@ -1,40 +1,40 @@
 # To use this in your Makefile:
-#   delftproto_dir := path to this file (such as, /usr/local/share/delftproto-vm)
+#   delftproto_dir := $(shell delftproto-dir) # The path to the delftproto shared directory.
 #   include $(delftproto_dir)/vm.mk
 
 .PHONY: clean
 
-output ?= dpvm
-generated += $(output)
-
+dpvm ?= dpvm
 delftproto_dir ?= ../..
-platform_dir ?= .
 
-vm_dir := $(delftproto_dir)/vm
+dpvm_dir := $(delftproto_dir)/vm
 
-sources += $(wildcard $(vm_dir)/*.cpp)
-sources += $(wildcard $(platform_dir)/*.cpp)
-dependencies += $(wildcard $(vm_dir)/instructions/*)
-dependencies += $(wildcard $(platform_dir)/instructions/*)
+$(dpvm)_SOURCES ?= $(wildcard *.cpp)
+$(dpvm)_SOURCES += $(wildcard $(dpvm_dir)/*.cpp)
 
-extension_dir := $(extensions)
+$(dpvm)_DEPENDENCIES ?= $(wildcard instructions/*)
+$(dpvm)_DEPENDENCIES += $(wildcard $(dpvm_dir)/instructions/*)
 
--include $(extension_dir:%=%/extension.mk)
+$(dpvm)_EXTENSIONS = $(extensions)
 
-sources += $(wildcard $(extension_dir:%=%/*.cpp))
-dependencies += $(wildcard $(extension_dir:%=%/*))
+-include $($(dpvm)_EXTENSIONS:%=%/extension.mk)
 
-include_dir += $(delftproto_dir)
-include_dir += $(platform_dir)
-include_dir += $(vm_dir)
+$(dpvm)_SOURCES += $(wildcard $($(dpvm)_EXTENSIONS:%=%/*.cpp))
+$(dpvm)_DEPENDENCIES += $(wildcard $($(dpvm)_EXTENSIONS:%=%/*))
 
-sources := $(sort $(sources))
+$(dpvm)_INCLUDE_DIRS += $(delftproto_dir)
+$(dpvm)_INCLUDE_DIRS += .
+$(dpvm)_INCLUDE_DIRS += $(dpvm_dir)
 
-dependencies += $(sources)
-dependencies += $(wildcard $(include_dir:%=%/*.hpp))
+$(dpvm)_INCLUDES := $($(dpvm)_INCLUDE_DIRS:%=-I%)
 
-$(output): $(dependencies)
-	$(CXX) $(CXXFLAGS) $(include_dir:%=-I%) $(sources) -o $@
+$(dpvm)_SOURCES := $(sort $($(dpvm)_SOURCES))
 
-clean:
-	rm -f $(generated)
+$(dpvm)_DEPENDENCIES += $(sources)
+$(dpvm)_DEPENDENCIES += $(wildcard $(include_dir:%=%/*.hpp))
+
+$(dpvm)_CPPFLAGS += $($(dpvm)_INCLUDES) $(CPPFLAGS)
+$(dpvm)_CXXFLAGS += $(CXXFLAGS)
+$(dpvm)_LDFLAGS  += $(LDFLAGS)
+
+$(dpvm)_COMPILE = $(CXX) $($(dpvm)_CPPFLAGS) $($(dpvm)_CXXFLAGS) $($(dpvm)_LDFLAGS) $($(dpvm)_SOURCES)

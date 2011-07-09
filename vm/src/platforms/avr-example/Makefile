@@ -1,9 +1,14 @@
 delftproto_dir := ../..
 
-output := dpvm.elf
+include $(delftproto_dir)/vm.mk
 
 CXX := avr-g++
-CXXFLAGS := -mmcu=atmega168 -Os -funit-at-a-time -finline-limit=1 -ffunction-sections --combine -Wl,--relax,--gc-sections
+dpvm_CXXFLAGS += -mmcu=atmega168 -Os -funit-at-a-time -finline-limit=1 -ffunction-sections --combine -Wl,--relax,--gc-sections
 
-include $(delftproto_dir)/vm.mk
+dpvm.elf: $(dpvm_DEPENDENCIES)
+	$(dpvm_COMPILE) -o $@
+
+.PHONY: clean
+clean:
+	rm -f dpvm.elf
 
