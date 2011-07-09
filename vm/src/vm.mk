@@ -1,31 +1,34 @@
-.PHONY: clean
+# To use this in your Makefile:
+#   delftproto_dir := path to this file (such as, /usr/local/share/delftproto-vm)
+#   include $(delftproto_dir)/vm.mk
 
-# extensions += example ...
+.PHONY: clean
 
 output ?= dpvm
 generated += $(output)
 
-vm_dir ?= ../../
-extensions_dir ?= ../../extensions/
-platform_dir ?= ./
+delftproto_dir ?= ../..
+platform_dir ?= .
 
-sources += $(wildcard $(vm_dir)*.cpp)
-sources += $(wildcard $(platform_dir)*.cpp)
-dependencies += $(wildcard $(vm_dir)instructions/*)
-dependencies += $(wildcard $(platform_dir)instructions/*)
+vm_dir := $(delftproto_dir)/vm
 
-extension_dir := $(extensions:%=$(extensions_dir)%)
+sources += $(wildcard $(vm_dir)/*.cpp)
+sources += $(wildcard $(platform_dir)/*.cpp)
+dependencies += $(wildcard $(vm_dir)/instructions/*)
+dependencies += $(wildcard $(platform_dir)/instructions/*)
+
+extension_dir := $(extensions)
 
 -include $(extension_dir:%=%/extension.mk)
 
 sources += $(wildcard $(extension_dir:%=%/*.cpp))
 dependencies += $(wildcard $(extension_dir:%=%/*))
 
-include_dir += $(extensions_dir)
+include_dir += $(delftproto_dir)
 include_dir += $(platform_dir)
 include_dir += $(vm_dir)
 
-sources := $(sort $(sources)) # remove duplicates
+sources := $(sort $(sources))
 
 dependencies += $(sources)
 dependencies += $(wildcard $(include_dir:%=%/*.hpp))

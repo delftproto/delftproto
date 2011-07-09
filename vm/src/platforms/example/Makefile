@@ -1,6 +1,8 @@
-extensions += example
+delftproto_dir = ../..
+
+extensions += $(delftproto_dir)/extensions/example
 
 CXXFLAGS += -Wall
 
-include ../../vm.mk
+include $(delftproto_dir)/vm.mk
 
