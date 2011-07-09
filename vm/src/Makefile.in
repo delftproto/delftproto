@@ -145,6 +145,7 @@ top_srcdir = @top_srcdir@
 vmsrcdir := $(datadir)/delftproto
 nobase_dist_vmsrc_DATA = vm/*.hpp vm/*.cpp vm/delftproto.instructions vm.mk vm/instructions/*.cpp
 bin_SCRIPTS = delftproto-dir
+CLEANFILES = delftproto-dir
 all: all-am
 
 .SUFFIXES:
@@ -296,6 +297,7 @@ install-strip:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
