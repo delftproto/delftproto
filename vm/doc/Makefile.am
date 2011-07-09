@@ -1,1 +1,1 @@
-html_DATA = doxygen/html/*
+dist_html_DATA = doxygen/html/*
