@@ -15,8 +15,6 @@ $(dpvm)_SOURCES += $(wildcard $(dpvm_dir)/*.cpp)
 $(dpvm)_DEPENDENCIES ?= $(wildcard instructions/*)
 $(dpvm)_DEPENDENCIES += $(wildcard $(dpvm_dir)/instructions/*)
 
-$(dpvm)_EXTENSIONS = $(extensions)
-
 -include $($(dpvm)_EXTENSIONS:%=%/extension.mk)
 
 $(dpvm)_SOURCES += $(wildcard $($(dpvm)_EXTENSIONS:%=%/*.cpp))

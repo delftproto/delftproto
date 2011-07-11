@@ -1,6 +1,6 @@
 delftproto_dir := ../..
 
-extensions += $(delftproto_dir)/vm-extensions/example
+dpvm_EXTENSIONS += $(delftproto_dir)/vm-extensions/example
 
 include $(delftproto_dir)/vm.mk
 
