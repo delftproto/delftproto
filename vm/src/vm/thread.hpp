@@ -21,15 +21,7 @@
 #include <types.hpp>
 #include <data.hpp>
 
-/// A thread.
-/**
- * The 'main function' of each thread is stored in the Machine::globals list of the machine.
- * The first thread corresponds to the last global, the second thread to the second last global, and so on.
- * 
- * A thread can be triggered and activated. It is called 'pending' when it is either triggered, activated or both.
- * The Machine::run() starts the execution of the next pending Thread, Round-robin style.
- */
-class Thread {
+class BasicThread {
 	
 	public:
 		/// An index in the Machine::threads list.
@@ -82,8 +74,29 @@ class Thread {
 			is_triggered = false;
 		}
 		
-		friend class Machine;
-		
+};
+
+/// \cond
+#define Thread BasicThread
+#include <extensions.hpp>
+typedef Thread ExtendedThread;
+#undef Thread
+/// \endcond
+
+/// A thread.
+/**
+ * The 'main function' of each thread is stored in the Machine::globals list of the machine.
+ * The first thread corresponds to the last global, the second thread to the second last global, and so on.
+ * 
+ * A thread can be triggered and activated. It is called 'pending' when it is either triggered, activated or both.
+ * The Machine::run() starts the execution of the next pending Thread, Round-robin style.
+ * 
+ * \note This class is \ref extending "extensible".
+ * 
+ * \extends BasicThread
+ */
+class Thread : public ExtendedThread {
+	friend class Machine;
 };
 
 #endif
