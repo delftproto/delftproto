@@ -252,7 +252,7 @@ class Machine : public MachineExtension {
 			
 			/// Read the next byte as an unsigned 8-bit integer.
 			/**
-			 * \deprecated Use nextInt() instead.
+			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
 			 */
 			inline Int8 nextInt8() {
 				return *instruction_pointer++;
@@ -260,7 +260,7 @@ class Machine : public MachineExtension {
 			
 			/// Read the next two bytes as an unsigned 16-bit integer (big endian).
 			/**
-			 * \deprecated Use nextInt() instead.
+			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
 			 */
 			inline Int16 nextInt16() {
 				Int16 data  = static_cast<Int16>(nextInt8()) << 8;

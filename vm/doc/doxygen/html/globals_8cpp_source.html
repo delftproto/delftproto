@@ -115,66 +115,74 @@
 <a name="l00066"></a>00066     <span class="comment"></span>
 <a name="l00067"></a>00067 <span class="comment">    /// Push a global variable on the execution stack.</span>
 <a name="l00068"></a>00068 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00069"></a>00069 <span class="comment">     * \param Int8 The index of the global in the gobals list.</span>
+<a name="l00069"></a>00069 <span class="comment">     * \param Int The index of the global in the gobals list.</span>
 <a name="l00070"></a>00070 <span class="comment">     * \return The value of the global variable.</span>
 <a name="l00071"></a>00071 <span class="comment">     */</span>
 <a name="l00072"></a><a class="code" href="namespace_instructions.html#a37e628b7409e191615b2df243489bfc0">00072</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a37e628b7409e191615b2df243489bfc0" title="Push a global variable on the execution stack.">GLO_REF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00073"></a>00073         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00073"></a>00073         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00074"></a>00074         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
 <a name="l00075"></a>00075     }
-<a name="l00076"></a>00076     <span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">    /// Push a global variable on the execution stack.</span>
-<a name="l00078"></a>00078 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00079"></a>00079 <span class="comment">     * \param Int16 The index of the global in the gobals list.</span>
-<a name="l00080"></a>00080 <span class="comment">     * \return The value of the global variable.</span>
-<a name="l00081"></a>00081 <span class="comment">     */</span>
-<a name="l00082"></a><a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd">00082</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd" title="Push a global variable on the execution stack.">GLO_REF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00083"></a>00083         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00084"></a>00084         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
-<a name="l00085"></a>00085     }
-<a name="l00086"></a>00086     <span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">    /// Define a function as a global.</span>
-<a name="l00088"></a>00088 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00089"></a>00089 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
-<a name="l00090"></a>00090 <span class="comment">     * and execution continues after the function definition.</span>
-<a name="l00091"></a>00091 <span class="comment">     * </span>
-<a name="l00092"></a>00092 <span class="comment">     * \tparam size The number of (following) bytes that define the function.</span>
-<a name="l00093"></a>00093 <span class="comment">     */</span>
-<a name="l00094"></a>00094     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> size&gt;
-<a name="l00095"></a><a class="code" href="namespace_instructions.html#a13e12195a54fe6f6a2d7d6c6bf8c0564">00095</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a13e12195a54fe6f6a2d7d6c6bf8c0564" title="Define a function as a global.">DEF_FUN_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00096"></a>00096         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00097"></a>00097         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099     <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">    /// Define a function as a global.</span>
-<a name="l00101"></a>00101 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00102"></a>00102 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
-<a name="l00103"></a>00103 <span class="comment">     * and execution continues after the function definition.</span>
-<a name="l00104"></a>00104 <span class="comment">     * </span>
-<a name="l00105"></a>00105 <span class="comment">     * \param Int8 The number of (following) bytes that define the function.</span>
-<a name="l00106"></a>00106 <span class="comment">     */</span>
-<a name="l00107"></a><a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3">00107</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3" title="Define a function as a global.">DEF_FUN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00108"></a>00108         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
-<a name="l00109"></a>00109         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00110"></a>00110         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
-<a name="l00111"></a>00111     }
-<a name="l00112"></a>00112     <span class="comment"></span>
-<a name="l00113"></a>00113 <span class="comment">    /// Define a function as a global.</span>
-<a name="l00114"></a>00114 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00115"></a>00115 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
-<a name="l00116"></a>00116 <span class="comment">     * and execution continues after the function definition.</span>
-<a name="l00117"></a>00117 <span class="comment">     * </span>
-<a name="l00118"></a>00118 <span class="comment">     * \param Inti16 The number of (following) bytes that define the function.</span>
-<a name="l00119"></a>00119 <span class="comment">     */</span>
-<a name="l00120"></a><a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a">00120</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a" title="Define a function as a global.">DEF_FUN16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00121"></a>00121         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00122"></a>00122         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00123"></a>00123         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
-<a name="l00124"></a>00124     }
-<a name="l00125"></a>00125     <span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">    /// \}</span>
-<a name="l00127"></a>00127 <span class="comment"></span>    
-<a name="l00128"></a>00128 }
+<a name="l00076"></a>00076     
+<a name="l00077"></a>00077 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
+<a name="l00078"></a>00078 <span class="preprocessor"></span><span class="comment">    /// Push a global variable on the execution stack.</span>
+<a name="l00079"></a>00079 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00080"></a>00080 <span class="comment">     * \param Int16 The index of the global in the gobals list.</span>
+<a name="l00081"></a>00081 <span class="comment">     * \return The value of the global variable.</span>
+<a name="l00082"></a>00082 <span class="comment">     * </span>
+<a name="l00083"></a>00083 <span class="comment">     * \deprecated_mitproto{GLO_REF}</span>
+<a name="l00084"></a>00084 <span class="comment">     */</span>
+<a name="l00085"></a><a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd">00085</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd" title="Push a global variable on the execution stack.">GLO_REF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00086"></a>00086         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
+<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089 <span class="preprocessor">#endif</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span>    <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">    /// Define a function as a global.</span>
+<a name="l00092"></a>00092 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00093"></a>00093 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
+<a name="l00094"></a>00094 <span class="comment">     * and execution continues after the function definition.</span>
+<a name="l00095"></a>00095 <span class="comment">     * </span>
+<a name="l00096"></a>00096 <span class="comment">     * \tparam size The number of (following) bytes that define the function.</span>
+<a name="l00097"></a>00097 <span class="comment">     */</span>
+<a name="l00098"></a>00098     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> size&gt;
+<a name="l00099"></a><a class="code" href="namespace_instructions.html#a13e12195a54fe6f6a2d7d6c6bf8c0564">00099</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a13e12195a54fe6f6a2d7d6c6bf8c0564" title="Define a function as a global.">DEF_FUN_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00100"></a>00100         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
+<a name="l00101"></a>00101         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103     <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">    /// Define a function as a global.</span>
+<a name="l00105"></a>00105 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00106"></a>00106 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
+<a name="l00107"></a>00107 <span class="comment">     * and execution continues after the function definition.</span>
+<a name="l00108"></a>00108 <span class="comment">     * </span>
+<a name="l00109"></a>00109 <span class="comment">     * \param Int The number of (following) bytes that define the function.</span>
+<a name="l00110"></a>00110 <span class="comment">     */</span>
+<a name="l00111"></a><a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3">00111</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3" title="Define a function as a global.">DEF_FUN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00112"></a>00112         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
+<a name="l00113"></a>00113         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
+<a name="l00114"></a>00114         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00115"></a>00115     }
+<a name="l00116"></a>00116     
+<a name="l00117"></a>00117 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
+<a name="l00118"></a>00118 <span class="preprocessor"></span><span class="comment">    /// Define a function as a global.</span>
+<a name="l00119"></a>00119 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00120"></a>00120 <span class="comment">     * The address of the next instruction is pushed on the globals list</span>
+<a name="l00121"></a>00121 <span class="comment">     * and execution continues after the function definition.</span>
+<a name="l00122"></a>00122 <span class="comment">     * </span>
+<a name="l00123"></a>00123 <span class="comment">     * \param Inti16 The number of (following) bytes that define the function.</span>
+<a name="l00124"></a>00124 <span class="comment">     * </span>
+<a name="l00125"></a>00125 <span class="comment">     * \deprecated_mitproto{DEF_FUN}</span>
+<a name="l00126"></a>00126 <span class="comment">     */</span>
+<a name="l00127"></a><a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a">00127</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a" title="Define a function as a global.">DEF_FUN16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00128"></a>00128         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
+<a name="l00129"></a>00129         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
+<a name="l00130"></a>00130         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00131"></a>00131     }
+<a name="l00132"></a>00132 <span class="preprocessor">#endif</span>
+<a name="l00133"></a>00133 <span class="preprocessor"></span>    <span class="comment"></span>
+<a name="l00134"></a>00134 <span class="comment">    /// \}</span>
+<a name="l00135"></a>00135 <span class="comment"></span>    
+<a name="l00136"></a>00136 }
 </pre></div></div>
 </div>
 <hr class="footer"/><address class="footer"><small>Generated by&#160;

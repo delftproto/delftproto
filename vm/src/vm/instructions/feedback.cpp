@@ -36,13 +36,13 @@ namespace Instructions {
 	 * \note A state variable will be reset when no feedback instruction is used on it in a single run.
 	 *       It will be reinitialized by the next time INIT_FEEDBACK is executed.
 	 * 
-	 * \param Int8 The index of the state variable.
+	 * \param Int The index of the state variable.
 	 * \param Address The function to give the initial value, if not yet set.
 	 * 
 	 * \return Data The value of the state variable.
 	 */
 	void INIT_FEEDBACK(Machine & machine){
-		Index state_index = machine.nextInt8();
+		Index state_index = machine.nextInt();
 		Address initialization_function = machine.stack.popAddress();
 		machine.state[state_index].is_executed = true;
 		machine.state[state_index].thread = machine.current_thread;
@@ -57,13 +57,13 @@ namespace Instructions {
 #if MIT_COMPATIBILITY != MIT_ONLY
 	/// Set a state variable.
 	/**
-	 * \param Int8 The index of the state variable.
+	 * \param Int The index of the state variable.
 	 * \param Data The new value for the state variable.
 	 * 
 	 * \return Data The new value of the state variable.
 	 */
 	void SET_FEEDBACK(Machine & machine){
-		Index state_index = machine.nextInt8();
+		Index state_index = machine.nextInt();
 		machine.state[state_index].data = machine.stack.peek();
 		machine.state[state_index].is_executed = true;
 	}
@@ -71,7 +71,7 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto
 	void FEEDBACK(Machine & machine){
-		Index state_index = machine.nextInt8();
+		Index state_index = machine.nextInt();
 		Data value = machine.stack.pop();
 		machine.state[state_index].data = value;
 		machine.state[state_index].is_executed = true;

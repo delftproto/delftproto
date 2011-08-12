@@ -117,14 +117,14 @@ namespace Instructions {
 	 * Preserve the top element while the rest of the given range is dropped.
 	 * For example, after executing <tt>ALL_OP 3</tt> on the stack <tt>[1 2 3 4]</tt>, <tt>[1 4]</tt> is left.
 	 * 
-	 * \param Int8 The number of elements to clean up.
+	 * \param Int The number of elements to clean up.
 	 * \param Data <tt>[n]</tt> The elements on the stack.
 	 * 
 	 * \return Data The top element.
 	 */
 	void ALL(Machine & machine){
 		Data data = machine.stack.peek();
-		machine.stack.pop(machine.nextInt8());
+		machine.stack.pop(machine.nextInt());
 		machine.stack.push(data);
 	}
 	
@@ -151,7 +151,7 @@ namespace Instructions {
 #if MIT_COMPATIBILITY != NO_MIT
 	/// \deprecated_mitproto{MUX}
 	void VMUX(Machine & machine){
-		Data & result = machine.globals[machine.nextInt8()];
+		Data & result = machine.globals[machine.nextInt()];
 		Data false_value = machine.stack.pop();
 		Data  true_value = machine.stack.pop();
 		Number condition = machine.stack.popNumber();
@@ -163,45 +163,53 @@ namespace Instructions {
 	/**
 	 * Skips the given number of bytes if the condition is not 0.
 	 * 
-	 * \param Int8 The number of bytes to skip when the condition is true.
+	 * \param Int The number of bytes to skip when the condition is true.
 	 * \param Number The condition.
 	 */
 	void IF(Machine & machine){
-		Size skip = machine.nextInt8();
+		Size skip = machine.nextInt();
 		if (machine.stack.popNumber()) machine.skip(skip);
 	}
 	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// A conditional jump.
 	/**
 	 * Skips the given number of bytes if the condition is not 0.
 	 * 
 	 * \param Int16 The number of bytes to skip when the condition is true.
 	 * \param Number The condition.
+	 * 
+	 * \deprecated_mitproto{IF}
 	 */
 	void IF16(Machine & machine){
 		Size skip = machine.nextInt16();
 		if (machine.stack.popNumber()) machine.skip(skip);
 	}
+#endif
 	
 	/// Jump to another address.
 	/**
 	 * \note You can only jump forward.
 	 * 
-	 * \param Int8 the number of bytes to jump (relative).
+	 * \param Int the number of bytes to jump (relative).
 	 */
 	void JMP(Machine & machine){
-		machine.skip(machine.nextInt8());
+		machine.skip(machine.nextInt());
 	}
 	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// Jump to another address.
 	/**
 	 * \note You can only jump forward.
 	 * 
 	 * \param Int16 The number of bytes to jump (relative).
+	 * 
+	 * \deprecated_mitproto{JMP}
 	 */
 	void JMP16(Machine & machine){
 		machine.skip(machine.nextInt16());
 	}
+#endif
 	
 	/// \}
 	

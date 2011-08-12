@@ -166,14 +166,14 @@
 <a name="l00117"></a>00117 <span class="comment">     * Preserve the top element while the rest of the given range is dropped.</span>
 <a name="l00118"></a>00118 <span class="comment">     * For example, after executing &lt;tt&gt;ALL_OP 3&lt;/tt&gt; on the stack &lt;tt&gt;[1 2 3 4]&lt;/tt&gt;, &lt;tt&gt;[1 4]&lt;/tt&gt; is left.</span>
 <a name="l00119"></a>00119 <span class="comment">     * </span>
-<a name="l00120"></a>00120 <span class="comment">     * \param Int8 The number of elements to clean up.</span>
+<a name="l00120"></a>00120 <span class="comment">     * \param Int The number of elements to clean up.</span>
 <a name="l00121"></a>00121 <span class="comment">     * \param Data &lt;tt&gt;[n]&lt;/tt&gt; The elements on the stack.</span>
 <a name="l00122"></a>00122 <span class="comment">     * </span>
 <a name="l00123"></a>00123 <span class="comment">     * \return Data The top element.</span>
 <a name="l00124"></a>00124 <span class="comment">     */</span>
 <a name="l00125"></a><a class="code" href="namespace_instructions.html#a1701c92321312ef4a08c9ef63dad5936">00125</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1701c92321312ef4a08c9ef63dad5936" title="Clean the stack.">ALL</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00126"></a>00126         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> data = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek();
-<a name="l00127"></a>00127         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>());
+<a name="l00127"></a>00127         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
 <a name="l00128"></a>00128         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(data);
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130     <span class="comment"></span>
@@ -200,7 +200,7 @@
 <a name="l00151"></a>00151 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span><span class="comment">    /// \deprecated_mitproto{MUX}</span>
 <a name="l00153"></a><a class="code" href="namespace_instructions.html#a741d52474a7a3c0096d06c74d8b29080">00153</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a741d52474a7a3c0096d06c74d8b29080" title="Only here for MIT Proto compatibility, deprecated.">VMUX</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00154"></a>00154         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> &amp; result = machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>()];
+<a name="l00154"></a>00154         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> &amp; result = machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>()];
 <a name="l00155"></a>00155         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> false_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
 <a name="l00156"></a>00156         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>  true_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
 <a name="l00157"></a>00157         <a class="code" href="class_number.html" title="A floating point number.">Number</a> condition = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber();
@@ -212,49 +212,57 @@
 <a name="l00163"></a>00163 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00164"></a>00164 <span class="comment">     * Skips the given number of bytes if the condition is not 0.</span>
 <a name="l00165"></a>00165 <span class="comment">     * </span>
-<a name="l00166"></a>00166 <span class="comment">     * \param Int8 The number of bytes to skip when the condition is true.</span>
+<a name="l00166"></a>00166 <span class="comment">     * \param Int The number of bytes to skip when the condition is true.</span>
 <a name="l00167"></a>00167 <span class="comment">     * \param Number The condition.</span>
 <a name="l00168"></a>00168 <span class="comment">     */</span>
 <a name="l00169"></a><a class="code" href="namespace_instructions.html#ac627da07c6ad73f0cfaa3e6e58b4abd2">00169</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac627da07c6ad73f0cfaa3e6e58b4abd2" title="A conditional jump.">IF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00170"></a>00170         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00170"></a>00170         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00171"></a>00171         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber()) machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(skip);
 <a name="l00172"></a>00172     }
-<a name="l00173"></a>00173     <span class="comment"></span>
-<a name="l00174"></a>00174 <span class="comment">    /// A conditional jump.</span>
-<a name="l00175"></a>00175 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00176"></a>00176 <span class="comment">     * Skips the given number of bytes if the condition is not 0.</span>
-<a name="l00177"></a>00177 <span class="comment">     * </span>
-<a name="l00178"></a>00178 <span class="comment">     * \param Int16 The number of bytes to skip when the condition is true.</span>
-<a name="l00179"></a>00179 <span class="comment">     * \param Number The condition.</span>
-<a name="l00180"></a>00180 <span class="comment">     */</span>
-<a name="l00181"></a><a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26">00181</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26" title="A conditional jump.">IF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00182"></a>00182         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00183"></a>00183         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber()) machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(skip);
-<a name="l00184"></a>00184     }
-<a name="l00185"></a>00185     <span class="comment"></span>
-<a name="l00186"></a>00186 <span class="comment">    /// Jump to another address.</span>
-<a name="l00187"></a>00187 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00188"></a>00188 <span class="comment">     * \note You can only jump forward.</span>
-<a name="l00189"></a>00189 <span class="comment">     * </span>
-<a name="l00190"></a>00190 <span class="comment">     * \param Int8 the number of bytes to jump (relative).</span>
-<a name="l00191"></a>00191 <span class="comment">     */</span>
-<a name="l00192"></a><a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5">00192</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5" title="Jump to another address.">JMP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00193"></a>00193         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>());
-<a name="l00194"></a>00194     }
-<a name="l00195"></a>00195     <span class="comment"></span>
-<a name="l00196"></a>00196 <span class="comment">    /// Jump to another address.</span>
-<a name="l00197"></a>00197 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00198"></a>00198 <span class="comment">     * \note You can only jump forward.</span>
-<a name="l00199"></a>00199 <span class="comment">     * </span>
-<a name="l00200"></a>00200 <span class="comment">     * \param Int16 The number of bytes to jump (relative).</span>
-<a name="l00201"></a>00201 <span class="comment">     */</span>
-<a name="l00202"></a><a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0">00202</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0" title="Jump to another address.">JMP16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00203"></a>00203         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>());
-<a name="l00204"></a>00204     }
-<a name="l00205"></a>00205     <span class="comment"></span>
-<a name="l00206"></a>00206 <span class="comment">    /// \}</span>
-<a name="l00207"></a>00207 <span class="comment"></span>    
-<a name="l00208"></a>00208 }
+<a name="l00173"></a>00173     
+<a name="l00174"></a>00174 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
+<a name="l00175"></a>00175 <span class="preprocessor"></span><span class="comment">    /// A conditional jump.</span>
+<a name="l00176"></a>00176 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00177"></a>00177 <span class="comment">     * Skips the given number of bytes if the condition is not 0.</span>
+<a name="l00178"></a>00178 <span class="comment">     * </span>
+<a name="l00179"></a>00179 <span class="comment">     * \param Int16 The number of bytes to skip when the condition is true.</span>
+<a name="l00180"></a>00180 <span class="comment">     * \param Number The condition.</span>
+<a name="l00181"></a>00181 <span class="comment">     * </span>
+<a name="l00182"></a>00182 <span class="comment">     * \deprecated_mitproto{IF}</span>
+<a name="l00183"></a>00183 <span class="comment">     */</span>
+<a name="l00184"></a><a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26">00184</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26" title="A conditional jump.">IF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00185"></a>00185         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
+<a name="l00186"></a>00186         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber()) machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(skip);
+<a name="l00187"></a>00187     }
+<a name="l00188"></a>00188 <span class="preprocessor">#endif</span>
+<a name="l00189"></a>00189 <span class="preprocessor"></span>    <span class="comment"></span>
+<a name="l00190"></a>00190 <span class="comment">    /// Jump to another address.</span>
+<a name="l00191"></a>00191 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00192"></a>00192 <span class="comment">     * \note You can only jump forward.</span>
+<a name="l00193"></a>00193 <span class="comment">     * </span>
+<a name="l00194"></a>00194 <span class="comment">     * \param Int the number of bytes to jump (relative).</span>
+<a name="l00195"></a>00195 <span class="comment">     */</span>
+<a name="l00196"></a><a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5">00196</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5" title="Jump to another address.">JMP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00197"></a>00197         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
+<a name="l00198"></a>00198     }
+<a name="l00199"></a>00199     
+<a name="l00200"></a>00200 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
+<a name="l00201"></a>00201 <span class="preprocessor"></span><span class="comment">    /// Jump to another address.</span>
+<a name="l00202"></a>00202 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00203"></a>00203 <span class="comment">     * \note You can only jump forward.</span>
+<a name="l00204"></a>00204 <span class="comment">     * </span>
+<a name="l00205"></a>00205 <span class="comment">     * \param Int16 The number of bytes to jump (relative).</span>
+<a name="l00206"></a>00206 <span class="comment">     * </span>
+<a name="l00207"></a>00207 <span class="comment">     * \deprecated_mitproto{JMP}</span>
+<a name="l00208"></a>00208 <span class="comment">     */</span>
+<a name="l00209"></a><a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0">00209</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0" title="Jump to another address.">JMP16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00210"></a>00210         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>());
+<a name="l00211"></a>00211     }
+<a name="l00212"></a>00212 <span class="preprocessor">#endif</span>
+<a name="l00213"></a>00213 <span class="preprocessor"></span>    <span class="comment"></span>
+<a name="l00214"></a>00214 <span class="comment">    /// \}</span>
+<a name="l00215"></a>00215 <span class="comment"></span>    
+<a name="l00216"></a>00216 }
 </pre></div></div>
 </div>
 <hr class="footer"/><address class="footer"><small>Generated by&#160;

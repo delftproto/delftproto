@@ -74,12 +74,12 @@ namespace Instructions {
 	
 	/// Create a tuple from one or more elements.
 	/**
-	 * \param Int8 The number of elements.
+	 * \param Int The number of elements.
 	 * \param Data <tt>[n]</tt> The elements.
 	 * \return Tuple A tuple containing the elements.
 	 */
 	void FAB_TUP(Machine & machine){
-		Size elements = machine.nextInt8();
+		Size elements = machine.nextInt();
 		Tuple tuple(elements);
 		for(Index i = 0; i < elements; i++) tuple.push(machine.stack.peek(elements-i-1));
 		machine.stack.pop(elements);
@@ -88,12 +88,12 @@ namespace Instructions {
 	
 	/// Create a tuple filled with one element.
 	/**
-	 * \param Int8 The number of elements in the resulting tuple.
+	 * \param Int The number of elements in the resulting tuple.
 	 * \param Data The element to fill the tuple with.
 	 * \return Tuple A tuple filled with the specified element.
 	 */
 	void FAB_VEC(Machine & machine){
-		Size elements = machine.nextInt8();
+		Size elements = machine.nextInt();
 		Tuple tuple(elements);
 		Data element = machine.stack.pop();
 		for(Index i = 0; i < elements; i++) tuple.push(element);
@@ -102,11 +102,11 @@ namespace Instructions {
 	
 	/// Create a tuple filled with zero's.
 	/**
-	 * \param Int8 The number of zero's to put in the tuple.
+	 * \param Int The number of zero's to put in the tuple.
 	 * \return Tuple A tuple filled with zero's.
 	 */
 	void FAB_NUM_VEC(Machine & machine){
-		Size elements = machine.nextInt8();
+		Size elements = machine.nextInt();
 		Tuple tuple(elements);
 		for(Index i = 0; i < elements; i++) tuple.push(0);
 		machine.stack.push(tuple);

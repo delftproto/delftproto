@@ -24,10 +24,24 @@ namespace Instructions {
 	/// \name Literals
 	/// \{
 	
+#if MIT_COMPATIBILITY != MIT_ONLY
+	/// Literal Number.
+	/**
+	 * \param Int The value.
+	 * \return The value as a Number.
+	 */
+	void LIT(Machine & machine){
+		machine.stack.push(machine.nextInt());
+	}
+#endif
+	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// Literal Number.
 	/**
 	 * \param Int8 The value.
 	 * \return The value as a Number.
+	 * 
+	 * \deprecated_mitproto{LIT}
 	 */
 	void LIT8(Machine & machine){
 		machine.stack.push(machine.nextInt8());
@@ -37,10 +51,13 @@ namespace Instructions {
 	/**
 	 * \param Int16 The value.
 	 * \return The value as a Number.
+	 * 
+	 * \deprecated_mitproto{LIT}
 	 */
 	void LIT16(Machine & machine){
 		machine.stack.push(machine.nextInt16());
 	}
+#endif
 	
 	/// Literal Number.
 	/**

@@ -123,12 +123,12 @@
 <a name="l00074"></a>00074 <span class="preprocessor"></span>    <span class="comment"></span>
 <a name="l00075"></a>00075 <span class="comment">    /// Create a tuple from one or more elements.</span>
 <a name="l00076"></a>00076 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00077"></a>00077 <span class="comment">     * \param Int8 The number of elements.</span>
+<a name="l00077"></a>00077 <span class="comment">     * \param Int The number of elements.</span>
 <a name="l00078"></a>00078 <span class="comment">     * \param Data &lt;tt&gt;[n]&lt;/tt&gt; The elements.</span>
 <a name="l00079"></a>00079 <span class="comment">     * \return Tuple A tuple containing the elements.</span>
 <a name="l00080"></a>00080 <span class="comment">     */</span>
 <a name="l00081"></a><a class="code" href="namespace_instructions.html#a355f597946b239fd9d3207578a53f5a1">00081</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a355f597946b239fd9d3207578a53f5a1" title="Create a tuple from one or more elements.">FAB_TUP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00082"></a>00082         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00082"></a>00082         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00083"></a>00083         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> tuple(elements);
 <a name="l00084"></a>00084         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; elements; i++) tuple.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(elements-i-1));
 <a name="l00085"></a>00085         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(elements);
@@ -137,12 +137,12 @@
 <a name="l00088"></a>00088     <span class="comment"></span>
 <a name="l00089"></a>00089 <span class="comment">    /// Create a tuple filled with one element.</span>
 <a name="l00090"></a>00090 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00091"></a>00091 <span class="comment">     * \param Int8 The number of elements in the resulting tuple.</span>
+<a name="l00091"></a>00091 <span class="comment">     * \param Int The number of elements in the resulting tuple.</span>
 <a name="l00092"></a>00092 <span class="comment">     * \param Data The element to fill the tuple with.</span>
 <a name="l00093"></a>00093 <span class="comment">     * \return Tuple A tuple filled with the specified element.</span>
 <a name="l00094"></a>00094 <span class="comment">     */</span>
 <a name="l00095"></a><a class="code" href="namespace_instructions.html#a7e2316bb3c9d00f007e6366727f070b1">00095</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a7e2316bb3c9d00f007e6366727f070b1" title="Create a tuple filled with one element.">FAB_VEC</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00096"></a>00096         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00096"></a>00096         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00097"></a>00097         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> tuple(elements);
 <a name="l00098"></a>00098         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> element = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
 <a name="l00099"></a>00099         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; elements; i++) tuple.push(element);
@@ -151,11 +151,11 @@
 <a name="l00102"></a>00102     <span class="comment"></span>
 <a name="l00103"></a>00103 <span class="comment">    /// Create a tuple filled with zero&#39;s.</span>
 <a name="l00104"></a>00104 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00105"></a>00105 <span class="comment">     * \param Int8 The number of zero&#39;s to put in the tuple.</span>
+<a name="l00105"></a>00105 <span class="comment">     * \param Int The number of zero&#39;s to put in the tuple.</span>
 <a name="l00106"></a>00106 <span class="comment">     * \return Tuple A tuple filled with zero&#39;s.</span>
 <a name="l00107"></a>00107 <span class="comment">     */</span>
 <a name="l00108"></a><a class="code" href="namespace_instructions.html#a8869056e5f5021a8b1cc7bc3a6f84d9e">00108</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8869056e5f5021a8b1cc7bc3a6f84d9e" title="Create a tuple filled with zero&#39;s.">FAB_NUM_VEC</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00109"></a>00109         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00109"></a>00109         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00110"></a>00110         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> tuple(elements);
 <a name="l00111"></a>00111         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; elements; i++) tuple.push(0);
 <a name="l00112"></a>00112         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(tuple);

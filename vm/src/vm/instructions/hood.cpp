@@ -21,7 +21,7 @@
 struct HoodInstructions {
 	
 	static void fold_hood(Machine & machine) {
-		Index import_index = machine.nextInt8();
+		Index import_index = machine.nextInt();
 		Data export_value = machine.stack.pop();
 		Data result = machine.stack.pop();
 		Address fuse = machine.stack.peek().asAddress();
@@ -52,7 +52,7 @@ struct HoodInstructions {
 	}
 	
 	static void fold_hood_plus(Machine & machine) {
-		Index import_index = machine.nextInt8();
+		Index import_index = machine.nextInt();
 		Data export_value = machine.stack.pop();
 		Address filter = machine.stack.peek().asAddress();
 		
@@ -128,7 +128,7 @@ namespace Instructions {
 	 * \deprecated Implemented for MIT Proto compatibility.
 	 * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)
 	 * 
-	 * \param Int8 The index of the neighbourhood (ie. import/export) variable.
+	 * \param Int The index of the neighbourhood (ie. import/export) variable.
 	 * \param Address The (address of the) fuse function. (The fold function must take two parameters.)
 	 * \param Data The value to start with.
 	 * \param Data The new export value for this Machine.
@@ -141,7 +141,7 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD(Machine & machine){
-		machine.nextInt8();
+		machine.nextInt();
 		HoodInstructions::fold_hood(machine);
 	}
 	
@@ -169,7 +169,7 @@ namespace Instructions {
 	 * \deprecated Implemented for MIT Proto compatibility.
 	 * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)
 	 * 
-	 * \param Int8 The index of the neighbourhood (ie. import/export) variable.
+	 * \param Int The index of the neighbourhood (ie. import/export) variable.
 	 * \param Address The (address of the) fuse function. (The fold function must take two parameters.)
 	 * \param Address The (address of the) filter function. (The filter function must take one parameter.)
 	 * \param Data The new export value for this Machine.
@@ -182,7 +182,7 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD_PLUS(Machine & machine){
-		machine.nextInt8();
+		machine.nextInt();
 		HoodInstructions::fold_hood_plus(machine);
 	}
 	

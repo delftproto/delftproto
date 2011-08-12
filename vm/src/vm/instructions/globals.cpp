@@ -66,23 +66,27 @@ namespace Instructions {
 	
 	/// Push a global variable on the execution stack.
 	/**
-	 * \param Int8 The index of the global in the gobals list.
+	 * \param Int The index of the global in the gobals list.
 	 * \return The value of the global variable.
 	 */
 	void GLO_REF(Machine & machine){
-		Index index = machine.nextInt8();
+		Index index = machine.nextInt();
 		machine.stack.push(machine.globals[index]);
 	}
 	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// Push a global variable on the execution stack.
 	/**
 	 * \param Int16 The index of the global in the gobals list.
 	 * \return The value of the global variable.
+	 * 
+	 * \deprecated_mitproto{GLO_REF}
 	 */
 	void GLO_REF16(Machine & machine){
 		Index index = machine.nextInt16();
 		machine.stack.push(machine.globals[index]);
 	}
+#endif
 	
 	/// Define a function as a global.
 	/**
@@ -102,26 +106,30 @@ namespace Instructions {
 	 * The address of the next instruction is pushed on the globals list
 	 * and execution continues after the function definition.
 	 * 
-	 * \param Int8 The number of (following) bytes that define the function.
+	 * \param Int The number of (following) bytes that define the function.
 	 */
 	void DEF_FUN(Machine & machine){
-		Size size = machine.nextInt8();
+		Size size = machine.nextInt();
 		machine.globals.push(machine.currentAddress());
 		machine.skip(size);
 	}
 	
+#if MIT_COMPATIBILITY != NO_MIT
 	/// Define a function as a global.
 	/**
 	 * The address of the next instruction is pushed on the globals list
 	 * and execution continues after the function definition.
 	 * 
 	 * \param Inti16 The number of (following) bytes that define the function.
+	 * 
+	 * \deprecated_mitproto{DEF_FUN}
 	 */
 	void DEF_FUN16(Machine & machine){
 		Size size = machine.nextInt16();
 		machine.globals.push(machine.currentAddress());
 		machine.skip(size);
 	}
+#endif
 	
 	/// \}
 	

@@ -295,7 +295,7 @@
 <a name="l00252"></a>00252             <span class="comment"></span>
 <a name="l00253"></a>00253 <span class="comment">            /// Read the next byte as an unsigned 8-bit integer.</span>
 <a name="l00254"></a>00254 <span class="comment"></span><span class="comment">            /**</span>
-<a name="l00255"></a>00255 <span class="comment">             * \deprecated Use nextInt() instead.</span>
+<a name="l00255"></a>00255 <span class="comment">             * \deprecated Use \ref Machine::nextInt() &quot;nextInt()&quot; instead.</span>
 <a name="l00256"></a>00256 <span class="comment">             */</span>
 <a name="l00257"></a><a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443">00257</a>             <span class="keyword">inline</span> <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> <a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>() {
 <a name="l00258"></a>00258                 <span class="keywordflow">return</span> *<a class="code" href="class_machine.html#adb7a8d67d43a7d5355985677b88b672b" title="A pointer to the next instruction.">instruction_pointer</a>++;
@@ -303,7 +303,7 @@
 <a name="l00260"></a>00260             <span class="comment"></span>
 <a name="l00261"></a>00261 <span class="comment">            /// Read the next two bytes as an unsigned 16-bit integer (big endian).</span>
 <a name="l00262"></a>00262 <span class="comment"></span><span class="comment">            /**</span>
-<a name="l00263"></a>00263 <span class="comment">             * \deprecated Use nextInt() instead.</span>
+<a name="l00263"></a>00263 <span class="comment">             * \deprecated Use \ref Machine::nextInt() &quot;nextInt()&quot; instead.</span>
 <a name="l00264"></a>00264 <span class="comment">             */</span>
 <a name="l00265"></a><a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c">00265</a>             <span class="keyword">inline</span> <a class="code" href="class_int16.html" title="A 16 bit unsigned integer (two bytes).">Int16</a> <a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>() {
 <a name="l00266"></a>00266                 <a class="code" href="class_int16.html" title="A 16 bit unsigned integer (two bytes).">Int16</a> data  = <span class="keyword">static_cast&lt;</span><a class="code" href="class_int16.html" title="A 16 bit unsigned integer (two bytes).">Int16</a><span class="keyword">&gt;</span>(<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>()) &lt;&lt; 8;

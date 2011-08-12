@@ -35,11 +35,11 @@ namespace Instructions {
 	
 	/// Push an element from the environment stack on the execution stack.
 	/**
-	 * \param Int8 The index (relative to the top) of the element on the environment stack.
+	 * \param Int The index (relative to the top) of the element on the environment stack.
 	 * \return The element.
 	 */
 	void REF(Machine & machine){
-		Index index = machine.nextInt8();
+		Index index = machine.nextInt();
 		machine.stack.push(machine.environment.peek(index));
 	}
 	
@@ -60,11 +60,11 @@ namespace Instructions {
 	/**
 	 * The given number of elements will be moved from the top of the execution stack to the environment stack.
 	 * 
-	 * \param Int8 The number of elements.
+	 * \param Int The number of elements.
 	 * \param Data <tt>[n]</tt> The elements.
 	 */
 	void LET(Machine & machine){
-		Size elements = machine.nextInt8();
+		Size elements = machine.nextInt();
 		for(Index i = 1; i <= elements; i++) machine.environment.push(machine.stack.peek(elements-i));
 		machine.stack.pop(elements);
 	}
@@ -80,10 +80,10 @@ namespace Instructions {
 	
 	/// Remove one or more elements from the environment stack.
 	/**
-	 * \param Int8 The number of elements.
+	 * \param Int The number of elements.
 	 */
 	void POP_LET(Machine & machine){
-		Size elements = machine.nextInt8();
+		Size elements = machine.nextInt();
 		machine.environment.pop(elements);
 	}
 	

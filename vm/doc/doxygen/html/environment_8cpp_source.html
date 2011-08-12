@@ -84,11 +84,11 @@
 <a name="l00035"></a>00035     <span class="comment"></span>
 <a name="l00036"></a>00036 <span class="comment">    /// Push an element from the environment stack on the execution stack.</span>
 <a name="l00037"></a>00037 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00038"></a>00038 <span class="comment">     * \param Int8 The index (relative to the top) of the element on the environment stack.</span>
+<a name="l00038"></a>00038 <span class="comment">     * \param Int The index (relative to the top) of the element on the environment stack.</span>
 <a name="l00039"></a>00039 <span class="comment">     * \return The element.</span>
 <a name="l00040"></a>00040 <span class="comment">     */</span>
 <a name="l00041"></a><a class="code" href="namespace_instructions.html#af664f819ab42c1bd55c23d1102cb4a89">00041</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#af664f819ab42c1bd55c23d1102cb4a89" title="Push an element from the environment stack on the execution stack.">REF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00042"></a>00042         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00042"></a>00042         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00043"></a>00043         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.peek(index));
 <a name="l00044"></a>00044     }
 <a name="l00045"></a>00045     <span class="comment"></span>
@@ -109,11 +109,11 @@
 <a name="l00060"></a>00060 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00061"></a>00061 <span class="comment">     * The given number of elements will be moved from the top of the execution stack to the environment stack.</span>
 <a name="l00062"></a>00062 <span class="comment">     * </span>
-<a name="l00063"></a>00063 <span class="comment">     * \param Int8 The number of elements.</span>
+<a name="l00063"></a>00063 <span class="comment">     * \param Int The number of elements.</span>
 <a name="l00064"></a>00064 <span class="comment">     * \param Data &lt;tt&gt;[n]&lt;/tt&gt; The elements.</span>
 <a name="l00065"></a>00065 <span class="comment">     */</span>
 <a name="l00066"></a><a class="code" href="namespace_instructions.html#ab4ab95d571e9083b2f77754d1b278d28">00066</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab4ab95d571e9083b2f77754d1b278d28" title="Push one or more elements on the environment stack.">LET</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00067"></a>00067         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00067"></a>00067         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00068"></a>00068         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 1; i &lt;= elements; i++) machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(elements-i));
 <a name="l00069"></a>00069         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(elements);
 <a name="l00070"></a>00070     }
@@ -129,10 +129,10 @@
 <a name="l00080"></a>00080     <span class="comment"></span>
 <a name="l00081"></a>00081 <span class="comment">    /// Remove one or more elements from the environment stack.</span>
 <a name="l00082"></a>00082 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00083"></a>00083 <span class="comment">     * \param Int8 The number of elements.</span>
+<a name="l00083"></a>00083 <span class="comment">     * \param Int The number of elements.</span>
 <a name="l00084"></a>00084 <span class="comment">     */</span>
 <a name="l00085"></a><a class="code" href="namespace_instructions.html#a42abc8c8a14555e3f9222a3f237b9fde">00085</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a42abc8c8a14555e3f9222a3f237b9fde" title="Remove one or more elements from the environment stack.">POP_LET</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00086"></a>00086         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00086"></a>00086         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> elements = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
 <a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(elements);
 <a name="l00088"></a>00088     }
 <a name="l00089"></a>00089     <span class="comment"></span>
