@@ -29,9 +29,12 @@ using namespace std;
 namespace {
 	using namespace Instructions;
 	
-	Int8 script[] = { DEF_VM_OP, 0, 1, 0, 100, 1, 0, 100, 100,
-	                  DEF_FUN_4_OP, REF_0_OP, REF_1_OP, ADD_OP, RET_OP,
-	                  DEF_FUN_6_OP, GLO_REF_0_OP, LIT_0_OP, LIT_1_OP, FOLD_HOOD_OP, 0, RET_OP,
+	Int8 script[] = { DEF_VM_EX_OP, 100, 100, 100, 100, 100, 100, 100,
+	                  DEF_FUN_5_OP, HELLOWORLD_OP, ACTIVATE_OP, 1, LIT_0_OP, RET_OP,
+	                  DEF_FUN_2_OP, LIT_0_OP, RET_OP,
+	                  DEF_FUN_2_OP, LIT_1_OP, RET_OP,
+	                  CTRL_C_TRIGGER_OP, 2,
+	                  ACTIVATE_OP, 0,
 	                  EXIT_OP };
 }
 
@@ -121,10 +124,6 @@ int main(){
 	show_instruction(machine,"INSTALL");
 	machine.install(script);
 	debug_run(machine);
-	
-	machine.hood.add(37)->imports[0] = 5;
-	machine.hood.add(42)->imports[0] = 10;
-	machine.hood.add(13)->imports[0] = 100;
 	
 	while(true){
 		show_instruction(machine,"RUN");

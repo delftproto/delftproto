@@ -12,5 +12,15 @@
 // You should have received a copy of the GNU Lesser General Public License along
 // with DelftProto.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <vm-extensions/example/extension.hpp>
-#include <vm-extensions/ctrl-c-trigger/extension.hpp>
+#include <types.hpp>
+
+class CtrlCTriggeredThread : public Thread {
+	
+	public:
+		bool ctrl_c_triggered;
+		CtrlCTriggeredThread() : ctrl_c_triggered(false) {}
+		
+};
+
+#undef  Thread
+#define Thread CtrlCTriggeredThread

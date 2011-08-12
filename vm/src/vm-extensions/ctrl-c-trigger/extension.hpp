@@ -12,5 +12,10 @@
 // You should have received a copy of the GNU Lesser General Public License along
 // with DelftProto.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <vm-extensions/example/extension.hpp>
-#include <vm-extensions/ctrl-c-trigger/extension.hpp>
+#ifdef Thread
+#include "thread.hpp"
+#endif
+
+#ifdef INSTRUCTION
+#include "delftproto.instructions"
+#endif
