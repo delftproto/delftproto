@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="nl">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	
 	<head>
 		
@@ -14,6 +14,8 @@
 				background-color: white;
 				color: black;
 				font-family: sans-serif;
+				padding-left: 1cm;
+				padding-right: 0.25cm;
 			}
 			
 			a, a:visited  {
@@ -25,9 +27,15 @@
 				color: rgb(0,83,107);
 			}
 			
+			code {
+				border: 1px solid #ccc;
+				padding: 3px;
+			}
+			
 			#title {
 				border-bottom: 1px solid rgb(0,166,214);
 				font-size: 80px;
+				margin-left: -0.75cm;
 			}
 			
 			#footer {
@@ -52,6 +60,7 @@
 			}
 			
 			h1 {
+				margin-left: -0.5cm;
 				font-size: 35px;
 			}
 			
@@ -141,16 +150,22 @@
 		
 		<h1 id="documentation">Documentation</h1>
 		
-		<h2>Online</h2>
+		<h2>Virtual Machine</h2>
 		<p>
-			The documentation is available online at <a href="http://delftproto.nl/doc/">http://delftproto.nl/doc/</a>.
+			The documentation of the virtual machine can be found in <code><a href="vm/">vm/</a></code>.
 		</p>
 		
-		<h2>From Source</h2>
+		<h2>Online</h2>
 		<p>
-			The documentation can be generated from the source distribution by running <code>make</code> in the <code>/doc/</code> directory.
-			Apart from <a href="http://www.gnu.org/software/make/">GNU Make</a>, you need <a href="http://doxygen.org/">Doxygen</a>, <a href="http://www.graphviz.org/">Graphviz Dot</a> and <a href="http://www.latex-project.org/">(pdf)LaTeX</a>.
+			The documentation is available online at <a href="http://delftproto.nl/">http://delftproto.nl/</a>.
 		</p>
+		
+		<h2>Offline</h2>
+		<p>
+			The documentation is included in the source code distribution, in <code>/doc/</code>.
+			To (re)generate the documentation from the source code, you need <a href="http://www.gnu.org/software/make/">GNU Make</a>, <a href="http://doxygen.org/">Doxygen</a>, <a href="http://www.graphviz.org/">Graphviz Dot</a> and <a href="http://www.latex-project.org/">(pdf)LaTeX</a>.
+		</p>
+		
 		
 		<div id="footer">
 			<span class="Delft">Delft</span><span class="Proto">Proto</span>
