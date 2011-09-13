@@ -76,12 +76,12 @@ class BasicThread {
 		
 };
 
-/// \cond
+/** \cond */
 #define Thread BasicThread
 #include <extensions.hpp>
 typedef Thread ExtendedThread;
 #undef Thread
-/// \endcond
+/** \endcond */
 
 /// A thread.
 /**

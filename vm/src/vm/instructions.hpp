@@ -18,7 +18,7 @@
 #ifndef __INSTRUCTIONS_HPP
 #define __INSTRUCTIONS_HPP
 
-/// \cond
+/** \cond */
 #define NO_MIT         0
 #define MIT_COMPATIBLE 1
 #define MIT_ONLY       2
@@ -26,7 +26,7 @@
 #ifndef MIT_COMPATIBILITY
 #define MIT_COMPATIBILITY MIT_COMPATIBLE
 #endif
-/// \endcond
+/** \endcond */
 
 /** \namespace Instructions
  * \brief All instructions and their opcodes.
@@ -56,7 +56,7 @@ typedef void (*Instruction)(Machine &);
 /// Lookup table for all instructions by their opcode.
 extern Instruction instructions[256];
 
-/// \cond
+/** \cond */
 
 namespace Instructions {
 	
@@ -75,6 +75,6 @@ namespace Instructions {
 	};
 }
 
-/// \endcond
+/** \endcond */
 
 #endif

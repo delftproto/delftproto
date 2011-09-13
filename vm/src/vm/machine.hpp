@@ -141,6 +141,7 @@ class Machine : public MachineExtension {
 				}
 			}
 			
+			/** \cond */
 		protected:
 			static void run_callback(Machine & machine){
 				machine.threads[machine.current_thread].result = machine.stack.pop();
@@ -153,6 +154,8 @@ class Machine : public MachineExtension {
 				machine.current_thread++;
 				if (machine.current_thread >= machine.threads.size()) machine.current_thread = 0;
 			}
+			
+			/** \endcond */
 			
 		public:
 			/// Execute the next instruction.

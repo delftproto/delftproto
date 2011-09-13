@@ -15,7 +15,7 @@
 /// \file
 /// Provides the \ref extending "Extension" to the Machine class.
 
-/// \cond
+/** \cond */
 
 #ifndef __MACHINEEXTENSION_HPP
 #define __MACHINEEXTENSION_HPP
@@ -28,4 +28,4 @@ typedef Machine MachineExtension;
 
 #endif
 
-/// \endcond
+/** \endcond */

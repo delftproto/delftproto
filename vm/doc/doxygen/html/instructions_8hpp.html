@@ -55,7 +55,6 @@
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Defines</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -80,22 +79,6 @@ Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html">Instructions</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>All instructions and their opcodes. </p>
 <br/></td></tr>
-<tr><td colspan="2"><h2><a name="define-members"></a>
-Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a63b49b5d2cffbf14d84360787deb0f94"></a><!-- doxytag: member="instructions.hpp::NO_MIT" ref="a63b49b5d2cffbf14d84360787deb0f94" args="" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NO_MIT</b>&#160;&#160;&#160;0</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a944f56b9d8dd9524411614d34d5f1720"></a><!-- doxytag: member="instructions.hpp::MIT_COMPATIBLE" ref="a944f56b9d8dd9524411614d34d5f1720" args="" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIT_COMPATIBLE</b>&#160;&#160;&#160;1</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55108cf8c17f5a4521456f79c011d3a3"></a><!-- doxytag: member="instructions.hpp::MIT_ONLY" ref="a55108cf8c17f5a4521456f79c011d3a3" args="" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIT_ONLY</b>&#160;&#160;&#160;2</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24e9088f8d0f96ef176b53c350d2b9bb"></a><!-- doxytag: member="instructions.hpp::INSTRUCTION" ref="a24e9088f8d0f96ef176b53c350d2b9bb" args="(name)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTION</b>(name)&#160;&#160;&#160;void name    (<a class="el" href="class_machine.html">Machine</a> &amp;);</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03c8763870f9a23bea0bfa468c3f383b"></a><!-- doxytag: member="instructions.hpp::INSTRUCTION_N" ref="a03c8763870f9a23bea0bfa468c3f383b" args="(name, n)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTION_N</b>(name, n)&#160;&#160;&#160;template&lt;int&gt; void name##_N(<a class="el" href="class_machine.html">Machine</a> &amp;);</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24e9088f8d0f96ef176b53c350d2b9bb"></a><!-- doxytag: member="instructions.hpp::INSTRUCTION" ref="a24e9088f8d0f96ef176b53c350d2b9bb" args="(name)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTION</b>(name)&#160;&#160;&#160;name##_OP,</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03c8763870f9a23bea0bfa468c3f383b"></a><!-- doxytag: member="instructions.hpp::INSTRUCTION_N" ref="a03c8763870f9a23bea0bfa468c3f383b" args="(name, n)" -->
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>INSTRUCTION_N</b>(name, n)&#160;&#160;&#160;name##_##n##_OP,</td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> )(<a class="el" href="class_machine.html">Machine</a> &amp;)</td></tr>

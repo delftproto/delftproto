@@ -15,7 +15,7 @@
 /// \file
 /// Provides the \ref extending "Extension" to the Neighbour class.
 
-/// \cond
+/** \cond */
 
 #ifndef __NEIGHBOUREXTENSION_HPP
 #define __NEIGHBOUREXTENSION_HPP
@@ -28,4 +28,4 @@ typedef Neighbour NeighbourExtension;
 
 #endif
 
-/// \endcond
+/** \endcond */

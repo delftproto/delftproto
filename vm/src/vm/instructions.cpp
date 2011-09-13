@@ -34,7 +34,7 @@
 #include <instructions/hood.cpp>
 #include <instructions/platform.cpp>
 
-/// \cond
+/** \cond */
 Instruction instructions[256] = {
 #	define INSTRUCTION(name) Instructions::name,
 #	define INSTRUCTION_N(name,n) Instructions::name##_N<n>,
@@ -42,4 +42,4 @@ Instruction instructions[256] = {
 #	undef INSTRUCTION
 #	undef INSTRUCTION_N
 };
-/// \endcond
+/** \endcond */
