@@ -27,7 +27,7 @@ typedef size_t Size;
 
 /// \class Index
 /// Used to represent positive offsets of memory arrays.
-typedef size_t Index; 
+typedef size_t Index;
 
 /// \class Counter
 /// Used to count things.
