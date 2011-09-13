@@ -29,7 +29,7 @@ $(dpvm)_INCLUDES := $($(dpvm)_INCLUDE_DIRS:%=-I%)
 $(dpvm)_SOURCES := $(sort $($(dpvm)_SOURCES))
 
 $(dpvm)_DEPENDENCIES += $($(dpvm)_SOURCES)
-$(dpvm)_DEPENDENCIES += $(wildcard $(include_dir:%=%/*.hpp))
+$(dpvm)_DEPENDENCIES += $(wildcard $($(dpvm)_INCLUDE_DIRS:%=%/*.hpp))
 
 $(dpvm)_CPPFLAGS += $($(dpvm)_INCLUDES) $(CPPFLAGS)
 $(dpvm)_CXXFLAGS += $(CXXFLAGS)
