@@ -95,7 +95,7 @@
 <a name="l00031"></a>00031 <span class="comment">     * \return The value as a Number.</span>
 <a name="l00032"></a>00032 <span class="comment">     */</span>
 <a name="l00033"></a><a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188">00033</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188" title="Literal Number.">LIT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00034"></a>00034         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
+<a name="l00034"></a>00034         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt());
 <a name="l00035"></a>00035     }
 <a name="l00036"></a>00036 <span class="preprocessor">#endif</span>
 <a name="l00037"></a>00037 <span class="preprocessor"></span>    
@@ -108,7 +108,7 @@
 <a name="l00044"></a>00044 <span class="comment">     * \deprecated_mitproto{LIT}</span>
 <a name="l00045"></a>00045 <span class="comment">     */</span>
 <a name="l00046"></a><a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a">00046</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a" title="Literal Number.">LIT8</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00047"></a>00047         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>());
+<a name="l00047"></a>00047         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt8());
 <a name="l00048"></a>00048     }
 <a name="l00049"></a>00049     <span class="comment"></span>
 <a name="l00050"></a>00050 <span class="comment">    /// Literal Number.</span>
@@ -119,7 +119,7 @@
 <a name="l00055"></a>00055 <span class="comment">     * \deprecated_mitproto{LIT}</span>
 <a name="l00056"></a>00056 <span class="comment">     */</span>
 <a name="l00057"></a><a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54">00057</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54" title="Literal Number.">LIT16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00058"></a>00058         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>());
+<a name="l00058"></a>00058         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt16());
 <a name="l00059"></a>00059     }
 <a name="l00060"></a>00060 <span class="preprocessor">#endif</span>
 <a name="l00061"></a>00061 <span class="preprocessor"></span>    <span class="comment"></span>
@@ -130,7 +130,7 @@
 <a name="l00066"></a>00066 <span class="comment">     */</span>
 <a name="l00067"></a>00067     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> value&gt;
 <a name="l00068"></a><a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e">00068</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e" title="Literal Number.">LIT_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00069"></a>00069         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(value);
+<a name="l00069"></a>00069         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(value);
 <a name="l00070"></a>00070     }
 <a name="l00071"></a>00071     <span class="comment"></span>
 <a name="l00072"></a>00072 <span class="comment">    /// Literal Number.</span>
@@ -140,11 +140,11 @@
 <a name="l00076"></a>00076 <span class="comment">     */</span>
 <a name="l00077"></a><a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf">00077</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf" title="Literal Number.">LIT_FLO</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00078"></a>00078         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> float_data[4];
-<a name="l00079"></a>00079         float_data[0] = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
-<a name="l00080"></a>00080         float_data[1] = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
-<a name="l00081"></a>00081         float_data[2] = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
-<a name="l00082"></a>00082         float_data[3] = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
-<a name="l00083"></a>00083         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(<a class="code" href="class_number.html" title="A floating point number.">Number</a>(<a class="code" href="class_i_e_e_e754binary32.html" title="An IEEE 754 binary32 floating point number representation.">IEEE754binary32</a>(float_data)));
+<a name="l00079"></a>00079         float_data[0] = machine.nextInt8();
+<a name="l00080"></a>00080         float_data[1] = machine.nextInt8();
+<a name="l00081"></a>00081         float_data[2] = machine.nextInt8();
+<a name="l00082"></a>00082         float_data[3] = machine.nextInt8();
+<a name="l00083"></a>00083         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_number.html" title="A floating point number.">Number</a>(<a class="code" href="class_i_e_e_e754binary32.html" title="An IEEE 754 binary32 floating point number representation.">IEEE754binary32</a>(float_data)));
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085     <span class="comment"></span>
 <a name="l00086"></a>00086 <span class="comment">    /// Positive infinity.</span>
@@ -152,7 +152,7 @@
 <a name="l00088"></a>00088 <span class="comment">     * \return \m{+\infty}</span>
 <a name="l00089"></a>00089 <span class="comment">     */</span>
 <a name="l00090"></a><a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01">00090</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01" title="Positive infinity.">INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00091"></a>00091         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(Number_infinity);
+<a name="l00091"></a>00091         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(Number_infinity);
 <a name="l00092"></a>00092     }
 <a name="l00093"></a>00093     
 <a name="l00094"></a>00094 <span class="preprocessor">#if MIT_COMPATIBILITY != MIT_ONLY</span>
@@ -161,7 +161,7 @@
 <a name="l00097"></a>00097 <span class="comment">     * \return \m{-\infty}</span>
 <a name="l00098"></a>00098 <span class="comment">     */</span>
 <a name="l00099"></a><a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622">00099</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622" title="Negative infinity.">NEG_INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00100"></a>00100         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(-Number_infinity);
+<a name="l00100"></a>00100         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(-Number_infinity);
 <a name="l00101"></a>00101     }
 <a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
 <a name="l00103"></a>00103 <span class="preprocessor"></span>    

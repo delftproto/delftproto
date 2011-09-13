@@ -25,6 +25,7 @@ class BasicThread {
 	
 	public:
 		/// An index in the Machine::threads list.
+		/** \memberof Thread */
 		typedef Int8 Id;
 		
 	protected:
@@ -37,7 +38,9 @@ class BasicThread {
 		 * The specified thread will be executed once.
 		 * 
 		 * There is no waiting line. Triggering an already triggered thread has no effect.
+		 * 
 		 */
+		/** \memberof Thread */
 		void trigger() {
 			is_triggered = true;
 		}
@@ -45,7 +48,9 @@ class BasicThread {
 		/// Activate this thread.
 		/**
 		 * The specified thread will be executed infinitely, until deactivation.
+		 * 
 		 */
+		/** \memberof Thread */
 		void activate() {
 			is_active = true;
 		}
@@ -56,20 +61,24 @@ class BasicThread {
 		 * 
 		 * This has no effect for any pending triggers.
 		 */
+		/** \memberof Thread */
 		void deactivate() {
 			is_active = false;
 		}
 		
 		/// Check whether this thread is pending (true) or not (false).
+		/** \memberof Thread */
 		bool pending() const {
 			return is_active || is_triggered;
 		}
 		
 		/// The result of the last execution of this thread.
+		/** \memberof Thread */
 		Data result;
 		
 	protected:
 		/// Remove a pending trigger.
+		/** \memberof Thread */
 		void untrigger() {
 			is_triggered = false;
 		}

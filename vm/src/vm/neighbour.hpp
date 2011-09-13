@@ -21,28 +21,43 @@
 #include <array.hpp>
 #include <data.hpp>
 #include <machineid.hpp>
-#include <neighbourextension.hpp>
+
+class BasicNeighbour {
+	
+	public:
+		/// The unique ID of the machine.
+		/** \memberof Neighbour */
+		MachineId const id;
+		
+		/// The imports from this machine.
+		/** \memberof Neighbour */
+		Array<Data> imports;
+		
+		BasicNeighbour(MachineId const & id, Size imports) : id(id), imports(imports) {}
+		
+};
+
+/** \cond */
+#define Neighbour BasicNeighbour
+#include <extensions.hpp>
+typedef Neighbour ExtendedNeighbour;
+#undef Neighbour
+/** \endcond */
 
 /// A node in the neighbourhood.
 /**
  * \note This class is \ref extending "extensible".
- *
+ * 
  * \note A machine is also a neighbour of itself.
- * \see Machine::this_machine
+ * \see Machine::thisMachine()
  */
-class Neighbour : public NeighbourExtension {
+class Neighbour : public ExtendedNeighbour {
 	
 	public:
-		
-		/// The unique ID of the machine.
-		MachineId const id;
-		
-		/// The imports from this machine.
-		Array<Data> imports;
-		
 		/// The constructor.
-		Neighbour(MachineId const & id, Size imports) : id(id), imports(imports) {}
+		Neighbour(MachineId const & id, Size imports) : ExtendedNeighbour(id, imports) {}
 		
 };
 
+//asdf
 #endif

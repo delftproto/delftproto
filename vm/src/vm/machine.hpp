@@ -27,47 +27,51 @@
 #include <neighbour.hpp>
 #include <neighbourhood.hpp>
 #include <instructions.hpp>
-#include <machineextension.hpp>
 #include <machineid.hpp>
 
-/// A virtual machine.
-/**
- * \note This class is \ref extending "extensible".
- */
-class Machine : public MachineExtension {
+class BasicMachine {
 	
 	public:
 		
 		/// The ID of this Machine.
+		/** \memberof Machine */
 		MachineId id;
 		
 		/// The standard stack.
+		/** \memberof Machine */
 		Stack<Data> stack;
 		
 		/// The environment stack.
+		/** \memberof Machine */
 		Stack<Data> environment;
 		
 		/// The globals.
+		/** \memberof Machine */
 		Stack<Data> globals;
 		
 		/// The threads.
 		/**
 		 * \see Thread
 		 */
+		/** \memberof Machine */
 		Array<Thread> threads;
 		
 		/// The state variables.
+		/** \memberof Machine */
 		Array<State> state;
 		
 		/// The list of all the neighbours.
+		/** \memberof Machine */
 		NeighbourHood hood;
 		
 	protected:
 		
 		/// A pointer to the next instruction.
+		/** \memberof Machine */
 		Address instruction_pointer;
 		
 		/// Boolean indicating whether execution (installation or a single run) has finished.
+		/** \memberof Machine */
 		bool is_finished;
 		
 		/// The callback stack.
@@ -75,38 +79,163 @@ class Machine : public MachineExtension {
 		 * \see call
 		 * \see retn
 		 */
+		/** \memberof Machine */
 		Stack<Instruction> callbacks;
 		
 		/// The (index of the) current thread when executing a run.
 		/**
 		 * When not running, this is the index of the thread that will be checked first for the next run.
 		 */
+		/** \memberof Machine */
 		Thread::Id current_thread;
 		
 		/// The current neighbour, when iterating through them.
 		/**
 		 * Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed.
 		 */
+		/** \memberof Machine */
 		NeighbourHood::iterator current_neighbour;
 		
 		/// The (index of the) current import/export, when executing a hood instruction.
 		/**
 		 * Used by the hood folding instructions.
 		 */
+		/** \memberof Machine */
 		Index current_import;
-		
-		friend void Instructions::DEF_VM(Machine &);
-#if MIT_COMPATIBILITY != MIT_ONLY
-		friend void Instructions::DEF_VM_EX(Machine &);
-#endif
-		friend void Instructions::EXIT(Machine &);
-		friend class HoodInstructions;
 		
 	public:
 		
 		/// The constructor.
-		Machine() : instruction_pointer(0), callbacks(1) {}
+		BasicMachine() : instruction_pointer(0), callbacks(1) {}
 		
+		/// \name Control flow
+		/// \{
+			
+			/// Jump to another address.
+			/**
+			 * \param address The address to jump to.
+			 */
+			/** \memberof Machine */
+			inline void jump(Address address) {
+				instruction_pointer = address;
+			}
+			
+			/// Advance the instruction pointer.
+			/**
+			 * \param distance The number of bytes to skip.
+			 */
+			/** \memberof Machine */
+			inline void skip(Size distance) {
+				instruction_pointer += distance;
+			}
+			
+			/// Get the current address (instruction pointer).
+			/** \memberof Machine */
+			inline Address currentAddress() const {
+				return instruction_pointer;
+			}
+			
+			/// Get the callback depth.
+			/**
+			 * Usually 1, but higher inside instructions such as \ref Instructions::INIT_FEEDBACK "INIT_FEEDBACK" or \ref Instructions::TUP_MAP "TUP_MAP".
+			 */
+			/** \memberof Machine */
+			inline Counter depth() const {
+				return callbacks.size();
+			}
+			
+			/// Get the (index of the) current thread when executing a run.
+			/**
+			 * When not running, this is the index of the thread that will be checked first for the next run.
+			 */
+			/** \memberof Machine */
+			inline Thread::Id currentThread() const {
+				return current_thread;
+			}
+			
+		/// \}
+		
+		/// \name Low level
+		/// \{
+			
+			/// Read the next byte(s) as an unsigned integer.
+			/**
+			 * Using the Variable Length Quantity (VLQ)
+			 * format as used in the MIDI file format.
+			 * 
+			 * \see http://en.wikipedia.org/wiki/Variable-length_quantity
+			 */
+			/** \memberof Machine */
+			inline Int nextInt() {
+				Int value = 0;
+				while(true){
+					Int8 next = *instruction_pointer++;
+					value |= next & 0x7F;
+					if (next & 0x80) value <<= 7;
+					else break;
+				}
+				return value;
+			}
+			
+			/// Read the next byte as an unsigned 8-bit integer.
+			/**
+			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
+			 */
+			/** \memberof Machine */
+			inline Int8 nextInt8() {
+				return *instruction_pointer++;
+			}
+			
+			/// Read the next two bytes as an unsigned 16-bit integer (big endian).
+			/**
+			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
+			 */
+			/** \memberof Machine */
+			inline Int16 nextInt16() {
+				Int16 data  = static_cast<Int16>(nextInt8()) << 8;
+				      data += nextInt8();
+				return data;
+			}
+			
+		/// \}
+		
+		/// \name Neighbour methods
+		/// \{
+			
+			/// Get the current neighbour, when iterating through them.
+			/**
+			 * Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed.
+			 */
+			/** \memberof Machine */
+			inline Neighbour & currentNeighbour() {
+				return *current_neighbour;
+			}
+			
+			/// Get the Neighbour representing this machine.
+			/** \memberof Machine */
+			inline Neighbour & thisMachine() {
+				return *hood.begin();
+			}
+			
+		/// \}
+};
+
+/** \cond */
+#define Machine BasicMachine
+#include <extensions.hpp>
+typedef Machine ExtendedMachine;
+#undef Machine
+/** \endcond */
+
+/// A virtual machine.
+/**
+ * \note This class is \ref extending "extensible".
+ * 
+ * \extends BasicMachine
+ */
+class Machine : public ExtendedMachine {
+	
+	public:
 		/// \name Execution control
 		/// \{
 			
@@ -171,34 +300,20 @@ class Machine : public MachineExtension {
 				return callbacks.empty();
 			}
 			
-			/// Get the (index of the) current thread when executing a run.
+			/// Execute an instruction.
 			/**
-			 * When not running, this is the index of the thread that will be checked first for the next run.
+			 * \param instruction The Instruction to execute.
+			 * 
+			 * \see Instructions
 			 */
-			inline Thread::Id currentThread() const {
-				return current_thread;
+			inline void execute(Instruction instruction) {
+				instruction(*this);
 			}
 			
 		/// \}
 		
-		/// \name Control flow
+		/// \name Calling
 		/// \{
-			
-			/// Jump to another address.
-			/**
-			 * \param address The address to jump to.
-			 */
-			inline void jump(Address address) {
-				instruction_pointer = address;
-			}
-			
-			/// Advance the instruction pointer.
-			/**
-			 * \param distance The number of bytes to skip.
-			 */
-			inline void skip(Size distance) {
-				instruction_pointer += distance;
-			}
 			
 			/// Call a function.
 			/**
@@ -225,89 +340,15 @@ class Machine : public MachineExtension {
 				if (callback) callback(*this);
 			}
 			
-			/// Get the current address (instruction pointer).
-			inline Address currentAddress() const {
-				return instruction_pointer;
-			}
-			
-			/// Get the callback depth.
-			/**
-			 * Usually 1, but higher inside instructions such as \ref Instructions::INIT_FEEDBACK "INIT_FEEDBACK" or \ref Instructions::TUP_MAP "TUP_MAP".
-			 */
-			inline Counter depth() const {
-				return callbacks.size();
-			}
-			
 		/// \}
 		
-		/// \name Low level
-		/// \{
-			
-			/// Read the next byte(s) as an unsigned integer.
-			/**
-			 * Using the Variable Length Quantity (VLQ)
-			 * format as used in the MIDI file format.
-			 * 
-			 * \see http://en.wikipedia.org/wiki/Variable-length_quantity
-			 */
-			inline Int nextInt() {
-				Int value = 0;
-				while(true){
-					Int8 next = *instruction_pointer++;
-					value |= next & 0x7F;
-					if (next & 0x80) value <<= 7;
-					else break;
-				}
-				return value;
-			}
-			
-			/// Read the next byte as an unsigned 8-bit integer.
-			/**
-			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
-			 */
-			inline Int8 nextInt8() {
-				return *instruction_pointer++;
-			}
-			
-			/// Read the next two bytes as an unsigned 16-bit integer (big endian).
-			/**
-			 * \deprecated Use \ref Machine::nextInt() "nextInt()" instead.
-			 */
-			inline Int16 nextInt16() {
-				Int16 data  = static_cast<Int16>(nextInt8()) << 8;
-				      data += nextInt8();
-				return data;
-			}
-			
-			/// Execute an instruction.
-			/**
-			 * \param instruction The Instruction to execute.
-			 * 
-			 * \see Instructions
-			 */
-			inline void execute(Instruction instruction) {
-				instruction(*this);
-			}
-			
-		/// \}
+		friend void Instructions::DEF_VM(Machine &);
+#if MIT_COMPATIBILITY != MIT_ONLY
+		friend void Instructions::DEF_VM_EX(Machine &);
+#endif
+		friend void Instructions::EXIT(Machine &);
+		friend class HoodInstructions;
 		
-		/// \name Neighbour methods
-		/// \{
-			
-			/// Get the current neighbour, when iterating through them.
-			/**
-			 * Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed.
-			 */
-			inline Neighbour & currentNeighbour() {
-				return *current_neighbour;
-			}
-			
-			/// Get the Neighbour representing this machine.
-			inline Neighbour & thisMachine() {
-				return *hood.begin();
-			}
-			
-		/// \}
 };
 
 #endif

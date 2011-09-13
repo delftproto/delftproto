@@ -90,11 +90,11 @@
 <a name="l00026"></a>00026 <span class="comment"></span>    
 <a name="l00027"></a>00027     <span class="keyword">namespace </span>{
 <a name="l00028"></a>00028         <span class="keywordtype">void</span> apply_end(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00029"></a>00029             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00030"></a>00030             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> arguments = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popTuple();
-<a name="l00031"></a>00031             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00032"></a>00032             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
-<a name="l00033"></a>00033             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(arguments.size());
+<a name="l00029"></a>00029             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00030"></a>00030             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> arguments = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popTuple();
+<a name="l00031"></a>00031             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00032"></a>00032             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
+<a name="l00033"></a>00033             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(arguments.size());
 <a name="l00034"></a>00034         }
 <a name="l00035"></a>00035     }
 <a name="l00036"></a>00036     <span class="comment"></span>
@@ -105,28 +105,28 @@
 <a name="l00041"></a>00041 <span class="comment">     * \return Data The return value of the function.</span>
 <a name="l00042"></a>00042 <span class="comment">     */</span>
 <a name="l00043"></a><a class="code" href="namespace_instructions.html#a256bdfc41cd0679beb8792248fa73a33">00043</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a256bdfc41cd0679beb8792248fa73a33" title="Call a function.">APPLY</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00044"></a>00044         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> arguments  = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(0).asTuple();
-<a name="l00045"></a>00045         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> <span class="keyword">function</span> = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asAddress();
-<a name="l00046"></a>00046         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; arguments.size(); i++) machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(arguments[i]);
+<a name="l00044"></a>00044         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> arguments  = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(0).asTuple();
+<a name="l00045"></a>00045         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> <span class="keyword">function</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00046"></a>00046         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; arguments.size(); i++) machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(arguments[i]);
 <a name="l00047"></a>00047         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(<span class="keyword">function</span>, apply_end);
 <a name="l00048"></a>00048     }
 <a name="l00049"></a>00049     
 <a name="l00050"></a>00050     <span class="keyword">namespace </span>{
 <a name="l00051"></a>00051         <span class="keywordtype">void</span> map_step(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00052"></a>00052             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(1);
-<a name="l00053"></a>00053             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> new_element = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00054"></a>00054             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(0).asTuple();
-<a name="l00055"></a>00055             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; values = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asTuple();
+<a name="l00052"></a>00052             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
+<a name="l00053"></a>00053             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> new_element = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00054"></a>00054             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(0).asTuple();
+<a name="l00055"></a>00055             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; values = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asTuple();
 <a name="l00056"></a>00056             result.push(new_element);
 <a name="l00057"></a>00057             <span class="keywordflow">if</span> (result.size() &lt; values.size()){
-<a name="l00058"></a>00058                 machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(values[result.size()]);
-<a name="l00059"></a>00059                 <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(2).asAddress();
+<a name="l00058"></a>00058                 machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(values[result.size()]);
+<a name="l00059"></a>00059                 <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(2).asAddress();
 <a name="l00060"></a>00060                 machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter, map_step);
 <a name="l00061"></a>00061             } <span class="keywordflow">else</span> {
-<a name="l00062"></a>00062                 <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popTuple();
-<a name="l00063"></a>00063                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popTuple();
-<a name="l00064"></a>00064                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00065"></a>00065                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
+<a name="l00062"></a>00062                 <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popTuple();
+<a name="l00063"></a>00063                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popTuple();
+<a name="l00064"></a>00064                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00065"></a>00065                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
 <a name="l00066"></a>00066             }
 <a name="l00067"></a>00067         }
 <a name="l00068"></a>00068     }
@@ -142,15 +142,15 @@
 <a name="l00078"></a>00078 <span class="comment">     * \return Tuple The tuple with all the mapped elements.</span>
 <a name="l00079"></a>00079 <span class="comment">     */</span>
 <a name="l00080"></a><a class="code" href="namespace_instructions.html#a5590d601f6a46aaf62e688ed36825380">00080</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a5590d601f6a46aaf62e688ed36825380" title="Map all elements of a Tuple using a function.">TUP_MAP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00081"></a>00081         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; values = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(0).asTuple();
+<a name="l00081"></a>00081         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> &amp; values = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(0).asTuple();
 <a name="l00082"></a>00082         <span class="keywordflow">if</span> (values.empty()){
-<a name="l00083"></a>00083             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popTuple();
-<a name="l00084"></a>00084             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00085"></a>00085             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(<a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>());
+<a name="l00083"></a>00083             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popTuple();
+<a name="l00084"></a>00084             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00085"></a>00085             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>());
 <a name="l00086"></a>00086         } <span class="keywordflow">else</span> {
-<a name="l00087"></a>00087             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asAddress();
-<a name="l00088"></a>00088             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(<a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>(values.size()));
-<a name="l00089"></a>00089             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(values[0]);
+<a name="l00087"></a>00087             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00088"></a>00088             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>(values.size()));
+<a name="l00089"></a>00089             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(values[0]);
 <a name="l00090"></a>00090             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter, map_step);
 <a name="l00091"></a>00091         }
 <a name="l00092"></a>00092     }
@@ -158,27 +158,27 @@
 <a name="l00094"></a>00094 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
 <a name="l00095"></a>00095 <span class="preprocessor"></span><span class="comment">    /// \deprecated_mitproto{TUP_MAP}</span>
 <a name="l00096"></a><a class="code" href="namespace_instructions.html#a493a56b54073c610841adbb2ae38e1b0">00096</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a493a56b54073c610841adbb2ae38e1b0" title="Only here for MIT Proto compatibility, deprecated.">MAP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00097"></a>00097         machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00097"></a>00097         machine.nextInt8();
 <a name="l00098"></a>00098         <a class="code" href="namespace_instructions.html#a5590d601f6a46aaf62e688ed36825380" title="Map all elements of a Tuple using a function.">TUP_MAP</a>(machine);
 <a name="l00099"></a>00099     }
 <a name="l00100"></a>00100 <span class="preprocessor">#endif</span>
 <a name="l00101"></a>00101 <span class="preprocessor"></span>    
 <a name="l00102"></a>00102     <span class="keyword">namespace </span>{
 <a name="l00103"></a>00103         <span class="keywordtype">void</span> fold_step(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
-<a name="l00104"></a>00104             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(2);
-<a name="l00105"></a>00105             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>      result      = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00106"></a>00106             <a class="code" href="class_number.html" title="A floating point number.">Number</a>  &amp; fold_index  = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(0).asNumber ();
-<a name="l00107"></a>00107             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>   &amp; fold_values = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asTuple  ();
-<a name="l00108"></a>00108             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> &amp; fold_fuse   = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(2).asAddress();
+<a name="l00104"></a>00104             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
+<a name="l00105"></a>00105             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>      result      = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00106"></a>00106             <a class="code" href="class_number.html" title="A floating point number.">Number</a>  &amp; fold_index  = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(0).asNumber ();
+<a name="l00107"></a>00107             <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>   &amp; fold_values = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asTuple  ();
+<a name="l00108"></a>00108             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> &amp; fold_fuse   = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(2).asAddress();
 <a name="l00109"></a>00109             <span class="keywordflow">if</span> (++fold_index &lt; fold_values.size()){
-<a name="l00110"></a>00110                 machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(result);
-<a name="l00111"></a>00111                 machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(fold_values[<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a>(fold_index)]);
+<a name="l00110"></a>00110                 machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(result);
+<a name="l00111"></a>00111                 machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(fold_values[<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a>(fold_index)]);
 <a name="l00112"></a>00112                 machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fold_fuse, fold_step);
 <a name="l00113"></a>00113             } <span class="keywordflow">else</span> {
-<a name="l00114"></a>00114                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber();
-<a name="l00115"></a>00115                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popTuple();
-<a name="l00116"></a>00116                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00117"></a>00117                 machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
+<a name="l00114"></a>00114                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00115"></a>00115                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popTuple();
+<a name="l00116"></a>00116                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00117"></a>00117                 machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
 <a name="l00118"></a>00118             }
 <a name="l00119"></a>00119         }
 <a name="l00120"></a>00120     }
@@ -211,25 +211,25 @@
 <a name="l00147"></a>00147 <span class="comment">     * \return Data The result of the folding process.</span>
 <a name="l00148"></a>00148 <span class="comment">     */</span>
 <a name="l00149"></a><a class="code" href="namespace_instructions.html#a6bbfff7e3e66581ab8d5083c90358698">00149</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a6bbfff7e3e66581ab8d5083c90358698" title="Fold a Tuple to a single element with a given &#39;fuse function&#39;.">FOLD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00150"></a>00150         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>   fold_values = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop().asTuple();
-<a name="l00151"></a>00151         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>    result      = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00152"></a>00152         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fold_fuse   = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00150"></a>00150         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a>   fold_values = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop().asTuple();
+<a name="l00151"></a>00151         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>    result      = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00152"></a>00152         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fold_fuse   = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
 <a name="l00153"></a>00153         
 <a name="l00154"></a>00154         <span class="keywordflow">if</span> (fold_values.empty()){
-<a name="l00155"></a>00155             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00156"></a>00156             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
+<a name="l00155"></a>00155             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00156"></a>00156             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
 <a name="l00157"></a>00157         } <span class="keywordflow">else</span> {
-<a name="l00158"></a>00158             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(fold_values);
-<a name="l00159"></a>00159             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(0);
-<a name="l00160"></a>00160             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(result);
-<a name="l00161"></a>00161             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(fold_values[0]);
+<a name="l00158"></a>00158             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(fold_values);
+<a name="l00159"></a>00159             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(0);
+<a name="l00160"></a>00160             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(result);
+<a name="l00161"></a>00161             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(fold_values[0]);
 <a name="l00162"></a>00162             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fold_fuse, fold_step);
 <a name="l00163"></a>00163         }
 <a name="l00164"></a>00164     }
 <a name="l00165"></a>00165     <span class="comment"></span>
 <a name="l00166"></a>00166 <span class="comment">    /// \deprecated_mitproto{FOLD}</span>
 <a name="l00167"></a><a class="code" href="namespace_instructions.html#a5f124ead0709bf9bc69d337993ae2740">00167</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a5f124ead0709bf9bc69d337993ae2740" title="Only here for MIT Proto compatibility, deprecated.">VFOLD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00168"></a>00168         machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a>();
+<a name="l00168"></a>00168         machine.nextInt8();
 <a name="l00169"></a>00169         <a class="code" href="namespace_instructions.html#a6bbfff7e3e66581ab8d5083c90358698" title="Fold a Tuple to a single element with a given &#39;fuse function&#39;.">FOLD</a>(machine);
 <a name="l00170"></a>00170     }
 <a name="l00171"></a>00171     <span class="comment"></span>

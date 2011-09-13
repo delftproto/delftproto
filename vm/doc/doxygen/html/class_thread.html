@@ -67,11 +67,11 @@
 <p><code>#include &lt;<a class="el" href="thread_8hpp_source.html">thread.hpp</a>&gt;</code></p>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A thread. </p>
-<p>The 'main function' of each thread is stored in the <a class="el" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">Machine::globals</a> list of the machine. The first thread corresponds to the last global, the second thread to the second last global, and so on.</p>
+<p>The 'main function' of each thread is stored in the <a class="el" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">Machine::globals</a> list of the machine. The first thread corresponds to the last global, the second thread to the second last global, and so on.</p>
 <p>A thread can be triggered and activated. It is called 'pending' when it is either triggered, activated or both. The <a class="el" href="class_machine.html#a0cff28a3e26aa300f706db443710760b" title="Start the next scheduled task.">Machine::run()</a> starts the execution of the next pending <a class="el" href="class_thread.html" title="A thread.">Thread</a>, Round-robin style.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This class is <a class="el" href="extensions.html#extending">extensible</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00098">98</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00107">107</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 </div>
 <p>Inherits BasicThread.</p>
 
@@ -79,26 +79,26 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_int8.html">Int8</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Id</b></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An index in the <a class="el" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">Machine::threads</a> list.  <a href="#a2264711e28f1ee920af1c3c52440e6ac"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="class_int8.html">Int8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Id</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">An index in the <a class="el" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">Machine::threads</a> list.  <a href="#a46806e195d56909fb307a09619c8b667"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>trigger</b> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger this thread.  <a href="#ac8745d951d4e8553f4ad79f15a442a2d"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Trigger this thread.  <a href="#ab0554cb7241c0b72d34402f0bb419462"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>activate</b> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate this thread.  <a href="#af6a6392b35422e4f44cf17c75b1535bc"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate this thread.  <a href="#a8011fcbeb5efeda20bd2dbffbbb70165"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>deactivate</b> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate this thread.  <a href="#a943a06fb91e65945187629986b7b8938"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Deactivate this thread.  <a href="#a8308b4bb6079733f4b77ced9d46da7a9"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><b>pending</b> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether this thread is pending (true) or not (false).  <a href="#a2c9094923ffce833630d66b41fa66c98"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether this thread is pending (true) or not (false).  <a href="#a92d4d0b796d45e32e24147891c41e822"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_data.html">Data</a>&#160;</td><td class="memItemRight" valign="bottom"><b>result</b></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of the last execution of this thread.  <a href="#a3a8c01867105ce830494066333353d61"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_data.html">Data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_thread.html#a878cd6cb0d1ae01834c52300930ecf63">result</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of the last execution of this thread.  <a href="#a878cd6cb0d1ae01834c52300930ecf63"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>untrigger</b> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a pending trigger.  <a href="#a635e5797a9e78a3f812e08f1eb2e1ac3"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a pending trigger.  <a href="#a455f9aea5d3e2abc41aab1f61c9bc026"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abf9068391a356a8d9c7ab35c48dc6fb2"></a><!-- doxytag: member="Thread::is_triggered" ref="abf9068391a356a8d9c7ab35c48dc6fb2" args="" -->
@@ -107,30 +107,30 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_triggered</b></td>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></tr>
 </table>
 <hr/><h2>Member Typedef Documentation</h2>
-<a class="anchor" id="a2264711e28f1ee920af1c3c52440e6ac"></a><!-- doxytag: member="Thread::Id" ref="a2264711e28f1ee920af1c3c52440e6ac" args="" -->
+<a class="anchor" id="a46806e195d56909fb307a09619c8b667"></a><!-- doxytag: member="Thread::Id" ref="a46806e195d56909fb307a09619c8b667" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="class_int8.html">Int8</a> <a class="el" href="class_int8.html">BasicThread::Id</a><code> [inherited]</code></td>
+          <td class="memname">typedef <a class="el" href="class_int8.html">Int8</a> <a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Id</a></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>An index in the <a class="el" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">Machine::threads</a> list. </p>
+<p>An index in the <a class="el" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">Machine::threads</a> list. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00028">28</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00029">29</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="ac8745d951d4e8553f4ad79f15a442a2d"></a><!-- doxytag: member="Thread::trigger" ref="ac8745d951d4e8553f4ad79f15a442a2d" args="()" -->
+<a class="anchor" id="ab0554cb7241c0b72d34402f0bb419462"></a><!-- doxytag: member="Thread::trigger" ref="ab0554cb7241c0b72d34402f0bb419462" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BasicThread::trigger </td>
+          <td class="memname">void trigger </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inherited]</code></td>
@@ -143,16 +143,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 <p>The specified thread will be executed once.</p>
 <p>There is no waiting line. Triggering an already triggered thread has no effect. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00041">41</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00044">44</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af6a6392b35422e4f44cf17c75b1535bc"></a><!-- doxytag: member="Thread::activate" ref="af6a6392b35422e4f44cf17c75b1535bc" args="()" -->
+<a class="anchor" id="a8011fcbeb5efeda20bd2dbffbbb70165"></a><!-- doxytag: member="Thread::activate" ref="a8011fcbeb5efeda20bd2dbffbbb70165" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BasicThread::activate </td>
+          <td class="memname">void activate </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inherited]</code></td>
@@ -164,16 +164,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 <p>Activate this thread. </p>
 <p>The specified thread will be executed infinitely, until deactivation. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00049">49</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00054">54</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a943a06fb91e65945187629986b7b8938"></a><!-- doxytag: member="Thread::deactivate" ref="a943a06fb91e65945187629986b7b8938" args="()" -->
+<a class="anchor" id="a8308b4bb6079733f4b77ced9d46da7a9"></a><!-- doxytag: member="Thread::deactivate" ref="a8308b4bb6079733f4b77ced9d46da7a9" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BasicThread::deactivate </td>
+          <td class="memname">void deactivate </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [inherited]</code></td>
@@ -184,16 +184,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 
 <p>Deactivate this thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00059">59</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00065">65</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2c9094923ffce833630d66b41fa66c98"></a><!-- doxytag: member="Thread::pending" ref="a2c9094923ffce833630d66b41fa66c98" args="() const " -->
+<a class="anchor" id="a92d4d0b796d45e32e24147891c41e822"></a><!-- doxytag: member="Thread::pending" ref="a92d4d0b796d45e32e24147891c41e822" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool BasicThread::pending </td>
+          <td class="memname">bool pending </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [inherited]</code></td>
@@ -204,16 +204,16 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 
 <p>Check whether this thread is pending (true) or not (false). </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00064">64</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00071">71</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a635e5797a9e78a3f812e08f1eb2e1ac3"></a><!-- doxytag: member="Thread::untrigger" ref="a635e5797a9e78a3f812e08f1eb2e1ac3" args="()" -->
+<a class="anchor" id="a455f9aea5d3e2abc41aab1f61c9bc026"></a><!-- doxytag: member="Thread::untrigger" ref="a455f9aea5d3e2abc41aab1f61c9bc026" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void BasicThread::untrigger </td>
+          <td class="memname">void untrigger </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td><code> [protected, inherited]</code></td>
@@ -224,17 +224,17 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 
 <p>Remove a pending trigger. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00073">73</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00082">82</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="a3a8c01867105ce830494066333353d61"></a><!-- doxytag: member="Thread::result" ref="a3a8c01867105ce830494066333353d61" args="" -->
+<a class="anchor" id="a878cd6cb0d1ae01834c52300930ecf63"></a><!-- doxytag: member="Thread::result" ref="a878cd6cb0d1ae01834c52300930ecf63" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_data.html">Data</a> BasicThread::result<code> [inherited]</code></td>
+          <td class="memname"><a class="el" href="class_data.html">Data</a> <a class="el" href="class_thread.html#a878cd6cb0d1ae01834c52300930ecf63">result</a></td>
         </tr>
       </table>
 </div>
@@ -242,7 +242,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_active</b></td></t
 
 <p>The result of the last execution of this thread. </p>
 
-<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00069">69</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
+<p>Definition at line <a class="el" href="thread_8hpp_source.html#l00077">77</a> of file <a class="el" href="thread_8hpp_source.html">thread.hpp</a>.</p>
 
 </div>
 </div>

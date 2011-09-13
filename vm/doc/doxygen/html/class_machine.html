@@ -54,7 +54,6 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
@@ -62,20 +61,20 @@
 <div class="title">Machine Class Reference</div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Machine" -->
+<!-- doxytag: class="Machine" --><!-- doxytag: inherits="BasicMachine" -->
 <p><code>#include &lt;<a class="el" href="machine_8hpp_source.html">machine.hpp</a>&gt;</code></p>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A virtual machine. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This class is <a class="el" href="extensions.html#extending">extensible</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00037">37</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00236">236</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 </div>
+<p>Inherits BasicMachine.</p>
+
 <p><a href="class_machine-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a99427b767b7c15ceb33e391166cd7d68">Machine</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The constructor.  <a href="#a99427b767b7c15ceb33e391166cd7d68"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Execution control</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a9def338e162f49fce3436df9f1e220ef">install</a> (<a class="el" href="class_int8.html">Int8</a> const *script)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Start an installation script.  <a href="#a9def338e162f49fce3436df9f1e220ef"></a><br/></td></tr>
@@ -85,65 +84,66 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the next instruction.  <a href="#a265085dd37ece6b08a3fa3b41414ff62"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592">finished</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the running script (installation or a single run) has finished (true) or not (false).  <a href="#a5409d7dae8461d62dffd062a41623592"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int8.html">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a403a30d83950acd11d223b6e91be710e">currentThread</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the (index of the) current thread when executing a run.  <a href="#a403a30d83950acd11d223b6e91be710e"></a><br/></td></tr>
-<tr><td colspan="2"><div class="groupHeader">Control flow</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ae43e9ad5571d47fa0e122f2aaa714a6e">jump</a> (<a class="el" href="class_address.html">Address</a> address)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump to another address.  <a href="#ae43e9ad5571d47fa0e122f2aaa714a6e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb">skip</a> (<a class="el" href="class_size.html">Size</a> distance)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the instruction pointer.  <a href="#a73e23161b585062100b0e415fdbe35cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a4df84e61434a3cc076ff1466dd01a9ec">execute</a> (<a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> instruction)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute an instruction.  <a href="#a4df84e61434a3cc076ff1466dd01a9ec"></a><br/></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Calling</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a58c1609705940043e523283d19a8d4dd">call</a> (<a class="el" href="class_address.html">Address</a> address, <a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> callback=0)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function.  <a href="#a58c1609705940043e523283d19a8d4dd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#af0f8d494fafbd3caf9f0c1523ae42814">retn</a> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Return from a function.  <a href="#af0f8d494fafbd3caf9f0c1523ae42814"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_address.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d">currentAddress</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current address (instruction pointer).  <a href="#a5e786a8943c7a992e99326b9bc7ac88d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a5a3addc3ff475e21379f9032d4ba74a5">depth</a> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the callback depth.  <a href="#a5a3addc3ff475e21379f9032d4ba74a5"></a><br/></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Control flow</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>jump</b> (<a class="el" href="class_address.html">Address</a> address)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump to another address.  <a href="#a8533f910d2e70686c083df8dba9c49de"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>skip</b> (<a class="el" href="class_size.html">Size</a> distance)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Advance the instruction pointer.  <a href="#a70128bc4e22a408622afa3356b508573"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_address.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentAddress</b> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current address (instruction pointer).  <a href="#a8cc2a8c0dcb00ae974cf0b634396418b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>depth</b> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the callback depth.  <a href="#aa3fcc35d95930ed038b96a53e8b709da"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentThread</b> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the (index of the) current thread when executing a run.  <a href="#a965d7508196d754ed50b4970665129f6"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Low level</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int.html">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e">nextInt</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next byte(s) as an unsigned integer.  <a href="#aae3ae0f475408a059107fc648dedef3e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int8.html">Int8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443">nextInt8</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next byte as an unsigned 8-bit integer.  <a href="#a51d7ad4cc91ce9e78106ce3c07c8e443"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int16.html">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a8ce2322c1f83af620240a611481a448c">nextInt16</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next two bytes as an unsigned 16-bit integer (big endian).  <a href="#a8ce2322c1f83af620240a611481a448c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a4df84e61434a3cc076ff1466dd01a9ec">execute</a> (<a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> instruction)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute an instruction.  <a href="#a4df84e61434a3cc076ff1466dd01a9ec"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int.html">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>nextInt</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next byte(s) as an unsigned integer.  <a href="#a1b7fd0e80be98ca13178a6475f338d30"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int8.html">Int8</a>&#160;</td><td class="memItemRight" valign="bottom"><b>nextInt8</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next byte as an unsigned 8-bit integer.  <a href="#a825395d1dd0bd4bb3b6e67e2c8b7b11e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int16.html">Int16</a>&#160;</td><td class="memItemRight" valign="bottom"><b>nextInt16</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next two bytes as an unsigned 16-bit integer (big endian).  <a href="#a125a5a4ac4ca13ddc9c7a8cde55a9d91"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Neighbour methods</div></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour.html">Neighbour</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a1385c1582981a663375ec372e60db4e8">currentNeighbour</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current neighbour, when iterating through them.  <a href="#a1385c1582981a663375ec372e60db4e8"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour.html">Neighbour</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a35f1b71a8f8dff6be74436a78aedb231">thisMachine</a> ()</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_neighbour.html" title="A node in the neighbourhood.">Neighbour</a> representing this machine.  <a href="#a35f1b71a8f8dff6be74436a78aedb231"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour.html">Neighbour</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>currentNeighbour</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current neighbour, when iterating through them.  <a href="#a56989699e7e7978e6dbb3ac23aec8070"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour.html">Neighbour</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>thisMachine</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_neighbour.html" title="A node in the neighbourhood.">Neighbour</a> representing this machine.  <a href="#ab42372a532d2a7b834f2833bcd16983e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_machine_id.html">MachineId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad394869cda9914d8b210f4b55ca2c3c6">id</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of this <a class="el" href="class_machine.html" title="A virtual machine.">Machine</a>.  <a href="#ad394869cda9914d8b210f4b55ca2c3c6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4">stack</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The standard stack.  <a href="#af6c267dce59cac73f20d53ec177f63d4"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33">environment</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The environment stack.  <a href="#a38f9d53040ea76619778cab09d4c8b33"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45">globals</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The globals.  <a href="#ad7b4eabcb86be35d4992b62844d8cc45"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_thread.html">Thread</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b">threads</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The threads.  <a href="#a0b4377352d8ca0913f3c4b197f74224b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_state.html">State</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a7ed9c99160910ca90816230920840360">state</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The state variables.  <a href="#a7ed9c99160910ca90816230920840360"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour_hood.html">NeighbourHood</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07">hood</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all the neighbours.  <a href="#a740de0862c6ec97f9e9120fc87ec4a07"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_machine_id.html">MachineId</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb">id</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID of this <a class="el" href="class_machine.html" title="A virtual machine.">Machine</a>.  <a href="#aa5c97abe3cf67980c24f1418745382eb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5">stack</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The standard stack.  <a href="#a829f86a6bfa7923d2c58c5a39404a4f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef">environment</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The environment stack.  <a href="#a11f99378f85a083c5de1cc60958188ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="class_data.html">Data</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb">globals</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The globals.  <a href="#a54d5ac55862c9ef333464600c6c392cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_thread.html">Thread</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b">threads</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The threads.  <a href="#afdd2b0272323a5be80b8146613854c2b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_array.html">Array</a>&lt; <a class="el" href="class_state.html">State</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79">state</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The state variables.  <a href="#a38193c4b91addc9929a533cf9951fb79"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour_hood.html">NeighbourHood</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2">hood</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all the neighbours.  <a href="#ad93cfc43a03588c3ed3a11f873f1bac2"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_address.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#adb7a8d67d43a7d5355985677b88b672b">instruction_pointer</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the next instruction.  <a href="#adb7a8d67d43a7d5355985677b88b672b"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ac568f9ddcf2e8ea728edf1a0b835558e">is_finished</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean indicating whether execution (installation or a single run) has finished.  <a href="#ac568f9ddcf2e8ea728edf1a0b835558e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a68894a010a9100f73e42eed2988bec11">callbacks</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The callback stack.  <a href="#a68894a010a9100f73e42eed2988bec11"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int8.html">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a2838cf4f056f8893a663dea6f6c0bf1d">current_thread</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The (index of the) current thread when executing a run.  <a href="#a2838cf4f056f8893a663dea6f6c0bf1d"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">NeighbourHood::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47">current_neighbour</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The current neighbour, when iterating through them.  <a href="#a9e9238de6844962bc6bdbb70c62e7c47"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a896cc0806799e9cc869a3238d3576103">current_import</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The (index of the) current import/export, when executing a hood instruction.  <a href="#a896cc0806799e9cc869a3238d3576103"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_address.html">Address</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad165e8b19577cc2fb3c6e626808620c2">instruction_pointer</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">A pointer to the next instruction.  <a href="#ad165e8b19577cc2fb3c6e626808620c2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a95fb17120c92e5801765ceb1f610722e">is_finished</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Boolean indicating whether execution (installation or a single run) has finished.  <a href="#a95fb17120c92e5801765ceb1f610722e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_stack.html">Stack</a>&lt; <a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c">callbacks</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The callback stack.  <a href="#afaaae44df65b30e2b6228bfa4374174c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad56fc8c9975f9afa85c54d8768dd7d19">current_thread</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The (index of the) current thread when executing a run.  <a href="#ad56fc8c9975f9afa85c54d8768dd7d19"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">NeighbourHood::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e">current_neighbour</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The current neighbour, when iterating through them.  <a href="#a5fea1fa6f8f8c56d9f630cae52bac72e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_index.html">Index</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08">current_import</a></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The (index of the) current import/export, when executing a hood instruction.  <a href="#adcc8422a2ed0d485b0f3e9650e156a08"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeafce3e1f853eab377c4c0ed22236c81"></a><!-- doxytag: member="Machine::Instructions::DEF_VM" ref="aeafce3e1f853eab377c4c0ed22236c81" args="(Machine &amp;)" -->
@@ -153,27 +153,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::DEF_VM_
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25e2343dabb47973ea74dfbdaa14669d"></a><!-- doxytag: member="Machine::Instructions::EXIT" ref="a25e2343dabb47973ea74dfbdaa14669d" args="(Machine &amp;)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b> (<a class="el" href="class_machine.html">Machine</a> &amp;)</td></tr>
 </table>
-<hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a99427b767b7c15ceb33e391166cd7d68"></a><!-- doxytag: member="Machine::Machine" ref="a99427b767b7c15ceb33e391166cd7d68" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Machine::Machine </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The constructor. </p>
-
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00108">108</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
-
-</div>
-</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a9def338e162f49fce3436df9f1e220ef"></a><!-- doxytag: member="Machine::install" ref="a9def338e162f49fce3436df9f1e220ef" args="(Int8 const *script)" -->
 <div class="memitem">
@@ -199,7 +178,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00119">119</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00248">248</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -220,7 +199,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Start the next scheduled task. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This does not execute Proto code, it only prepares the next run. Call <a class="el" href="class_machine.html#a265085dd37ece6b08a3fa3b41414ff62" title="Execute the next instruction.">step()</a> while not <a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592" title="Check whether the running script (installation or a single run) has finished (true) or not (false)...">finished()</a> to execute it. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00129">129</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00258">258</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -241,7 +220,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Execute the next instruction. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Do not use this function when already <a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592" title="Check whether the running script (installation or a single run) has finished (true) or not (false)...">finished()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00165">165</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00294">294</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -261,82 +240,35 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Check whether the running script (installation or a single run) has finished (true) or not (false). </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00170">170</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00299">299</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a403a30d83950acd11d223b6e91be710e"></a><!-- doxytag: member="Machine::currentThread" ref="a403a30d83950acd11d223b6e91be710e" args="() const " -->
+<a class="anchor" id="a4df84e61434a3cc076ff1466dd01a9ec"></a><!-- doxytag: member="Machine::execute" ref="a4df84e61434a3cc076ff1466dd01a9ec" args="(Instruction instruction)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_int8.html">Thread::Id</a> Machine::currentThread </td>
+          <td class="memname">void Machine::execute </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the (index of the) current thread when executing a run. </p>
-<p>When not running, this is the index of the thread that will be checked first for the next run. </p>
-
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00178">178</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae43e9ad5571d47fa0e122f2aaa714a6e"></a><!-- doxytag: member="Machine::jump" ref="ae43e9ad5571d47fa0e122f2aaa714a6e" args="(Address address)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Machine::jump </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_address.html">Address</a>&#160;</td>
-          <td class="paramname"><em>address</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a>&#160;</td>
+          <td class="paramname"><em>instruction</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
-<p>Jump to another address. </p>
+<p>Execute an instruction. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname">address</td><td>The address to jump to. </td></tr>
+    <tr><td class="paramname">instruction</td><td>The Instruction to execute.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html" title="All instructions and their opcodes.">Instructions</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00191">191</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a73e23161b585062100b0e415fdbe35cb"></a><!-- doxytag: member="Machine::skip" ref="a73e23161b585062100b0e415fdbe35cb" args="(Size distance)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Machine::skip </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_size.html">Size</a>&#160;</td>
-          <td class="paramname"><em>distance</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Advance the instruction pointer. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">distance</td><td>The number of bytes to skip. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00199">199</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00309">309</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -374,7 +306,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00208">208</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00323">323</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -396,19 +328,73 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>If the corresponding call (if any) registered a callback, it will be called.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html#a0e290a78f1adfb600f33eac57013fa1a" title="Return from a function.">Instructions::RET</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00220">220</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00335">335</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5e786a8943c7a992e99326b9bc7ac88d"></a><!-- doxytag: member="Machine::currentAddress" ref="a5e786a8943c7a992e99326b9bc7ac88d" args="() const " -->
+<a class="anchor" id="a8533f910d2e70686c083df8dba9c49de"></a><!-- doxytag: member="Machine::jump" ref="a8533f910d2e70686c083df8dba9c49de" args="(Address address)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_address.html">Address</a> Machine::currentAddress </td>
+          <td class="memname">void jump </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_address.html">Address</a>&#160;</td>
+          <td class="paramname"><em>address</em></td><td>)</td>
+          <td><code> [inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Jump to another address. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">address</td><td>The address to jump to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00119">119</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a70128bc4e22a408622afa3356b508573"></a><!-- doxytag: member="Machine::skip" ref="a70128bc4e22a408622afa3356b508573" args="(Size distance)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void skip </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_size.html">Size</a>&#160;</td>
+          <td class="paramname"><em>distance</em></td><td>)</td>
+          <td><code> [inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Advance the instruction pointer. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">distance</td><td>The number of bytes to skip. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00128">128</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8cc2a8c0dcb00ae974cf0b634396418b"></a><!-- doxytag: member="Machine::currentAddress" ref="a8cc2a8c0dcb00ae974cf0b634396418b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_address.html">Address</a> currentAddress </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const<code> [inherited]</code></td>
         </tr>
       </table>
 </div>
@@ -416,19 +402,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Get the current address (instruction pointer). </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00229">229</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00134">134</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a5a3addc3ff475e21379f9032d4ba74a5"></a><!-- doxytag: member="Machine::depth" ref="a5a3addc3ff475e21379f9032d4ba74a5" args="() const " -->
+<a class="anchor" id="aa3fcc35d95930ed038b96a53e8b709da"></a><!-- doxytag: member="Machine::depth" ref="aa3fcc35d95930ed038b96a53e8b709da" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_counter.html">Counter</a> Machine::depth </td>
+          <td class="memname"><a class="el" href="class_counter.html">Counter</a> depth </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td> const<code> [inherited]</code></td>
         </tr>
       </table>
 </div>
@@ -437,19 +423,40 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Get the callback depth. </p>
 <p>Usually 1, but higher inside instructions such as <a class="el" href="namespace_instructions.html#afc154ab16dd30e0860866d75823be509">INIT_FEEDBACK</a> or <a class="el" href="namespace_instructions.html#a5590d601f6a46aaf62e688ed36825380">TUP_MAP</a>. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00237">237</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00143">143</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="aae3ae0f475408a059107fc648dedef3e"></a><!-- doxytag: member="Machine::nextInt" ref="aae3ae0f475408a059107fc648dedef3e" args="()" -->
+<a class="anchor" id="a965d7508196d754ed50b4970665129f6"></a><!-- doxytag: member="Machine::currentThread" ref="a965d7508196d754ed50b4970665129f6" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_int.html">Int</a> Machine::nextInt </td>
+          <td class="memname"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a> currentThread </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const<code> [inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the (index of the) current thread when executing a run. </p>
+<p>When not running, this is the index of the thread that will be checked first for the next run. </p>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00152">152</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1b7fd0e80be98ca13178a6475f338d30"></a><!-- doxytag: member="Machine::nextInt" ref="a1b7fd0e80be98ca13178a6475f338d30" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_int.html">Int</a> nextInt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inherited]</code></td>
         </tr>
       </table>
 </div>
@@ -459,89 +466,61 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Using the Variable Length Quantity (VLQ) format as used in the MIDI file format.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="http://en.wikipedia.org/wiki/Variable-length_quantity">http://en.wikipedia.org/wiki/Variable-length_quantity</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00253">253</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00169">169</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a51d7ad4cc91ce9e78106ce3c07c8e443"></a><!-- doxytag: member="Machine::nextInt8" ref="a51d7ad4cc91ce9e78106ce3c07c8e443" args="()" -->
+<a class="anchor" id="a825395d1dd0bd4bb3b6e67e2c8b7b11e"></a><!-- doxytag: member="Machine::nextInt8" ref="a825395d1dd0bd4bb3b6e67e2c8b7b11e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_int8.html">Int8</a> Machine::nextInt8 </td>
+          <td class="memname"><a class="el" href="class_int8.html">Int8</a> nextInt8 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Read the next byte as an unsigned 8-bit integer. </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use <a class="el" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e">nextInt()</a> instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use nextInt() instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00268">268</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00185">185</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a8ce2322c1f83af620240a611481a448c"></a><!-- doxytag: member="Machine::nextInt16" ref="a8ce2322c1f83af620240a611481a448c" args="()" -->
+<a class="anchor" id="a125a5a4ac4ca13ddc9c7a8cde55a9d91"></a><!-- doxytag: member="Machine::nextInt16" ref="a125a5a4ac4ca13ddc9c7a8cde55a9d91" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_int16.html">Int16</a> Machine::nextInt16 </td>
+          <td class="memname"><a class="el" href="class_int16.html">Int16</a> nextInt16 </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inherited]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 
 <p>Read the next two bytes as an unsigned 16-bit integer (big endian). </p>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use <a class="el" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e">nextInt()</a> instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use nextInt() instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00276">276</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00194">194</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4df84e61434a3cc076ff1466dd01a9ec"></a><!-- doxytag: member="Machine::execute" ref="a4df84e61434a3cc076ff1466dd01a9ec" args="(Instruction instruction)" -->
+<a class="anchor" id="a56989699e7e7978e6dbb3ac23aec8070"></a><!-- doxytag: member="Machine::currentNeighbour" ref="a56989699e7e7978e6dbb3ac23aec8070" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Machine::execute </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a>&#160;</td>
-          <td class="paramname"><em>instruction</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Execute an instruction. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table class="params">
-    <tr><td class="paramname">instruction</td><td>The Instruction to execute.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html" title="All instructions and their opcodes.">Instructions</a> </dd></dl>
-
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00288">288</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a1385c1582981a663375ec372e60db4e8"></a><!-- doxytag: member="Machine::currentNeighbour" ref="a1385c1582981a663375ec372e60db4e8" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_neighbour.html">Neighbour</a>&amp; Machine::currentNeighbour </td>
+          <td class="memname"><a class="el" href="class_neighbour.html">Neighbour</a>&amp; currentNeighbour </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inherited]</code></td>
         </tr>
       </table>
 </div>
@@ -550,19 +529,19 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Get the current neighbour, when iterating through them. </p>
 <p>Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00301">301</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00210">210</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a35f1b71a8f8dff6be74436a78aedb231"></a><!-- doxytag: member="Machine::thisMachine" ref="a35f1b71a8f8dff6be74436a78aedb231" args="()" -->
+<a class="anchor" id="ab42372a532d2a7b834f2833bcd16983e"></a><!-- doxytag: member="Machine::thisMachine" ref="ab42372a532d2a7b834f2833bcd16983e" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_neighbour.html">Neighbour</a>&amp; Machine::thisMachine </td>
+          <td class="memname"><a class="el" href="class_neighbour.html">Neighbour</a>&amp; thisMachine </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td><code> [inherited]</code></td>
         </tr>
       </table>
 </div>
@@ -570,17 +549,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Get the <a class="el" href="class_neighbour.html" title="A node in the neighbourhood.">Neighbour</a> representing this machine. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00306">306</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00216">216</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
-<a class="anchor" id="ad394869cda9914d8b210f4b55ca2c3c6"></a><!-- doxytag: member="Machine::id" ref="ad394869cda9914d8b210f4b55ca2c3c6" args="" -->
+<a class="anchor" id="aa5c97abe3cf67980c24f1418745382eb"></a><!-- doxytag: member="Machine::id" ref="aa5c97abe3cf67980c24f1418745382eb" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_machine_id.html">MachineId</a> <a class="el" href="class_machine.html#ad394869cda9914d8b210f4b55ca2c3c6">Machine::id</a></td>
+          <td class="memname"><a class="el" href="class_machine_id.html">MachineId</a> <a class="el" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb">id</a></td>
         </tr>
       </table>
 </div>
@@ -588,16 +567,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The ID of this <a class="el" href="class_machine.html" title="A virtual machine.">Machine</a>. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00042">42</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00038">38</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af6c267dce59cac73f20d53ec177f63d4"></a><!-- doxytag: member="Machine::stack" ref="af6c267dce59cac73f20d53ec177f63d4" args="" -->
+<a class="anchor" id="a829f86a6bfa7923d2c58c5a39404a4f5"></a><!-- doxytag: member="Machine::stack" ref="a829f86a6bfa7923d2c58c5a39404a4f5" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4">Machine::stack</a></td>
+          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5">stack</a></td>
         </tr>
       </table>
 </div>
@@ -605,16 +584,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The standard stack. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00045">45</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00042">42</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a38f9d53040ea76619778cab09d4c8b33"></a><!-- doxytag: member="Machine::environment" ref="a38f9d53040ea76619778cab09d4c8b33" args="" -->
+<a class="anchor" id="a11f99378f85a083c5de1cc60958188ef"></a><!-- doxytag: member="Machine::environment" ref="a11f99378f85a083c5de1cc60958188ef" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33">Machine::environment</a></td>
+          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef">environment</a></td>
         </tr>
       </table>
 </div>
@@ -622,16 +601,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The environment stack. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00048">48</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00046">46</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad7b4eabcb86be35d4992b62844d8cc45"></a><!-- doxytag: member="Machine::globals" ref="ad7b4eabcb86be35d4992b62844d8cc45" args="" -->
+<a class="anchor" id="a54d5ac55862c9ef333464600c6c392cb"></a><!-- doxytag: member="Machine::globals" ref="a54d5ac55862c9ef333464600c6c392cb" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45">Machine::globals</a></td>
+          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="class_data.html">Data</a>&gt; <a class="el" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb">globals</a></td>
         </tr>
       </table>
 </div>
@@ -639,16 +618,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The globals. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00051">51</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00050">50</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0b4377352d8ca0913f3c4b197f74224b"></a><!-- doxytag: member="Machine::threads" ref="a0b4377352d8ca0913f3c4b197f74224b" args="" -->
+<a class="anchor" id="afdd2b0272323a5be80b8146613854c2b"></a><!-- doxytag: member="Machine::threads" ref="afdd2b0272323a5be80b8146613854c2b" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_thread.html">Thread</a>&gt; <a class="el" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b">Machine::threads</a></td>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_thread.html">Thread</a>&gt; <a class="el" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b">threads</a></td>
         </tr>
       </table>
 </div>
@@ -661,12 +640,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 </div>
 </div>
-<a class="anchor" id="a7ed9c99160910ca90816230920840360"></a><!-- doxytag: member="Machine::state" ref="a7ed9c99160910ca90816230920840360" args="" -->
+<a class="anchor" id="a38193c4b91addc9929a533cf9951fb79"></a><!-- doxytag: member="Machine::state" ref="a38193c4b91addc9929a533cf9951fb79" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_state.html">State</a>&gt; <a class="el" href="class_machine.html#a7ed9c99160910ca90816230920840360">Machine::state</a></td>
+          <td class="memname"><a class="el" href="class_array.html">Array</a>&lt;<a class="el" href="class_state.html">State</a>&gt; <a class="el" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79">state</a></td>
         </tr>
       </table>
 </div>
@@ -674,16 +653,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The state variables. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00060">60</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00061">61</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a740de0862c6ec97f9e9120fc87ec4a07"></a><!-- doxytag: member="Machine::hood" ref="a740de0862c6ec97f9e9120fc87ec4a07" args="" -->
+<a class="anchor" id="ad93cfc43a03588c3ed3a11f873f1bac2"></a><!-- doxytag: member="Machine::hood" ref="ad93cfc43a03588c3ed3a11f873f1bac2" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_neighbour_hood.html">NeighbourHood</a> <a class="el" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07">Machine::hood</a></td>
+          <td class="memname"><a class="el" href="class_neighbour_hood.html">NeighbourHood</a> <a class="el" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2">hood</a></td>
         </tr>
       </table>
 </div>
@@ -691,16 +670,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>The list of all the neighbours. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00063">63</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00065">65</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="adb7a8d67d43a7d5355985677b88b672b"></a><!-- doxytag: member="Machine::instruction_pointer" ref="adb7a8d67d43a7d5355985677b88b672b" args="" -->
+<a class="anchor" id="ad165e8b19577cc2fb3c6e626808620c2"></a><!-- doxytag: member="Machine::instruction_pointer" ref="ad165e8b19577cc2fb3c6e626808620c2" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_address.html">Address</a> <a class="el" href="class_machine.html#adb7a8d67d43a7d5355985677b88b672b">Machine::instruction_pointer</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_address.html">Address</a> <a class="el" href="class_machine.html#ad165e8b19577cc2fb3c6e626808620c2">instruction_pointer</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -708,16 +687,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>A pointer to the next instruction. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00068">68</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00071">71</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ac568f9ddcf2e8ea728edf1a0b835558e"></a><!-- doxytag: member="Machine::is_finished" ref="ac568f9ddcf2e8ea728edf1a0b835558e" args="" -->
+<a class="anchor" id="a95fb17120c92e5801765ceb1f610722e"></a><!-- doxytag: member="Machine::is_finished" ref="a95fb17120c92e5801765ceb1f610722e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="class_machine.html#ac568f9ddcf2e8ea728edf1a0b835558e">Machine::is_finished</a><code> [protected]</code></td>
+          <td class="memname">bool <a class="el" href="class_machine.html#a95fb17120c92e5801765ceb1f610722e">is_finished</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -725,16 +704,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Boolean indicating whether execution (installation or a single run) has finished. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00071">71</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00075">75</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a68894a010a9100f73e42eed2988bec11"></a><!-- doxytag: member="Machine::callbacks" ref="a68894a010a9100f73e42eed2988bec11" args="" -->
+<a class="anchor" id="afaaae44df65b30e2b6228bfa4374174c"></a><!-- doxytag: member="Machine::callbacks" ref="afaaae44df65b30e2b6228bfa4374174c" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a>&gt; <a class="el" href="class_machine.html#a68894a010a9100f73e42eed2988bec11">Machine::callbacks</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_stack.html">Stack</a>&lt;<a class="el" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f">Instruction</a>&gt; <a class="el" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c">callbacks</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -745,16 +724,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <dd>
 <a class="el" href="class_machine.html#af0f8d494fafbd3caf9f0c1523ae42814" title="Return from a function.">retn</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00078">78</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00083">83</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a2838cf4f056f8893a663dea6f6c0bf1d"></a><!-- doxytag: member="Machine::current_thread" ref="a2838cf4f056f8893a663dea6f6c0bf1d" args="" -->
+<a class="anchor" id="ad56fc8c9975f9afa85c54d8768dd7d19"></a><!-- doxytag: member="Machine::current_thread" ref="ad56fc8c9975f9afa85c54d8768dd7d19" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_int8.html">Thread::Id</a> <a class="el" href="class_machine.html#a2838cf4f056f8893a663dea6f6c0bf1d">Machine::current_thread</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a> <a class="el" href="class_machine.html#ad56fc8c9975f9afa85c54d8768dd7d19">current_thread</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -763,16 +742,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>The (index of the) current thread when executing a run. </p>
 <p>When not running, this is the index of the thread that will be checked first for the next run. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00084">84</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00090">90</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a9e9238de6844962bc6bdbb70c62e7c47"></a><!-- doxytag: member="Machine::current_neighbour" ref="a9e9238de6844962bc6bdbb70c62e7c47" args="" -->
+<a class="anchor" id="a5fea1fa6f8f8c56d9f630cae52bac72e"></a><!-- doxytag: member="Machine::current_neighbour" ref="a5fea1fa6f8f8c56d9f630cae52bac72e" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">NeighbourHood::iterator <a class="el" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47">Machine::current_neighbour</a><code> [protected]</code></td>
+          <td class="memname">NeighbourHood::iterator <a class="el" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e">current_neighbour</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -781,16 +760,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>The current neighbour, when iterating through them. </p>
 <p>Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00090">90</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00097">97</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a896cc0806799e9cc869a3238d3576103"></a><!-- doxytag: member="Machine::current_import" ref="a896cc0806799e9cc869a3238d3576103" args="" -->
+<a class="anchor" id="adcc8422a2ed0d485b0f3e9650e156a08"></a><!-- doxytag: member="Machine::current_import" ref="adcc8422a2ed0d485b0f3e9650e156a08" args="" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_index.html">Index</a> <a class="el" href="class_machine.html#a896cc0806799e9cc869a3238d3576103">Machine::current_import</a><code> [protected]</code></td>
+          <td class="memname"><a class="el" href="class_index.html">Index</a> <a class="el" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08">current_import</a><code> [protected]</code></td>
         </tr>
       </table>
 </div>
@@ -799,7 +778,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>The (index of the) current import/export, when executing a hood instruction. </p>
 <p>Used by the hood folding instructions. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00096">96</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00104">104</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>

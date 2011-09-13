@@ -89,19 +89,19 @@
 <a name="l00025"></a>00025 <span class="comment"></span>    <span class="comment"></span>
 <a name="l00026"></a>00026 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00027"></a><a class="code" href="namespace_instructions.html#abbd6a54b2c97a9a47f4be01d424c65fa">00027</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#abbd6a54b2c97a9a47f4be01d424c65fa" title="Only here for MIT Proto compatibility, deprecated.">DEF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00028"></a>00028         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
+<a name="l00028"></a>00028         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
 <a name="l00029"></a>00029     }
 <a name="l00030"></a>00030     <span class="comment"></span>
 <a name="l00031"></a>00031 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00032"></a><a class="code" href="namespace_instructions.html#a86454914a78d90edde6017e4198ff7c1">00032</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a86454914a78d90edde6017e4198ff7c1" title="Only here for MIT Proto compatibility, deprecated.">DEF_TUP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00033"></a>00033         machine.<a class="code" href="class_machine.html#a4df84e61434a3cc076ff1466dd01a9ec" title="Execute an instruction.">execute</a>(<a class="code" href="namespace_instructions.html#a355f597946b239fd9d3207578a53f5a1" title="Create a tuple from one or more elements.">FAB_TUP</a>);
-<a name="l00034"></a>00034         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
+<a name="l00034"></a>00034         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
 <a name="l00035"></a>00035     }
 <a name="l00036"></a>00036     <span class="comment"></span>
 <a name="l00037"></a>00037 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00038"></a><a class="code" href="namespace_instructions.html#abeab7a2e8442d7b3b99dd24e8224ad7b">00038</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#abeab7a2e8442d7b3b99dd24e8224ad7b" title="Only here for MIT Proto compatibility, deprecated.">DEF_VEC</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00039"></a>00039         machine.<a class="code" href="class_machine.html#a4df84e61434a3cc076ff1466dd01a9ec" title="Execute an instruction.">execute</a>(<a class="code" href="namespace_instructions.html#a7e2316bb3c9d00f007e6366727f070b1" title="Create a tuple filled with one element.">FAB_VEC</a>);
-<a name="l00040"></a>00040         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
+<a name="l00040"></a>00040         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
 <a name="l00041"></a>00041     }
 <a name="l00042"></a>00042     <span class="comment"></span>
 <a name="l00043"></a>00043 <span class="comment">    /// \deprecated_mitproto</span>
@@ -109,13 +109,13 @@
 <a name="l00045"></a><a class="code" href="namespace_instructions.html#a9a6dc78e2c8e9578c91f12ee9aa12c9e">00045</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a9a6dc78e2c8e9578c91f12ee9aa12c9e" title="Only here for MIT Proto compatibility, deprecated.">DEF_NUM_VEC_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00046"></a>00046         <a class="code" href="class_tuple.html" title="A SharedVector of Data.">Tuple</a> tuple(elements);
 <a name="l00047"></a>00047         <span class="keywordflow">for</span>(<a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> i = 0; i &lt; elements; i++) tuple.push(0);
-<a name="l00048"></a>00048         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(tuple);
+<a name="l00048"></a>00048         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(tuple);
 <a name="l00049"></a>00049     }
 <a name="l00050"></a>00050     <span class="comment"></span>
 <a name="l00051"></a>00051 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00052"></a><a class="code" href="namespace_instructions.html#a34775321654bdfd60c770b62d3eb80c5">00052</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a34775321654bdfd60c770b62d3eb80c5" title="Only here for MIT Proto compatibility, deprecated.">DEF_NUM_VEC</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00053"></a>00053         machine.<a class="code" href="class_machine.html#a4df84e61434a3cc076ff1466dd01a9ec" title="Execute an instruction.">execute</a>(<a class="code" href="namespace_instructions.html#a8869056e5f5021a8b1cc7bc3a6f84d9e" title="Create a tuple filled with zero&#39;s.">FAB_NUM_VEC</a>);
-<a name="l00054"></a>00054         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
+<a name="l00054"></a>00054         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
 <a name="l00055"></a>00055     }
 <a name="l00056"></a>00056     <span class="comment"></span>
 <a name="l00057"></a>00057 <span class="comment">    /// Push a global variable on the execution stack.</span>
@@ -125,7 +125,7 @@
 <a name="l00061"></a>00061 <span class="comment">     */</span>
 <a name="l00062"></a>00062     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> index&gt;
 <a name="l00063"></a><a class="code" href="namespace_instructions.html#a5c6e53a2e55214fd7c7eaf737349934b">00063</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a5c6e53a2e55214fd7c7eaf737349934b" title="Push a global variable on the execution stack.">GLO_REF_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00064"></a>00064         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
+<a name="l00064"></a>00064         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>[index]);
 <a name="l00065"></a>00065     }
 <a name="l00066"></a>00066     <span class="comment"></span>
 <a name="l00067"></a>00067 <span class="comment">    /// Push a global variable on the execution stack.</span>
@@ -134,8 +134,8 @@
 <a name="l00070"></a>00070 <span class="comment">     * \return The value of the global variable.</span>
 <a name="l00071"></a>00071 <span class="comment">     */</span>
 <a name="l00072"></a><a class="code" href="namespace_instructions.html#a37e628b7409e191615b2df243489bfc0">00072</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a37e628b7409e191615b2df243489bfc0" title="Push a global variable on the execution stack.">GLO_REF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00073"></a>00073         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00074"></a>00074         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
+<a name="l00073"></a>00073         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.nextInt();
+<a name="l00074"></a>00074         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>[index]);
 <a name="l00075"></a>00075     }
 <a name="l00076"></a>00076     
 <a name="l00077"></a>00077 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
@@ -147,8 +147,8 @@
 <a name="l00083"></a>00083 <span class="comment">     * \deprecated_mitproto{GLO_REF}</span>
 <a name="l00084"></a>00084 <span class="comment">     */</span>
 <a name="l00085"></a><a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd">00085</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1b04eb695f5fbbd6c2e83f8148b611bd" title="Push a global variable on the execution stack.">GLO_REF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00086"></a>00086         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[index]);
+<a name="l00086"></a>00086         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> index = machine.nextInt16();
+<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>[index]);
 <a name="l00088"></a>00088     }
 <a name="l00089"></a>00089 <span class="preprocessor">#endif</span>
 <a name="l00090"></a>00090 <span class="preprocessor"></span>    <span class="comment"></span>
@@ -161,8 +161,8 @@
 <a name="l00097"></a>00097 <span class="comment">     */</span>
 <a name="l00098"></a>00098     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> size&gt;
 <a name="l00099"></a><a class="code" href="namespace_instructions.html#a77e17121f4a5f2c6f84885379b68e9c8">00099</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a77e17121f4a5f2c6f84885379b68e9c8" title="Define a function as a global.">DEF_FUN_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00100"></a>00100         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00101"></a>00101         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00100"></a>00100         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.currentAddress());
+<a name="l00101"></a>00101         machine.skip(size);
 <a name="l00102"></a>00102     }
 <a name="l00103"></a>00103     <span class="comment"></span>
 <a name="l00104"></a>00104 <span class="comment">    /// Define a function as a global.</span>
@@ -173,9 +173,9 @@
 <a name="l00109"></a>00109 <span class="comment">     * \param Int The number of (following) bytes that define the function.</span>
 <a name="l00110"></a>00110 <span class="comment">     */</span>
 <a name="l00111"></a><a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3">00111</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8266ab799c05124f65a93e03aaadb1c3" title="Define a function as a global.">DEF_FUN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00112"></a>00112         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00113"></a>00113         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00114"></a>00114         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00112"></a>00112         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.nextInt();
+<a name="l00113"></a>00113         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.currentAddress());
+<a name="l00114"></a>00114         machine.skip(size);
 <a name="l00115"></a>00115     }
 <a name="l00116"></a>00116     
 <a name="l00117"></a>00117 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
@@ -189,9 +189,9 @@
 <a name="l00125"></a>00125 <span class="comment">     * \deprecated_mitproto{DEF_FUN}</span>
 <a name="l00126"></a>00126 <span class="comment">     */</span>
 <a name="l00127"></a><a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a">00127</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a" title="Define a function as a global.">DEF_FUN16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00128"></a>00128         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00129"></a>00129         machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>.push(machine.<a class="code" href="class_machine.html#a5e786a8943c7a992e99326b9bc7ac88d" title="Get the current address (instruction pointer).">currentAddress</a>());
-<a name="l00130"></a>00130         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(size);
+<a name="l00128"></a>00128         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> size = machine.nextInt16();
+<a name="l00129"></a>00129         machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>.push(machine.currentAddress());
+<a name="l00130"></a>00130         machine.skip(size);
 <a name="l00131"></a>00131     }
 <a name="l00132"></a>00132 <span class="preprocessor">#endif</span>
 <a name="l00133"></a>00133 <span class="preprocessor"></span>    <span class="comment"></span>

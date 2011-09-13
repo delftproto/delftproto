@@ -83,81 +83,90 @@
 <a name="l00025"></a>00025     
 <a name="l00026"></a>00026     <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00027"></a>00027 <span class="comment">        /// An index in the Machine::threads list.</span>
-<a name="l00028"></a>00028 <span class="comment"></span>        <span class="keyword">typedef</span> <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> Id;
-<a name="l00029"></a>00029         
-<a name="l00030"></a>00030     <span class="keyword">protected</span>:
-<a name="l00031"></a>00031         <span class="keywordtype">bool</span> is_triggered;
-<a name="l00032"></a>00032         <span class="keywordtype">bool</span> is_active;
-<a name="l00033"></a>00033         
-<a name="l00034"></a>00034     <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00035"></a>00035 <span class="comment">        /// Trigger this thread.</span>
-<a name="l00036"></a>00036 <span class="comment"></span><span class="comment">        /**</span>
-<a name="l00037"></a>00037 <span class="comment">         * The specified thread will be executed once.</span>
-<a name="l00038"></a>00038 <span class="comment">         * </span>
-<a name="l00039"></a>00039 <span class="comment">         * There is no waiting line. Triggering an already triggered thread has no effect.</span>
-<a name="l00040"></a>00040 <span class="comment">         */</span>
-<a name="l00041"></a>00041         <span class="keywordtype">void</span> trigger() {
-<a name="l00042"></a>00042             is_triggered = <span class="keyword">true</span>;
-<a name="l00043"></a>00043         }
-<a name="l00044"></a>00044         <span class="comment"></span>
-<a name="l00045"></a>00045 <span class="comment">        /// Activate this thread.</span>
-<a name="l00046"></a>00046 <span class="comment"></span><span class="comment">        /**</span>
-<a name="l00047"></a>00047 <span class="comment">         * The specified thread will be executed infinitely, until deactivation.</span>
-<a name="l00048"></a>00048 <span class="comment">         */</span>
-<a name="l00049"></a>00049         <span class="keywordtype">void</span> activate() {
-<a name="l00050"></a>00050             is_active = <span class="keyword">true</span>;
-<a name="l00051"></a>00051         }
-<a name="l00052"></a>00052         <span class="comment"></span>
-<a name="l00053"></a>00053 <span class="comment">        /// Deactivate this thread.</span>
-<a name="l00054"></a>00054 <span class="comment"></span>        <span class="comment">/*</span>
-<a name="l00055"></a>00055 <span class="comment">         * The selected thread will stop executing infinitely.</span>
-<a name="l00056"></a>00056 <span class="comment">         * </span>
-<a name="l00057"></a>00057 <span class="comment">         * This has no effect for any pending triggers.</span>
-<a name="l00058"></a>00058 <span class="comment">         */</span>
-<a name="l00059"></a>00059         <span class="keywordtype">void</span> deactivate() {
-<a name="l00060"></a>00060             is_active = <span class="keyword">false</span>;
-<a name="l00061"></a>00061         }
-<a name="l00062"></a>00062         <span class="comment"></span>
-<a name="l00063"></a>00063 <span class="comment">        /// Check whether this thread is pending (true) or not (false).</span>
-<a name="l00064"></a>00064 <span class="comment"></span>        <span class="keywordtype">bool</span> pending()<span class="keyword"> const </span>{
-<a name="l00065"></a>00065             <span class="keywordflow">return</span> is_active || is_triggered;
-<a name="l00066"></a>00066         }
-<a name="l00067"></a>00067         <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">        /// The result of the last execution of this thread.</span>
-<a name="l00069"></a>00069 <span class="comment"></span>        <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result;
-<a name="l00070"></a>00070         
-<a name="l00071"></a>00071     <span class="keyword">protected</span>:<span class="comment"></span>
-<a name="l00072"></a>00072 <span class="comment">        /// Remove a pending trigger.</span>
-<a name="l00073"></a>00073 <span class="comment"></span>        <span class="keywordtype">void</span> untrigger() {
-<a name="l00074"></a>00074             is_triggered = <span class="keyword">false</span>;
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076         
-<a name="l00077"></a>00077 };
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">/** \cond */</span>
-<a name="l00080"></a>00080 <span class="preprocessor">#define Thread BasicThread</span>
-<a name="l00081"></a>00081 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="extensions_8hpp.html" title="Extensions file.">extensions.hpp</a>&gt;</span>
-<a name="l00082"></a>00082 <span class="keyword">typedef</span> <a class="code" href="class_thread.html" title="A thread.">Thread</a> ExtendedThread;
-<a name="l00083"></a>00083 <span class="preprocessor">#undef Thread</span>
-<a name="l00084"></a>00084 <span class="preprocessor"></span><span class="comment">/** \endcond */</span>
-<a name="l00085"></a>00085 <span class="comment"></span>
-<a name="l00086"></a>00086 <span class="comment">/// A thread.</span>
-<a name="l00087"></a>00087 <span class="comment"></span><span class="comment">/**</span>
-<a name="l00088"></a>00088 <span class="comment"> * The &#39;main function&#39; of each thread is stored in the Machine::globals list of the machine.</span>
-<a name="l00089"></a>00089 <span class="comment"> * The first thread corresponds to the last global, the second thread to the second last global, and so on.</span>
-<a name="l00090"></a>00090 <span class="comment"> * </span>
-<a name="l00091"></a>00091 <span class="comment"> * A thread can be triggered and activated. It is called &#39;pending&#39; when it is either triggered, activated or both.</span>
-<a name="l00092"></a>00092 <span class="comment"> * The Machine::run() starts the execution of the next pending Thread, Round-robin style.</span>
-<a name="l00093"></a>00093 <span class="comment"> * </span>
-<a name="l00094"></a>00094 <span class="comment"> * \note This class is \ref extending &quot;extensible&quot;.</span>
-<a name="l00095"></a>00095 <span class="comment"> * </span>
-<a name="l00096"></a>00096 <span class="comment"> * \extends BasicThread</span>
-<a name="l00097"></a>00097 <span class="comment"> */</span>
-<a name="l00098"></a><a class="code" href="class_thread.html">00098</a> <span class="keyword">class </span><a class="code" href="class_thread.html" title="A thread.">Thread</a> : <span class="keyword">public</span> ExtendedThread {
-<a name="l00099"></a>00099     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_machine.html" title="A virtual machine.">Machine</a>;
-<a name="l00100"></a>00100 };
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102 <span class="preprocessor">#endif</span>
+<a name="l00028"></a>00028 <span class="comment"></span><span class="comment">        /** \memberof Thread */</span>
+<a name="l00029"></a><a class="code" href="class_thread.html#a46806e195d56909fb307a09619c8b667">00029</a>         <span class="keyword">typedef</span> <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> <a class="code" href="class_thread.html#a46806e195d56909fb307a09619c8b667" title="An index in the Machine::threads list.">Id</a>;
+<a name="l00030"></a>00030         
+<a name="l00031"></a>00031     <span class="keyword">protected</span>:
+<a name="l00032"></a>00032         <span class="keywordtype">bool</span> is_triggered;
+<a name="l00033"></a>00033         <span class="keywordtype">bool</span> is_active;
+<a name="l00034"></a>00034         
+<a name="l00035"></a>00035     <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00036"></a>00036 <span class="comment">        /// Trigger this thread.</span>
+<a name="l00037"></a>00037 <span class="comment"></span><span class="comment">        /**</span>
+<a name="l00038"></a>00038 <span class="comment">         * The specified thread will be executed once.</span>
+<a name="l00039"></a>00039 <span class="comment">         * </span>
+<a name="l00040"></a>00040 <span class="comment">         * There is no waiting line. Triggering an already triggered thread has no effect.</span>
+<a name="l00041"></a>00041 <span class="comment">         * </span>
+<a name="l00042"></a>00042 <span class="comment">         */</span><span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment">        /** \memberof Thread */</span>
+<a name="l00044"></a>00044         <span class="keywordtype">void</span> trigger() {
+<a name="l00045"></a>00045             is_triggered = <span class="keyword">true</span>;
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047         <span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">        /// Activate this thread.</span>
+<a name="l00049"></a>00049 <span class="comment"></span><span class="comment">        /**</span>
+<a name="l00050"></a>00050 <span class="comment">         * The specified thread will be executed infinitely, until deactivation.</span>
+<a name="l00051"></a>00051 <span class="comment">         * </span>
+<a name="l00052"></a>00052 <span class="comment">         */</span><span class="comment"></span>
+<a name="l00053"></a>00053 <span class="comment">        /** \memberof Thread */</span>
+<a name="l00054"></a>00054         <span class="keywordtype">void</span> activate() {
+<a name="l00055"></a>00055             is_active = <span class="keyword">true</span>;
+<a name="l00056"></a>00056         }
+<a name="l00057"></a>00057         <span class="comment"></span>
+<a name="l00058"></a>00058 <span class="comment">        /// Deactivate this thread.</span>
+<a name="l00059"></a>00059 <span class="comment"></span>        <span class="comment">/*</span>
+<a name="l00060"></a>00060 <span class="comment">         * The selected thread will stop executing infinitely.</span>
+<a name="l00061"></a>00061 <span class="comment">         * </span>
+<a name="l00062"></a>00062 <span class="comment">         * This has no effect for any pending triggers.</span>
+<a name="l00063"></a>00063 <span class="comment">         */</span><span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">        /** \memberof Thread */</span>
+<a name="l00065"></a>00065         <span class="keywordtype">void</span> deactivate() {
+<a name="l00066"></a>00066             is_active = <span class="keyword">false</span>;
+<a name="l00067"></a>00067         }
+<a name="l00068"></a>00068         <span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">        /// Check whether this thread is pending (true) or not (false).</span>
+<a name="l00070"></a>00070 <span class="comment"></span><span class="comment">        /** \memberof Thread */</span>
+<a name="l00071"></a>00071         <span class="keywordtype">bool</span> pending()<span class="keyword"> const </span>{
+<a name="l00072"></a>00072             <span class="keywordflow">return</span> is_active || is_triggered;
+<a name="l00073"></a>00073         }
+<a name="l00074"></a>00074         <span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">        /// The result of the last execution of this thread.</span>
+<a name="l00076"></a>00076 <span class="comment"></span><span class="comment">        /** \memberof Thread */</span>
+<a name="l00077"></a><a class="code" href="class_thread.html#a878cd6cb0d1ae01834c52300930ecf63">00077</a>         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> <a class="code" href="class_thread.html#a878cd6cb0d1ae01834c52300930ecf63" title="The result of the last execution of this thread.">result</a>;
+<a name="l00078"></a>00078         
+<a name="l00079"></a>00079     <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">        /// Remove a pending trigger.</span>
+<a name="l00081"></a>00081 <span class="comment"></span><span class="comment">        /** \memberof Thread */</span>
+<a name="l00082"></a>00082         <span class="keywordtype">void</span> untrigger() {
+<a name="l00083"></a>00083             is_triggered = <span class="keyword">false</span>;
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085         
+<a name="l00086"></a>00086 };
+<a name="l00087"></a>00087 <span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment">/** \cond */</span>
+<a name="l00089"></a>00089 <span class="preprocessor">#define Thread BasicThread</span>
+<a name="l00090"></a>00090 <span class="preprocessor"></span><span class="preprocessor">#include &lt;<a class="code" href="extensions_8hpp.html" title="Extensions file.">extensions.hpp</a>&gt;</span>
+<a name="l00091"></a>00091 <span class="keyword">typedef</span> <a class="code" href="class_thread.html" title="A thread.">Thread</a> ExtendedThread;
+<a name="l00092"></a>00092 <span class="preprocessor">#undef Thread</span>
+<a name="l00093"></a>00093 <span class="preprocessor"></span><span class="comment">/** \endcond */</span>
+<a name="l00094"></a>00094 <span class="comment"></span>
+<a name="l00095"></a>00095 <span class="comment">/// A thread.</span>
+<a name="l00096"></a>00096 <span class="comment"></span><span class="comment">/**</span>
+<a name="l00097"></a>00097 <span class="comment"> * The &#39;main function&#39; of each thread is stored in the Machine::globals list of the machine.</span>
+<a name="l00098"></a>00098 <span class="comment"> * The first thread corresponds to the last global, the second thread to the second last global, and so on.</span>
+<a name="l00099"></a>00099 <span class="comment"> * </span>
+<a name="l00100"></a>00100 <span class="comment"> * A thread can be triggered and activated. It is called &#39;pending&#39; when it is either triggered, activated or both.</span>
+<a name="l00101"></a>00101 <span class="comment"> * The Machine::run() starts the execution of the next pending Thread, Round-robin style.</span>
+<a name="l00102"></a>00102 <span class="comment"> * </span>
+<a name="l00103"></a>00103 <span class="comment"> * \note This class is \ref extending &quot;extensible&quot;.</span>
+<a name="l00104"></a>00104 <span class="comment"> * </span>
+<a name="l00105"></a>00105 <span class="comment"> * \extends BasicThread</span>
+<a name="l00106"></a>00106 <span class="comment"> */</span>
+<a name="l00107"></a><a class="code" href="class_thread.html">00107</a> <span class="keyword">class </span><a class="code" href="class_thread.html" title="A thread.">Thread</a> : <span class="keyword">public</span> ExtendedThread {
+<a name="l00108"></a>00108     <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_machine.html" title="A virtual machine.">Machine</a>;
+<a name="l00109"></a>00109 };
+<a name="l00110"></a>00110 
+<a name="l00111"></a>00111 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 

@@ -1,22 +1,20 @@
 <map id="G" name="G">
-<area shape="rect" id="node3" href="$ieee754_8hpp.html" title="Provides the IEEE754binary32 class." alt="" coords="5,566,96,597"/>
-<area shape="rect" id="node11" href="$machine_8hpp.html" title="Provides the Machine class." alt="" coords="521,86,617,117"/>
-<area shape="rect" id="node66" href="$instructions_8hpp.html" title="Provides the Instructions namespace." alt="" coords="1051,166,1165,197"/>
-<area shape="rect" id="node5" href="$types_8hpp.html" title="Provides the basic numeric types." alt="" coords="329,646,407,677"/>
-<area shape="rect" id="node14" href="$data_8hpp.html" title="Provides the Data class." alt="" coords="328,326,400,357"/>
-<area shape="rect" id="node31" href="$stack_8hpp.html" title="Provides the Stack class." alt="" coords="757,406,835,437"/>
-<area shape="rect" id="node35" href="$state_8hpp.html" title="Provides the State class." alt="" coords="347,166,421,197"/>
-<area shape="rect" id="node38" href="$thread_8hpp.html" title="Provides the Thread classs." alt="" coords="272,246,355,277"/>
-<area shape="rect" id="node44" href="$script_8hpp.html" title="Provides the Script classs." alt="" coords="323,406,400,437"/>
-<area shape="rect" id="node52" href="$neighbour_8hpp.html" title="Provides the Neighbour class." alt="" coords="669,246,771,277"/>
-<area shape="rect" id="node56" href="$machineid_8hpp.html" title="Provides the MachineId class." alt="" coords="757,326,864,357"/>
-<area shape="rect" id="node61" href="$neighbourhood_8hpp.html" title="Provides the NeighbourHood class." alt="" coords="845,166,976,197"/>
-<area shape="rect" id="node70" href="$machineextension_8hpp.html" title="Provides the Extension to the Machine class." alt="" coords="493,246,645,277"/>
-<area shape="rect" id="node16" href="$memory_8hpp.html" title="Provides the Memory class." alt="" coords="596,566,689,597"/>
-<area shape="rect" id="node22" href="$tuple_8hpp.html" title="Provides the Tuple class." alt="" coords="424,406,499,437"/>
-<area shape="rect" id="node28" href="$address_8hpp.html" title="Provides the Address class." alt="" coords="272,486,365,517"/>
-<area shape="rect" id="node24" href="$sharedvector_8hpp.html" title="Provides the SharedVector class." alt="" coords="440,486,563,517"/>
-<area shape="rect" id="node42" href="$extensions_8hpp.html" title="Extensions file." alt="" coords="573,406,683,437"/>
-<area shape="rect" id="node47" href="$array_8hpp.html" title="Provides the Array class." alt="" coords="587,486,661,517"/>
-<area shape="rect" id="node58" href="$neighbourextension_8hpp.html" title="Provides the Extension to the Neighbour class." alt="" coords="525,326,683,357"/>
+<area shape="rect" id="node3" href="$ieee754_8hpp.html" title="Provides the IEEE754binary32 class." alt="" coords="808,566,899,597"/>
+<area shape="rect" id="node11" href="$machine_8hpp.html" title="Provides the Machine class." alt="" coords="413,86,509,117"/>
+<area shape="rect" id="node64" href="$instructions_8hpp.html" title="Provides the Instructions namespace." alt="" coords="859,166,973,197"/>
+<area shape="rect" id="node5" href="$types_8hpp.html" title="Provides the basic numeric types." alt="" coords="461,646,539,677"/>
+<area shape="rect" id="node14" href="$data_8hpp.html" title="Provides the Data class." alt="" coords="140,326,212,357"/>
+<area shape="rect" id="node31" href="$stack_8hpp.html" title="Provides the Stack class." alt="" coords="5,406,83,437"/>
+<area shape="rect" id="node35" href="$state_8hpp.html" title="Provides the State class." alt="" coords="189,166,264,197"/>
+<area shape="rect" id="node38" href="$thread_8hpp.html" title="Provides the Thread classs." alt="" coords="232,246,315,277"/>
+<area shape="rect" id="node42" href="$extensions_8hpp.html" title="Extensions file." alt="" coords="287,326,396,357"/>
+<area shape="rect" id="node44" href="$script_8hpp.html" title="Provides the Script classs." alt="" coords="656,406,733,437"/>
+<area shape="rect" id="node52" href="$neighbour_8hpp.html" title="Provides the Neighbour class." alt="" coords="389,246,491,277"/>
+<area shape="rect" id="node56" href="$machineid_8hpp.html" title="Provides the MachineId class." alt="" coords="471,326,577,357"/>
+<area shape="rect" id="node59" href="$neighbourhood_8hpp.html" title="Provides the NeighbourHood class." alt="" coords="447,166,577,197"/>
+<area shape="rect" id="node16" href="$memory_8hpp.html" title="Provides the Memory class." alt="" coords="187,566,280,597"/>
+<area shape="rect" id="node22" href="$tuple_8hpp.html" title="Provides the Tuple class." alt="" coords="220,406,295,437"/>
+<area shape="rect" id="node28" href="$address_8hpp.html" title="Provides the Address class." alt="" coords="40,486,133,517"/>
+<area shape="rect" id="node24" href="$sharedvector_8hpp.html" title="Provides the SharedVector class." alt="" coords="208,486,331,517"/>
+<area shape="rect" id="node47" href="$array_8hpp.html" title="Provides the Array class." alt="" coords="507,486,581,517"/>
 </map>

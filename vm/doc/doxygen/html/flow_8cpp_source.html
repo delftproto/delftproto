@@ -102,28 +102,28 @@
 <a name="l00038"></a>00038 <span class="comment">     * \deprecated_mitproto{DEF_VM_EX}</span>
 <a name="l00039"></a>00039 <span class="comment">     */</span>
 <a name="l00040"></a><a class="code" href="namespace_instructions.html#af39f76eb1f7d334d6fb34faec58d6603">00040</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#af39f76eb1f7d334d6fb34faec58d6603" title="Define the VM requirements.">DEF_VM</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00041"></a>00041         <span class="comment">/*Size export_length    =*/</span> machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a> (); <span class="comment">//TODO: ...</span>
-<a name="l00042"></a>00042         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>     exports_size = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a> ();
-<a name="l00043"></a>00043         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>     globals_size = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00044"></a>00044         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>       state_size = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a> ();
-<a name="l00045"></a>00045         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>       stack_size = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00046"></a>00046         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> environment_size = machine.<a class="code" href="class_machine.html#a51d7ad4cc91ce9e78106ce3c07c8e443" title="Read the next byte as an unsigned 8-bit integer.">nextInt8</a> ();
+<a name="l00041"></a>00041         <span class="comment">/*Size export_length    =*/</span> machine.nextInt8 (); <span class="comment">//TODO: ...</span>
+<a name="l00042"></a>00042         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>     exports_size = machine.nextInt8 ();
+<a name="l00043"></a>00043         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>     globals_size = machine.nextInt16();
+<a name="l00044"></a>00044         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>       state_size = machine.nextInt8 ();
+<a name="l00045"></a>00045         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>       stack_size = machine.nextInt16();
+<a name="l00046"></a>00046         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> environment_size = machine.nextInt8 ();
 <a name="l00047"></a>00047         
 <a name="l00048"></a>00048         machine.      stack.reset(      stack_size);
-<a name="l00049"></a>00049         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.reset(environment_size);
+<a name="l00049"></a>00049         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.reset(environment_size);
 <a name="l00050"></a>00050         machine.    globals.reset(    globals_size);
 <a name="l00051"></a>00051         machine.    threads.reset(               1);
 <a name="l00052"></a>00052         machine.      state.reset(      state_size);
 <a name="l00053"></a>00053         machine.       hood.reset(    exports_size);
 <a name="l00054"></a>00054         
-<a name="l00055"></a>00055         machine.<a class="code" href="class_machine.html#a2838cf4f056f8893a663dea6f6c0bf1d" title="The (index of the) current thread when executing a run.">current_thread</a> = 0;
-<a name="l00056"></a>00056         machine.<a class="code" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">threads</a>[0].activate();
+<a name="l00055"></a>00055         machine.<a class="code" href="class_machine.html#ad56fc8c9975f9afa85c54d8768dd7d19" title="The (index of the) current thread when executing a run.">current_thread</a> = 0;
+<a name="l00056"></a>00056         machine.<a class="code" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">threads</a>[0].activate();
 <a name="l00057"></a>00057         
-<a name="l00058"></a>00058         machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.add(machine.<a class="code" href="class_machine.html#ad394869cda9914d8b210f4b55ca2c3c6" title="The ID of this Machine.">id</a>);
+<a name="l00058"></a>00058         machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.add(machine.<a class="code" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb" title="The ID of this Machine.">id</a>);
 <a name="l00059"></a>00059         
-<a name="l00060"></a>00060         <a class="code" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f" title="An instruction (implementation).">Instruction</a> callback = machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.pop();
-<a name="l00061"></a>00061         machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.reset(3); <span class="comment">//TODO: ...</span>
-<a name="l00062"></a>00062         machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.push(callback);
+<a name="l00060"></a>00060         <a class="code" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f" title="An instruction (implementation).">Instruction</a> callback = machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.pop();
+<a name="l00061"></a>00061         machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.reset(3); <span class="comment">//TODO: ...</span>
+<a name="l00062"></a>00062         machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.push(callback);
 <a name="l00063"></a>00063     }
 <a name="l00064"></a>00064 <span class="preprocessor">#endif</span>
 <a name="l00065"></a>00065 <span class="preprocessor"></span>    
@@ -141,20 +141,20 @@
 <a name="l00077"></a>00077 <span class="comment">     * \param Int The maximum execution depth (for instructions that execute functions, such as MAP).</span>
 <a name="l00078"></a>00078 <span class="comment">     */</span>
 <a name="l00079"></a><a class="code" href="namespace_instructions.html#a5aaae097053b4cabc45caeec2e72c6ce">00079</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a5aaae097053b4cabc45caeec2e72c6ce" title="Define the (extended) VM requirements.">DEF_VM_EX</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00080"></a>00080         machine.      stack.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00081"></a>00081         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00082"></a>00082         machine.    globals.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00083"></a>00083         machine.    threads.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00084"></a>00084         machine.      state.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00085"></a>00085         machine.       hood.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
+<a name="l00080"></a>00080         machine.      stack.reset(machine.nextInt());
+<a name="l00081"></a>00081         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.reset(machine.nextInt());
+<a name="l00082"></a>00082         machine.    globals.reset(machine.nextInt());
+<a name="l00083"></a>00083         machine.    threads.reset(machine.nextInt());
+<a name="l00084"></a>00084         machine.      state.reset(machine.nextInt());
+<a name="l00085"></a>00085         machine.       hood.reset(machine.nextInt());
 <a name="l00086"></a>00086         
-<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a2838cf4f056f8893a663dea6f6c0bf1d" title="The (index of the) current thread when executing a run.">current_thread</a> = 0;
+<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#ad56fc8c9975f9afa85c54d8768dd7d19" title="The (index of the) current thread when executing a run.">current_thread</a> = 0;
 <a name="l00088"></a>00088         
-<a name="l00089"></a>00089         machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.add(machine.<a class="code" href="class_machine.html#ad394869cda9914d8b210f4b55ca2c3c6" title="The ID of this Machine.">id</a>);
+<a name="l00089"></a>00089         machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.add(machine.<a class="code" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb" title="The ID of this Machine.">id</a>);
 <a name="l00090"></a>00090         
-<a name="l00091"></a>00091         <a class="code" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f" title="An instruction (implementation).">Instruction</a> callback = machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.pop();
-<a name="l00092"></a>00092         machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.reset(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00093"></a>00093         machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.push(callback);
+<a name="l00091"></a>00091         <a class="code" href="instructions_8hpp.html#a60eeeb865ffc5c6113cf513a90c18e0f" title="An instruction (implementation).">Instruction</a> callback = machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.pop();
+<a name="l00092"></a>00092         machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.reset(machine.nextInt());
+<a name="l00093"></a>00093         machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.push(callback);
 <a name="l00094"></a>00094     }
 <a name="l00095"></a>00095 <span class="preprocessor">#endif</span>
 <a name="l00096"></a>00096 <span class="preprocessor"></span>    <span class="comment"></span>
@@ -163,7 +163,7 @@
 <a name="l00099"></a>00099 <span class="comment">     * This must be the last instruction of an installation script.</span>
 <a name="l00100"></a>00100 <span class="comment">     */</span>
 <a name="l00101"></a><a class="code" href="namespace_instructions.html#a3890972f066b2a49969f89c88630827e">00101</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a3890972f066b2a49969f89c88630827e" title="Exit the installation script.">EXIT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00102"></a>00102         machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.pop(machine.<a class="code" href="class_machine.html#a68894a010a9100f73e42eed2988bec11" title="The callback stack.">callbacks</a>.size());
+<a name="l00102"></a>00102         machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.pop(machine.<a class="code" href="class_machine.html#afaaae44df65b30e2b6228bfa4374174c" title="The callback stack.">callbacks</a>.size());
 <a name="l00103"></a>00103     }
 <a name="l00104"></a>00104     <span class="comment"></span>
 <a name="l00105"></a>00105 <span class="comment">    /// Return from a function.</span>
@@ -187,9 +187,9 @@
 <a name="l00123"></a>00123 <span class="comment">     * \return Data The top element.</span>
 <a name="l00124"></a>00124 <span class="comment">     */</span>
 <a name="l00125"></a><a class="code" href="namespace_instructions.html#a1701c92321312ef4a08c9ef63dad5936">00125</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1701c92321312ef4a08c9ef63dad5936" title="Clean the stack.">ALL</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00126"></a>00126         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> data = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek();
-<a name="l00127"></a>00127         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
-<a name="l00128"></a>00128         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(data);
+<a name="l00126"></a>00126         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> data = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek();
+<a name="l00127"></a>00127         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(machine.nextInt());
+<a name="l00128"></a>00128         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(data);
 <a name="l00129"></a>00129     }
 <a name="l00130"></a>00130     <span class="comment"></span>
 <a name="l00131"></a>00131 <span class="comment">    /// Waste clockcycles.</span>
@@ -206,20 +206,20 @@
 <a name="l00142"></a>00142 <span class="comment">     * \return Data The &#39;false&#39; value when the condition is 0, the &#39;true&#39; value otherwise.</span>
 <a name="l00143"></a>00143 <span class="comment">     */</span>
 <a name="l00144"></a><a class="code" href="namespace_instructions.html#a212163db973fdf649332b359e962f910">00144</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a212163db973fdf649332b359e962f910" title="Pick one of two values, using a condition.">MUX</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00145"></a>00145         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> false_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00146"></a>00146         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>  true_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00147"></a>00147         <a class="code" href="class_number.html" title="A floating point number.">Number</a> condition = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber();
-<a name="l00148"></a>00148         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(condition ? true_value : false_value);
+<a name="l00145"></a>00145         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> false_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00146"></a>00146         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>  true_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00147"></a>00147         <a class="code" href="class_number.html" title="A floating point number.">Number</a> condition = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00148"></a>00148         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(condition ? true_value : false_value);
 <a name="l00149"></a>00149     }
 <a name="l00150"></a>00150     
 <a name="l00151"></a>00151 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
 <a name="l00152"></a>00152 <span class="preprocessor"></span><span class="comment">    /// \deprecated_mitproto{MUX}</span>
 <a name="l00153"></a><a class="code" href="namespace_instructions.html#a741d52474a7a3c0096d06c74d8b29080">00153</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a741d52474a7a3c0096d06c74d8b29080" title="Only here for MIT Proto compatibility, deprecated.">VMUX</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00154"></a>00154         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> &amp; result = machine.<a class="code" href="class_machine.html#ad7b4eabcb86be35d4992b62844d8cc45" title="The globals.">globals</a>[machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>()];
-<a name="l00155"></a>00155         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> false_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00156"></a>00156         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>  true_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00157"></a>00157         <a class="code" href="class_number.html" title="A floating point number.">Number</a> condition = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber();
-<a name="l00158"></a>00158         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result = (condition ? true_value : false_value).copy());
+<a name="l00154"></a>00154         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> &amp; result = machine.<a class="code" href="class_machine.html#a54d5ac55862c9ef333464600c6c392cb" title="The globals.">globals</a>[machine.nextInt()];
+<a name="l00155"></a>00155         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> false_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00156"></a>00156         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a>  true_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00157"></a>00157         <a class="code" href="class_number.html" title="A floating point number.">Number</a> condition = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00158"></a>00158         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result = (condition ? true_value : false_value).copy());
 <a name="l00159"></a>00159     }
 <a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
 <a name="l00161"></a>00161 <span class="preprocessor"></span>    <span class="comment"></span>
@@ -231,8 +231,8 @@
 <a name="l00167"></a>00167 <span class="comment">     * \param Number The condition.</span>
 <a name="l00168"></a>00168 <span class="comment">     */</span>
 <a name="l00169"></a><a class="code" href="namespace_instructions.html#ac627da07c6ad73f0cfaa3e6e58b4abd2">00169</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac627da07c6ad73f0cfaa3e6e58b4abd2" title="A conditional jump.">IF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00170"></a>00170         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00171"></a>00171         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber()) machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(skip);
+<a name="l00170"></a>00170         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.nextInt();
+<a name="l00171"></a>00171         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber()) machine.skip(skip);
 <a name="l00172"></a>00172     }
 <a name="l00173"></a>00173     
 <a name="l00174"></a>00174 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
@@ -246,8 +246,8 @@
 <a name="l00182"></a>00182 <span class="comment">     * \deprecated_mitproto{IF}</span>
 <a name="l00183"></a>00183 <span class="comment">     */</span>
 <a name="l00184"></a><a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26">00184</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a93bd274313c1499b765126e871f97b26" title="A conditional jump.">IF16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00185"></a>00185         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>();
-<a name="l00186"></a>00186         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popNumber()) machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(skip);
+<a name="l00185"></a>00185         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> skip = machine.nextInt16();
+<a name="l00186"></a>00186         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber()) machine.skip(skip);
 <a name="l00187"></a>00187     }
 <a name="l00188"></a>00188 <span class="preprocessor">#endif</span>
 <a name="l00189"></a>00189 <span class="preprocessor"></span>    <span class="comment"></span>
@@ -258,7 +258,7 @@
 <a name="l00194"></a>00194 <span class="comment">     * \param Int the number of bytes to jump (relative).</span>
 <a name="l00195"></a>00195 <span class="comment">     */</span>
 <a name="l00196"></a><a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5">00196</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5" title="Jump to another address.">JMP</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00197"></a>00197         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>());
+<a name="l00197"></a>00197         machine.skip(machine.nextInt());
 <a name="l00198"></a>00198     }
 <a name="l00199"></a>00199     
 <a name="l00200"></a>00200 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
@@ -271,7 +271,7 @@
 <a name="l00207"></a>00207 <span class="comment">     * \deprecated_mitproto{JMP}</span>
 <a name="l00208"></a>00208 <span class="comment">     */</span>
 <a name="l00209"></a><a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0">00209</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0" title="Jump to another address.">JMP16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00210"></a>00210         machine.<a class="code" href="class_machine.html#a73e23161b585062100b0e415fdbe35cb" title="Advance the instruction pointer.">skip</a>(machine.<a class="code" href="class_machine.html#a8ce2322c1f83af620240a611481a448c" title="Read the next two bytes as an unsigned 16-bit integer (big endian).">nextInt16</a>());
+<a name="l00210"></a>00210         machine.skip(machine.nextInt16());
 <a name="l00211"></a>00211     }
 <a name="l00212"></a>00212 <span class="preprocessor">#endif</span>
 <a name="l00213"></a>00213 <span class="preprocessor"></span>    <span class="comment"></span>

@@ -95,8 +95,8 @@
 <a name="l00031"></a>00031 <span class="comment">     * \param Int The index of the Thread to activate.</span>
 <a name="l00032"></a>00032 <span class="comment">     */</span>
 <a name="l00033"></a><a class="code" href="namespace_instructions.html#ab4bbc937aa09b2b7694385dd0a542ed7">00033</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab4bbc937aa09b2b7694385dd0a542ed7" title="Activate this or another Thread.">ACTIVATE</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00034"></a>00034         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00035"></a>00035         machine.<a class="code" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">threads</a>[thread].activate();
+<a name="l00034"></a>00034         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.nextInt();
+<a name="l00035"></a>00035         machine.<a class="code" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">threads</a>[thread].activate();
 <a name="l00036"></a>00036     }
 <a name="l00037"></a>00037     <span class="comment"></span>
 <a name="l00038"></a>00038 <span class="comment">    /// Deactivate this or another Thread.</span>
@@ -106,8 +106,8 @@
 <a name="l00042"></a>00042 <span class="comment">     * \param Int The index of the Thread to deactivate.</span>
 <a name="l00043"></a>00043 <span class="comment">     */</span>
 <a name="l00044"></a><a class="code" href="namespace_instructions.html#ad3f6de15ee037c8b80af5ccda09610b6">00044</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ad3f6de15ee037c8b80af5ccda09610b6" title="Deactivate this or another Thread.">DEACTIVATE</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00045"></a>00045         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00046"></a>00046         machine.<a class="code" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">threads</a>[thread].deactivate();
+<a name="l00045"></a>00045         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.nextInt();
+<a name="l00046"></a>00046         machine.<a class="code" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">threads</a>[thread].deactivate();
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048     <span class="comment"></span>
 <a name="l00049"></a>00049 <span class="comment">    /// Trigger this or another Thread.</span>
@@ -117,8 +117,8 @@
 <a name="l00053"></a>00053 <span class="comment">     * \param Int The index of the Thread to trigger.</span>
 <a name="l00054"></a>00054 <span class="comment">     */</span>
 <a name="l00055"></a><a class="code" href="namespace_instructions.html#adcd73dc0d37e29954e6b863f4732bd09">00055</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#adcd73dc0d37e29954e6b863f4732bd09" title="Trigger this or another Thread.">TRIGGER</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00056"></a>00056         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00057"></a>00057         machine.<a class="code" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">threads</a>[thread].trigger();
+<a name="l00056"></a>00056         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.nextInt();
+<a name="l00057"></a>00057         machine.<a class="code" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">threads</a>[thread].trigger();
 <a name="l00058"></a>00058     }
 <a name="l00059"></a>00059     <span class="comment"></span>
 <a name="l00060"></a>00060 <span class="comment">    /// Get the result of the last execution of this or another Thread.</span>
@@ -127,8 +127,8 @@
 <a name="l00063"></a>00063 <span class="comment">     * \return Data The result of the last execution of the specified Thread.</span>
 <a name="l00064"></a>00064 <span class="comment">     */</span>
 <a name="l00065"></a><a class="code" href="namespace_instructions.html#adc289ad2859fef6827e4652a51974157">00065</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#adc289ad2859fef6827e4652a51974157" title="Get the result of the last execution of this or another Thread.">RESULT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00066"></a>00066         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00067"></a>00067         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a0b4377352d8ca0913f3c4b197f74224b" title="The threads.">threads</a>[thread].result);
+<a name="l00066"></a>00066         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Thread::Id</a> thread = machine.nextInt();
+<a name="l00067"></a>00067         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#afdd2b0272323a5be80b8146613854c2b" title="The threads.">threads</a>[thread].result);
 <a name="l00068"></a>00068     }
 <a name="l00069"></a>00069     <span class="comment"></span>
 <a name="l00070"></a>00070 <span class="comment">    /// \}</span>

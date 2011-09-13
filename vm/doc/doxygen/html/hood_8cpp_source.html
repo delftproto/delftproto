@@ -85,79 +85,79 @@
 <a name="l00021"></a>00021 <span class="keyword">struct </span>HoodInstructions {
 <a name="l00022"></a>00022     
 <a name="l00023"></a>00023     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
-<a name="l00024"></a>00024         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00025"></a>00025         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00026"></a>00026         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00027"></a>00027         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00024"></a>00024         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.nextInt();
+<a name="l00025"></a>00025         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00026"></a>00026         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00027"></a>00027         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
 <a name="l00028"></a>00028         
-<a name="l00029"></a>00029         machine.<a class="code" href="class_machine.html#a896cc0806799e9cc869a3238d3576103" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
+<a name="l00029"></a>00029         machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
 <a name="l00030"></a>00030         
-<a name="l00031"></a>00031         machine.<a class="code" href="class_machine.html#a35f1b71a8f8dff6be74436a78aedb231" title="Get the Neighbour representing this machine.">thisMachine</a>().<a class="code" href="class_neighbour.html#ac405f1bda552b3af5db0ba7589cc5a66" title="The imports from this machine.">imports</a>[import_index] = export_value;
+<a name="l00031"></a>00031         machine.thisMachine().imports[import_index] = export_value;
 <a name="l00032"></a>00032         
-<a name="l00033"></a>00033         machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.begin();
+<a name="l00033"></a>00033         machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.begin();
 <a name="l00034"></a>00034         
-<a name="l00035"></a>00035         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(result);
-<a name="l00036"></a>00036         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(export_value);
+<a name="l00035"></a>00035         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(result);
+<a name="l00036"></a>00036         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(export_value);
 <a name="l00037"></a>00037         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_step);
 <a name="l00038"></a>00038     }
 <a name="l00039"></a>00039     
 <a name="l00040"></a>00040     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_step(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
-<a name="l00041"></a>00041         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(2);
-<a name="l00042"></a>00042         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.end()){
-<a name="l00043"></a>00043             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
-<a name="l00044"></a>00044             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#a896cc0806799e9cc869a3238d3576103" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
-<a name="l00045"></a>00045             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00041"></a>00041         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
+<a name="l00042"></a>00042         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
+<a name="l00043"></a>00043             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
+<a name="l00044"></a>00044             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
+<a name="l00045"></a>00045             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
 <a name="l00046"></a>00046             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_step);
 <a name="l00047"></a>00047         } <span class="keywordflow">else</span> {
-<a name="l00048"></a>00048             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00049"></a>00049             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(1);
-<a name="l00050"></a>00050             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
+<a name="l00048"></a>00048             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00049"></a>00049             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(1);
+<a name="l00050"></a>00050             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
 <a name="l00051"></a>00051         }
 <a name="l00052"></a>00052     }
 <a name="l00053"></a>00053     
 <a name="l00054"></a>00054     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
-<a name="l00055"></a>00055         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00056"></a>00056         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00057"></a>00057         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00055"></a>00055         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.nextInt();
+<a name="l00056"></a>00056         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00057"></a>00057         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
 <a name="l00058"></a>00058         
-<a name="l00059"></a>00059         machine.<a class="code" href="class_machine.html#a896cc0806799e9cc869a3238d3576103" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
+<a name="l00059"></a>00059         machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
 <a name="l00060"></a>00060         
-<a name="l00061"></a>00061         machine.<a class="code" href="class_machine.html#a35f1b71a8f8dff6be74436a78aedb231" title="Get the Neighbour representing this machine.">thisMachine</a>().<a class="code" href="class_neighbour.html#ac405f1bda552b3af5db0ba7589cc5a66" title="The imports from this machine.">imports</a>[import_index] = export_value;
+<a name="l00061"></a>00061         machine.thisMachine().imports[import_index] = export_value;
 <a name="l00062"></a>00062         
-<a name="l00063"></a>00063         machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.begin();
+<a name="l00063"></a>00063         machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.begin();
 <a name="l00064"></a>00064         
-<a name="l00065"></a>00065         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(export_value);
+<a name="l00065"></a>00065         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(export_value);
 <a name="l00066"></a>00066         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_first_filter);
 <a name="l00067"></a>00067     }
 <a name="l00068"></a>00068     
 <a name="l00069"></a>00069     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_filter_next(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00070"></a>00070         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#a740de0862c6ec97f9e9120fc87ec4a07" title="The list of all the neighbours.">hood</a>.end()){
-<a name="l00071"></a>00071             machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a9e9238de6844962bc6bdbb70c62e7c47" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#a896cc0806799e9cc869a3238d3576103" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
-<a name="l00072"></a>00072             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00070"></a>00070         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
+<a name="l00071"></a>00071             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
+<a name="l00072"></a>00072             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
 <a name="l00073"></a>00073             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_step_filter);
 <a name="l00074"></a>00074         } <span class="keywordflow">else</span> {
-<a name="l00075"></a>00075             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00076"></a>00076             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(2);
-<a name="l00077"></a>00077             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(result);
+<a name="l00075"></a>00075             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00076"></a>00076             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(2);
+<a name="l00077"></a>00077             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
 <a name="l00078"></a>00078         }
 <a name="l00079"></a>00079     }
 <a name="l00080"></a>00080     
 <a name="l00081"></a>00081     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_first_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00082"></a>00082         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(1);
+<a name="l00082"></a>00082         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
 <a name="l00083"></a>00083         fold_hood_filter_next(machine);
 <a name="l00084"></a>00084     }
 <a name="l00085"></a>00085     
 <a name="l00086"></a>00086     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(1);
-<a name="l00088"></a>00088         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> <span class="keyword">import</span> = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00089"></a>00089         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop());
-<a name="l00090"></a>00090         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.push(<span class="keyword">import</span>);
-<a name="l00091"></a>00091         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse   = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
+<a name="l00088"></a>00088         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> <span class="keyword">import</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00089"></a>00089         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
+<a name="l00090"></a>00090         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(<span class="keyword">import</span>);
+<a name="l00091"></a>00091         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse   = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
 <a name="l00092"></a>00092         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_plus_step_fuse);
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094     
 <a name="l00095"></a>00095     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_fuse(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00096"></a>00096         machine.<a class="code" href="class_machine.html#a38f9d53040ea76619778cab09d4c8b33" title="The environment stack.">environment</a>.pop(2);
+<a name="l00096"></a>00096         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
 <a name="l00097"></a>00097         fold_hood_filter_next(machine);
 <a name="l00098"></a>00098     }
 <a name="l00099"></a>00099     
@@ -205,7 +205,7 @@
 <a name="l00141"></a>00141     <span class="comment"></span>
 <a name="l00142"></a>00142 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00143"></a><a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34">00143</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00144"></a>00144         machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
+<a name="l00144"></a>00144         machine.nextInt();
 <a name="l00145"></a>00145         HoodInstructions::fold_hood(machine);
 <a name="l00146"></a>00146     }
 <a name="l00147"></a>00147     <span class="comment"></span>
@@ -246,7 +246,7 @@
 <a name="l00182"></a>00182     <span class="comment"></span>
 <a name="l00183"></a>00183 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00184"></a><a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484">00184</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD_PLUS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00185"></a>00185         machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
+<a name="l00185"></a>00185         machine.nextInt();
 <a name="l00186"></a>00186         HoodInstructions::fold_hood_plus(machine);
 <a name="l00187"></a>00187     }
 <a name="l00188"></a>00188     <span class="comment"></span>

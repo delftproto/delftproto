@@ -91,7 +91,7 @@
 <a name="l00027"></a>00027         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> INIT_FEEDBACK_state_index;
 <a name="l00028"></a>00028         
 <a name="l00029"></a>00029         <span class="keywordtype">void</span> INIT_FEEDBACK_set_state(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00030"></a>00030             machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[INIT_FEEDBACK_state_index].data = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek();
+<a name="l00030"></a>00030             machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[INIT_FEEDBACK_state_index].data = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek();
 <a name="l00031"></a>00031         }
 <a name="l00032"></a>00032     }
 <a name="l00033"></a>00033     <span class="comment"></span>
@@ -106,12 +106,12 @@
 <a name="l00042"></a>00042 <span class="comment">     * \return Data The value of the state variable.</span>
 <a name="l00043"></a>00043 <span class="comment">     */</span>
 <a name="l00044"></a><a class="code" href="namespace_instructions.html#afc154ab16dd30e0860866d75823be509">00044</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#afc154ab16dd30e0860866d75823be509" title="Get and (if needed) initialize a state variable.">INIT_FEEDBACK</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00045"></a>00045         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00046"></a>00046         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> initialization_function = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.popAddress();
-<a name="l00047"></a>00047         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
-<a name="l00048"></a>00048         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].thread = machine.<a class="code" href="class_machine.html#a403a30d83950acd11d223b6e91be710e" title="Get the (index of the) current thread when executing a run.">currentThread</a>();
-<a name="l00049"></a>00049         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].data.isSet()){
-<a name="l00050"></a>00050             machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].data);
+<a name="l00045"></a>00045         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.nextInt();
+<a name="l00046"></a>00046         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> initialization_function = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00047"></a>00047         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
+<a name="l00048"></a>00048         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].thread = machine.currentThread();
+<a name="l00049"></a>00049         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data.isSet()){
+<a name="l00050"></a>00050             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data);
 <a name="l00051"></a>00051         } <span class="keywordflow">else</span> {
 <a name="l00052"></a>00052             INIT_FEEDBACK_state_index = state_index;
 <a name="l00053"></a>00053             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(initialization_function, INIT_FEEDBACK_set_state);
@@ -127,20 +127,20 @@
 <a name="l00063"></a>00063 <span class="comment">     * \return Data The new value of the state variable.</span>
 <a name="l00064"></a>00064 <span class="comment">     */</span>
 <a name="l00065"></a><a class="code" href="namespace_instructions.html#a5c9b3516689747eccd0fed96f203fbe0">00065</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a5c9b3516689747eccd0fed96f203fbe0" title="Set a state variable.">SET_FEEDBACK</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00066"></a>00066         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00067"></a>00067         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].data = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.peek();
-<a name="l00068"></a>00068         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
+<a name="l00066"></a>00066         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.nextInt();
+<a name="l00067"></a>00067         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek();
+<a name="l00068"></a>00068         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
 <a name="l00069"></a>00069     }
 <a name="l00070"></a>00070 <span class="preprocessor">#endif</span>
 <a name="l00071"></a>00071 <span class="preprocessor"></span>    <span class="comment"></span>
 <a name="l00072"></a>00072 <span class="comment">    /// \deprecated_mitproto</span>
 <a name="l00073"></a><a class="code" href="namespace_instructions.html#aac3278c167031edef6ce30671982c9ba">00073</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#aac3278c167031edef6ce30671982c9ba" title="Only here for MIT Proto compatibility, deprecated.">FEEDBACK</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00074"></a>00074         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.<a class="code" href="class_machine.html#aae3ae0f475408a059107fc648dedef3e" title="Read the next byte(s) as an unsigned integer.">nextInt</a>();
-<a name="l00075"></a>00075         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> value = machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop();
-<a name="l00076"></a>00076         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].data = value;
-<a name="l00077"></a>00077         machine.<a class="code" href="class_machine.html#a7ed9c99160910ca90816230920840360" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
-<a name="l00078"></a>00078         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.pop(1);
-<a name="l00079"></a>00079         machine.<a class="code" href="class_machine.html#af6c267dce59cac73f20d53ec177f63d4" title="The standard stack.">stack</a>.push(value);
+<a name="l00074"></a>00074         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.nextInt();
+<a name="l00075"></a>00075         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00076"></a>00076         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data = value;
+<a name="l00077"></a>00077         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
+<a name="l00078"></a>00078         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(1);
+<a name="l00079"></a>00079         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(value);
 <a name="l00080"></a>00080     }
 <a name="l00081"></a>00081     <span class="comment"></span>
 <a name="l00082"></a>00082 <span class="comment">    /// \}</span>
