@@ -56,12 +56,6 @@ class Machine : public MachineExtension {
 		 */
 		Array<Thread> threads;
 		
-		/// The (index of the) current thread when executing a run.
-		/**
-		 * When not running, this is the index of the thread that will be checked first for the next run.
-		 */
-		Thread::Id current_thread;
-		
 		/// The state variables.
 		Array<State> state;
 		
@@ -82,6 +76,12 @@ class Machine : public MachineExtension {
 		 * \see retn
 		 */
 		Stack<Instruction> callbacks;
+		
+		/// The (index of the) current thread when executing a run.
+		/**
+		 * When not running, this is the index of the thread that will be checked first for the next run.
+		 */
+		Thread::Id current_thread;
 		
 		/// The current neighbour, when iterating through them.
 		/**
@@ -166,6 +166,14 @@ class Machine : public MachineExtension {
 			/// Check whether the running script (installation or a single run) has finished (true) or not (false).
 			inline bool finished() {
 				return callbacks.empty();
+			}
+			
+			/// Get the (index of the) current thread when executing a run.
+			/**
+			 * When not running, this is the index of the thread that will be checked first for the next run.
+			 */
+			inline Thread::Id currentThread() const {
+				return current_thread;
 			}
 			
 		/// \}
