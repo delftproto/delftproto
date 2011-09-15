@@ -20,10 +20,11 @@ namespace Instructions {
 	/// \{
 	
 	namespace {
-		Index INIT_FEEDBACK_state_index;
-		
 		void INIT_FEEDBACK_set_state(Machine & machine){
-			machine.state[INIT_FEEDBACK_state_index].data = machine.stack.peek();
+			Data state = machine.stack.pop();
+			Index state_index = machine.stack.popNumber();
+			machine.state[state_index].data = state;
+			machine.stack.push(state);
 		}
 	}
 	
@@ -45,7 +46,7 @@ namespace Instructions {
 		if (machine.state[state_index].data.isSet()){
 			machine.stack.push(machine.state[state_index].data);
 		} else {
-			INIT_FEEDBACK_state_index = state_index;
+			machine.stack.push(Number(state_index));
 			machine.call(initialization_function, INIT_FEEDBACK_set_state);
 		}
 	}
