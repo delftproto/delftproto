@@ -150,12 +150,23 @@ class BasicMachine {
 				return callbacks.size();
 			}
 			
-			/// Get the (index of the) current thread when executing a run.
+			/// Get the current thread when executing a run.
 			/**
-			 * When not running, this is the index of the thread that will be checked first for the next run.
+			 * When not running, this is the thread that will be checked first for the next run.
 			 */
 			/** \memberof Machine */
-			inline Thread::Id currentThread() const {
+			inline Thread & currentThread() {
+				return threads[current_thread];
+			}
+			
+			/** \memberof Machine */
+			inline Thread const & currentThread() const {
+				return threads[current_thread];
+			}
+			
+			/// Get the index of the current thread.
+			/** \memberof Machine */
+			inline Thread::Id currentThreadId() const {
 				return current_thread;
 			}
 			

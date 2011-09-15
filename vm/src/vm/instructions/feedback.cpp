@@ -41,7 +41,7 @@ namespace Instructions {
 		Index state_index = machine.nextInt();
 		Address initialization_function = machine.stack.popAddress();
 		machine.state[state_index].is_executed = true;
-		machine.state[state_index].thread = machine.currentThread();
+		machine.state[state_index].thread = machine.currentThreadId();
 		if (machine.state[state_index].data.isSet()){
 			machine.stack.push(machine.state[state_index].data);
 		} else {

@@ -67,7 +67,7 @@
 <div class="textblock"><p>A virtual machine. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This class is <a class="el" href="extensions.html#extending">extensible</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00242">242</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00253">253</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 </div>
 <p>Inherits BasicMachine.</p>
 
@@ -102,8 +102,11 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current address (instruction pointer).  <a href="#a8cc2a8c0dcb00ae974cf0b634396418b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>depth</b> () const </td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the callback depth.  <a href="#aa3fcc35d95930ed038b96a53e8b709da"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentThread</b> () const </td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the (index of the) current thread when executing a run.  <a href="#a965d7508196d754ed50b4970665129f6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html">Thread</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>currentThread</b> ()</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current thread when executing a run.  <a href="#a79492de77d70f0cbf95b1584cbaa3cb1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html">Thread</a> const &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>currentThread</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a>&#160;</td><td class="memItemRight" valign="bottom"><b>currentThreadId</b> () const </td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index of the current thread.  <a href="#a85e31e2eecff9f138ea2ef5bf5fc002c"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Low level</div></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_int.html">Int</a>&#160;</td><td class="memItemRight" valign="bottom"><b>nextInt</b> ()</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the next byte(s) as an unsigned integer.  <a href="#a1b7fd0e80be98ca13178a6475f338d30"></a><br/></td></tr>
@@ -182,7 +185,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00254">254</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00265">265</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -203,7 +206,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Start the next scheduled task. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This does not execute Proto code, it only prepares the next run. Call <a class="el" href="class_machine.html#a265085dd37ece6b08a3fa3b41414ff62" title="Execute the next instruction.">step()</a> while not <a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592" title="Check whether the running script (installation or a single run) has finished (true) or not (false)...">finished()</a> to execute it. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00265">265</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00276">276</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -224,7 +227,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Execute the next instruction. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Do not use this function when already <a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592" title="Check whether the running script (installation or a single run) has finished (true) or not (false)...">finished()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00301">301</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00312">312</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +247,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Check whether the running script (installation or a single run) has finished (true) or not (false). </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00306">306</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00317">317</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -272,7 +275,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html" title="All instructions and their opcodes.">Instructions</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00316">316</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00327">327</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -310,7 +313,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00330">330</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00341">341</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +335,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>If the corresponding call (if any) registered a callback, it will be called.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html#a0e290a78f1adfb600f33eac57013fa1a" title="Return from a function.">Instructions::RET</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00342">342</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00353">353</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -451,12 +454,33 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 </div>
 </div>
-<a class="anchor" id="a965d7508196d754ed50b4970665129f6"></a><!-- doxytag: member="Machine::currentThread" ref="a965d7508196d754ed50b4970665129f6" args="() const " -->
+<a class="anchor" id="a79492de77d70f0cbf95b1584cbaa3cb1"></a><!-- doxytag: member="Machine::currentThread" ref="a79492de77d70f0cbf95b1584cbaa3cb1" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a> currentThread </td>
+          <td class="memname"><a class="el" href="class_thread.html">Thread</a>&amp; currentThread </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td><code> [inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the current thread when executing a run. </p>
+<p>When not running, this is the thread that will be checked first for the next run. </p>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00158">158</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8a4a649f1664c2ad62c0971e2a0faaa3"></a><!-- doxytag: member="Machine::currentThread" ref="a8a4a649f1664c2ad62c0971e2a0faaa3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_thread.html">Thread</a> const&amp; currentThread </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const<code> [inherited]</code></td>
@@ -465,10 +489,27 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 </div>
 <div class="memdoc">
 
-<p>Get the (index of the) current thread when executing a run. </p>
-<p>When not running, this is the index of the thread that will be checked first for the next run. </p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00163">163</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00158">158</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+</div>
+</div>
+<a class="anchor" id="a85e31e2eecff9f138ea2ef5bf5fc002c"></a><!-- doxytag: member="Machine::currentThreadId" ref="a85e31e2eecff9f138ea2ef5bf5fc002c" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_thread.html#a46806e195d56909fb307a09619c8b667">Thread::Id</a> currentThreadId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const<code> [inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the index of the current thread. </p>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00169">169</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -490,7 +531,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Using the Variable Length Quantity (VLQ) format as used in the MIDI file format.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a href="http://en.wikipedia.org/wiki/Variable-length_quantity">http://en.wikipedia.org/wiki/Variable-length_quantity</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00175">175</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00186">186</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -511,7 +552,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Read the next byte as an unsigned 8-bit integer. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use nextInt() instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00191">191</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00202">202</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -532,7 +573,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Read the next two bytes as an unsigned 16-bit integer (big endian). </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use nextInt() instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00200">200</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00211">211</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -553,7 +594,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Get the current neighbour, when iterating through them. </p>
 <p>Used by the hood instructions when iterating through the hood to let the neighbour-instructions know which neighbour is currently being processed. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00216">216</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00227">227</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -573,7 +614,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Get the <a class="el" href="class_neighbour.html" title="A node in the neighbourhood.">Neighbour</a> representing this machine. </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00222">222</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00233">233</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>

@@ -105,7 +105,7 @@
 <a name="l00041"></a>00041         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> state_index = machine.nextInt();
 <a name="l00042"></a>00042         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> initialization_function = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
 <a name="l00043"></a>00043         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].is_executed = <span class="keyword">true</span>;
-<a name="l00044"></a>00044         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].thread = machine.currentThread();
+<a name="l00044"></a>00044         machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].thread = machine.currentThreadId();
 <a name="l00045"></a>00045         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data.isSet()){
 <a name="l00046"></a>00046             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#a38193c4b91addc9929a533cf9951fb79" title="The state variables.">state</a>[state_index].data);
 <a name="l00047"></a>00047         } <span class="keywordflow">else</span> {
