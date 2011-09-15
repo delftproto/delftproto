@@ -67,7 +67,7 @@
 <a name="l00009"></a>00009 <span class="comment"> */</span>
 <a name="l00010"></a>00010 <span class="comment"></span>
 <a name="l00011"></a>00011 <span class="comment">/// \file</span>
-<a name="l00012"></a>00012 <span class="comment">/// Provides the Script classs.</span>
+<a name="l00012"></a>00012 <span class="comment">/// Provides the Script class.</span>
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="preprocessor">#ifndef __SCRIPT_HPP</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#define __SCRIPT_HPP</span>
@@ -76,17 +76,36 @@
 <a name="l00018"></a>00018 <span class="preprocessor">#include &lt;<a class="code" href="array_8hpp.html" title="Provides the Array class.">array.hpp</a>&gt;</span>
 <a name="l00019"></a>00019 <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">/// A proto script (bytecode).</span>
-<a name="l00021"></a>00021 <span class="comment"></span><span class="comment">/**</span>
-<a name="l00022"></a>00022 <span class="comment"> * /warning Currently not used, but will be used in the near future.</span>
-<a name="l00023"></a>00023 <span class="comment"> */</span>
-<a name="l00024"></a><a class="code" href="class_script.html">00024</a> <span class="keyword">class </span><a class="code" href="class_script.html" title="A proto script (bytecode).">Script</a> {
-<a name="l00025"></a>00025     
-<a name="l00026"></a>00026     <span class="keyword">public</span>:
-<a name="l00027"></a>00027         <a class="code" href="class_array.html">Array&lt;Int8&gt;</a> code;
-<a name="l00028"></a>00028         
-<a name="l00029"></a>00029 };
-<a name="l00030"></a>00030 
-<a name="l00031"></a>00031 <span class="preprocessor">#endif</span>
+<a name="l00021"></a><a class="code" href="class_script.html">00021</a> <span class="comment"></span><span class="keyword">class </span><a class="code" href="class_script.html" title="A proto script (bytecode).">Script</a> {
+<a name="l00022"></a>00022     
+<a name="l00023"></a>00023     <span class="keyword">protected</span>:
+<a name="l00024"></a>00024     <span class="comment"></span>
+<a name="l00025"></a>00025 <span class="comment">        /// The location of the script.</span>
+<a name="l00026"></a><a class="code" href="class_script.html#af6d9c87f7152bc6d5de2fd5e255c92de">00026</a> <span class="comment"></span>        <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> <span class="keyword">const</span> * <a class="code" href="class_script.html#af6d9c87f7152bc6d5de2fd5e255c92de" title="The location of the script.">script</a>;
+<a name="l00027"></a>00027         <span class="comment"></span>
+<a name="l00028"></a>00028 <span class="comment">        /// The length of the script.</span>
+<a name="l00029"></a><a class="code" href="class_script.html#aca3082067751d469f3f9a32b53c49650">00029</a> <span class="comment"></span>        <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> <a class="code" href="class_script.html#aca3082067751d469f3f9a32b53c49650" title="The length of the script.">script_size</a>;
+<a name="l00030"></a>00030         
+<a name="l00031"></a>00031     <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00032"></a>00032 <span class="comment">        /// The default constructor.</span>
+<a name="l00033"></a><a class="code" href="class_script.html#a10975b78b03162488c522f095fd7707f">00033</a> <span class="comment"></span>        <a class="code" href="class_script.html#a10975b78b03162488c522f095fd7707f" title="The default constructor.">Script</a>() : <a class="code" href="class_script.html#af6d9c87f7152bc6d5de2fd5e255c92de" title="The location of the script.">script</a>(0), <a class="code" href="class_script.html#aca3082067751d469f3f9a32b53c49650" title="The length of the script.">script_size</a>(0) {}
+<a name="l00034"></a>00034         <span class="comment"></span>
+<a name="l00035"></a>00035 <span class="comment">        /// The constructor</span>
+<a name="l00036"></a><a class="code" href="class_script.html#a256e5a058fae63d4ae56cc165be36191">00036</a> <span class="comment"></span>        <a class="code" href="class_script.html#a256e5a058fae63d4ae56cc165be36191" title="The constructor.">Script</a>(<a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> <span class="keyword">const</span> * <a class="code" href="class_script.html#af6d9c87f7152bc6d5de2fd5e255c92de" title="The location of the script.">script</a>, <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> <a class="code" href="class_script.html#a996c28349a1b826c18a22ca217cc3583" title="Get the length of the script.">size</a>) : script(script), <a class="code" href="class_script.html#aca3082067751d469f3f9a32b53c49650" title="The length of the script.">script_size</a>(size) {}
+<a name="l00037"></a>00037         <span class="comment"></span>
+<a name="l00038"></a>00038 <span class="comment">        /// Get the script.</span>
+<a name="l00039"></a><a class="code" href="class_script.html#a79fe6171fb497d5201d895c040bc2272">00039</a> <span class="comment"></span>        <a class="code" href="class_script.html#a79fe6171fb497d5201d895c040bc2272" title="Get the script.">operator Int8 const * </a>()<span class="keyword"> const </span>{
+<a name="l00040"></a>00040             <span class="keywordflow">return</span> <a class="code" href="class_script.html#af6d9c87f7152bc6d5de2fd5e255c92de" title="The location of the script.">script</a>;
+<a name="l00041"></a>00041         }
+<a name="l00042"></a>00042         <span class="comment"></span>
+<a name="l00043"></a>00043 <span class="comment">        /// Get the length of the script.</span>
+<a name="l00044"></a><a class="code" href="class_script.html#a996c28349a1b826c18a22ca217cc3583">00044</a> <span class="comment"></span>        <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> <a class="code" href="class_script.html#a996c28349a1b826c18a22ca217cc3583" title="Get the length of the script.">size</a>()<span class="keyword"> const </span>{
+<a name="l00045"></a>00045             <span class="keywordflow">return</span> <a class="code" href="class_script.html#aca3082067751d469f3f9a32b53c49650" title="The length of the script.">script_size</a>;
+<a name="l00046"></a>00046         }
+<a name="l00047"></a>00047         
+<a name="l00048"></a>00048 };
+<a name="l00049"></a>00049 
+<a name="l00050"></a>00050 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 

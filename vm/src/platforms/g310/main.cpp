@@ -38,7 +38,7 @@ int main() {
 	
 	Machine machine;
 	
-	machine.install(script);
+	machine.install(Script(script, sizeof(script)));
 	while(!machine.finished()) machine.step();
 	
 	while(true){

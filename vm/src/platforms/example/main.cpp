@@ -118,7 +118,7 @@ int main(){
 	Machine machine;
 	
 	show_instruction(machine,"INSTALL");
-	machine.install(script);
+	machine.install(Script(script, sizeof(script)));
 	debug_run(machine);
 	
 	while(true){

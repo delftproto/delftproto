@@ -9,7 +9,7 @@
  */
 
 /// \file
-/// Provides the Script classs.
+/// Provides the Script class.
 
 #ifndef __SCRIPT_HPP
 #define __SCRIPT_HPP
@@ -18,13 +18,32 @@
 #include <array.hpp>
 
 /// A proto script (bytecode).
-/**
- * /warning Currently not used, but will be used in the near future.
- */
 class Script {
 	
+	protected:
+	
+		/// The location of the script.
+		Int8 const * script;
+		
+		/// The length of the script.
+		Size script_size;
+		
 	public:
-		Array<Int8> code;
+		/// The default constructor.
+		Script() : script(0), script_size(0) {}
+		
+		/// The constructor
+		Script(Int8 const * script, Size size) : script(script), script_size(size) {}
+		
+		/// Get the script.
+		operator Int8 const * () const {
+			return script;
+		}
+		
+		/// Get the length of the script.
+		Size size() const {
+			return script_size;
+		}
 		
 };
 

@@ -62,6 +62,10 @@ class BasicMachine {
 		
 	protected:
 		
+		/// The script that runs on this Machine.
+		/** \memberof Machine */
+		Script script;
+		
 		/// A pointer to the next instruction.
 		/** \memberof Machine */
 		Address instruction_pointer;
@@ -123,6 +127,12 @@ class BasicMachine {
 			/** \memberof Machine */
 			inline void skip(Size distance) {
 				instruction_pointer += distance;
+			}
+			
+			/// Get the current script.
+			/** \memberof Machine */
+			inline Script currentScript() const {
+				return script;
 			}
 			
 			/// Get the current address (instruction pointer).
@@ -241,7 +251,8 @@ class Machine : public ExtendedMachine {
 			 * 
 			 * \param script A pointer to the installation script.
 			 */
-			inline void install(Int8 const * script) {
+			inline void install(Script script) {
+				this->script = script;
 				is_finished = false;
 				jump(Address(script));
 				callbacks.push(0);
