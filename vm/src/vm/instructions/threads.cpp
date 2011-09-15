@@ -9,7 +9,7 @@
  */
 
 /// \file
-/// Provides the global variables instructions.
+/// Provides the thread instructions.
 
 #include <machine.hpp>
 #include <instructions.hpp>

@@ -3,7 +3,7 @@
 <area shape="rect" id="node7" href="$flow_8cpp.html" title="Provides the control flow instructions." alt="" coords="1167,86,1308,117"/>
 <area shape="rect" id="node71" href="$environment_8cpp.html" title="Provides the environment stack instructions." alt="" coords="52,86,241,117"/>
 <area shape="rect" id="node75" href="$globals_8cpp.html" title="Provides the global variables instructions." alt="" coords="265,86,423,117"/>
-<area shape="rect" id="node79" href="$threads_8cpp.html" title="Provides the global variables instructions." alt="" coords="447,86,607,117"/>
+<area shape="rect" id="node79" href="$threads_8cpp.html" title="Provides the thread instructions." alt="" coords="447,86,607,117"/>
 <area shape="rect" id="node83" href="$literals_8cpp.html" title="Provides the literal Number instructions." alt="" coords="1540,86,1695,117"/>
 <area shape="rect" id="node90" href="$math_8cpp.html" title="Provides the math instructions." alt="" coords="1719,86,1865,117"/>
 <area shape="rect" id="node103" href="$tuple_8cpp.html" title="Provides the Tuple instructions." alt="" coords="996,86,1143,117"/>
