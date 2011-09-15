@@ -16,6 +16,7 @@
 
 #include <types.hpp>
 #include <data.hpp>
+#include <time.hpp>
 
 class BasicThread {
 	
@@ -24,11 +25,24 @@ class BasicThread {
 		/** \memberof Thread */
 		typedef Int8 Id;
 		
+		/// The last time this thread was executed.
+		/** \memberof Thread */
+		Time last_time;
+		
+		/// The desired period for this thread.
+		/** \memberof Thread */
+		/**
+		 * \warning This variable is currently not used in the scheduler.
+		 */
+		Time desired_period; //TODO: Use this in the scheduler.
+		
 	protected:
 		bool is_triggered;
 		bool is_active;
 		
 	public:
+		BasicThread() : desired_period(1) {} //TODO: Find a better way to get a value for desired_period.
+		
 		/// Trigger this thread.
 		/**
 		 * The specified thread will be executed once.

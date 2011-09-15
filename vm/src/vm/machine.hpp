@@ -70,6 +70,10 @@ class BasicMachine {
 		/** \memberof Machine */
 		Address instruction_pointer;
 		
+		/// The time at which the current/last run started.
+		/** \memberof Machine */
+		Time start_time;
+		
 		/// Boolean indicating whether execution (installation or a single run) has finished.
 		/** \memberof Machine */
 		bool is_finished;
@@ -139,6 +143,12 @@ class BasicMachine {
 			/** \memberof Machine */
 			inline Address currentAddress() const {
 				return instruction_pointer;
+			}
+			
+			/// Get the time at which the current/last run started.
+			/** \memberof Machine */
+			inline Time startTime() const {
+				return start_time;
 			}
 			
 			/// Get the callback depth.
@@ -272,8 +282,11 @@ class Machine : public ExtendedMachine {
 			/// Start the next scheduled task.
 			/**
 			 * \note This does not execute Proto code, it only prepares the next run. Call step() while not finished() to execute it.
+			 * 
+			 * \param start The time at the start of this run.
 			 */
-			inline void run() {
+			inline void run(Time start) {
+				start_time = start;
 				is_finished = true;
 				for(Size i = 0; i < threads.size(); i++){
 					if (threads[current_thread].pending()){
@@ -292,6 +305,7 @@ class Machine : public ExtendedMachine {
 		protected:
 			static void run_callback(Machine & machine){
 				machine.threads[machine.current_thread].result = machine.stack.pop();
+				machine.threads[machine.current_thread].last_time = machine.startTime();
 				for(Size i = 0; i < machine.state.size(); i++){
 					if (machine.state[i].thread == machine.current_thread){
 						if (!machine.state[i].is_executed) machine.state[i].data.reset();

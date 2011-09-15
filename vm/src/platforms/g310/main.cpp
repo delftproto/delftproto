@@ -36,6 +36,8 @@ namespace {
 
 int main() {
 	
+	Time = 0;
+	
 	Machine machine;
 	
 	machine.install(Script(script, sizeof(script)));
@@ -46,7 +48,7 @@ int main() {
 		red = yellow = green = false;
 		button = Pins::button.check();
 		
-		machine.run();
+		machine.run(t += 1);
 		while(!machine.finished()) machine.step();
 		
 		red    ? Pins::led0.high() : Pins::led0.low();

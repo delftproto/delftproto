@@ -134,6 +134,10 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a2b2c8f3928573ec29f759642b1a0cc2a">DEF_FUN16</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Define a function as a global.  <a href="#a2b2c8f3928573ec29f759642b1a0cc2a"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Threads</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a1a77b2353cfdc3b8a89c2ac960a0baa4">DT</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the time between this and the previous execution of this thread.  <a href="#a1a77b2353cfdc3b8a89c2ac960a0baa4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a2d968d1dabd134098e5680d1c0fb322b">SET_DT</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the desired period of a thread.  <a href="#a2d968d1dabd134098e5680d1c0fb322b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ab4bbc937aa09b2b7694385dd0a542ed7">ACTIVATE</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Activate this or another <a class="el" href="class_thread.html" title="A thread.">Thread</a>.  <a href="#ab4bbc937aa09b2b7694385dd0a542ed7"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ad3f6de15ee037c8b80af5ccda09610b6">DEACTIVATE</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
@@ -1106,6 +1110,52 @@ template&lt;int size&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a1a77b2353cfdc3b8a89c2ac960a0baa4"></a><!-- doxytag: member="Instructions::DT" ref="a1a77b2353cfdc3b8a89c2ac960a0baa4" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::DT </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the time between this and the previous execution of this thread. </p>
+<p>If this is the first run, the desired period will be given instead.</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_number.html" title="A floating point number.">Number</a> The time, in seconds, since the last run of this thread. </dd></dl>
+
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00028">28</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d968d1dabd134098e5680d1c0fb322b"></a><!-- doxytag: member="Instructions::SET_DT" ref="a2d968d1dabd134098e5680d1c0fb322b" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::SET_DT </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the desired period of a thread. </p>
+<p>Set the minimum period for this thread.</p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Currently, the scheduler ignores this setting. </dd></dl>
+
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00044">44</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ab4bbc937aa09b2b7694385dd0a542ed7"></a><!-- doxytag: member="Instructions::ACTIVATE" ref="ab4bbc937aa09b2b7694385dd0a542ed7" args="(Machine &amp;machine)" -->
 <div class="memitem">
 <div class="memproto">
@@ -1130,7 +1180,7 @@ template&lt;int size&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00029">29</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00056">56</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1208,7 @@ template&lt;int size&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00040">40</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00067">67</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
 
 </div>
 </div>
@@ -1186,7 +1236,7 @@ template&lt;int size&gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00051">51</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00078">78</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
 
 </div>
 </div>
@@ -1214,7 +1264,7 @@ template&lt;int size&gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_data.html" title="The main data type of the VM.">Data</a> The result of the last execution of the specified <a class="el" href="class_thread.html" title="A thread.">Thread</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00061">61</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
+<p>Definition at line <a class="el" href="threads_8cpp_source.html#l00088">88</a> of file <a class="el" href="threads_8cpp_source.html">threads.cpp</a>.</p>
 
 </div>
 </div>

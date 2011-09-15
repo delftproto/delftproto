@@ -16,10 +16,37 @@
 
 namespace Instructions {
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
 	/// \name Threads
 	/// \{
 	
+	/// Get the time between this and the previous execution of this thread.
+	/**
+	 * If this is the first run, the desired period will be given instead.
+	 * 
+	 * \return Number The time, in seconds, since the last run of this thread.
+	 */
+	void DT(Machine & machine){
+		Number dt;
+		if (machine.currentThread().last_time) {
+			dt = machine.startTime() - machine.currentThread().last_time;
+		} else {
+			dt = machine.currentThread().desired_period;
+		}
+		machine.stack.push(dt);
+	}
+	
+	/// Set the desired period of a thread.
+	/**
+	 * Set the minimum period for this thread.
+	 * 
+	 * \warning Currently, the scheduler ignores this setting.
+	 */
+	void SET_DT(Machine & machine){
+		Number dt = machine.stack.popNumber();
+		machine.currentThread().desired_period = dt;
+	}
+	
+#if MIT_COMPATIBILITY != MIT_ONLY
 	/// Activate this or another Thread.
 	/**
 	 * \see Thread::activate()
@@ -63,7 +90,7 @@ namespace Instructions {
 		machine.stack.push(machine.threads[thread].result);
 	}
 	
-	/// \}
 #endif
+	/// \}
 	
 }

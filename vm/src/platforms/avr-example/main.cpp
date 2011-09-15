@@ -19,11 +19,12 @@ namespace {
 }
 
 int main() {
+	Time t = 0;
 	Machine machine;
 	machine.install(Script(script, sizeof(script)));
 	while(!machine.finished()) machine.step();
 	while(true){
-		machine.run();
+		machine.run(t += 1);
 		while(!machine.finished()) machine.step();
 	}
 }

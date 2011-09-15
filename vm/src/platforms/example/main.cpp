@@ -121,9 +121,11 @@ int main(){
 	machine.install(Script(script, sizeof(script)));
 	debug_run(machine);
 	
+	Time time = 0;
+	
 	while(true){
 		show_instruction(machine,"RUN");
-		machine.run();
+		machine.run(time += 1);
 		debug_run(machine);
 	}
 	
