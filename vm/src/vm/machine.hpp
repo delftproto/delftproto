@@ -238,9 +238,19 @@ class BasicMachine {
 				return *current_neighbour;
 			}
 			
+			/** \memberof Machine */
+			inline Neighbour const & currentNeighbour() const {
+				return *current_neighbour;
+			}
+			
 			/// Get the Neighbour representing this machine.
 			/** \memberof Machine */
 			inline Neighbour & thisMachine() {
+				return *hood.begin();
+			}
+			
+			/** \memberof Machine */
+			inline Neighbour const & thisMachine() const {
 				return *hood.begin();
 			}
 			
