@@ -255,6 +255,18 @@ class BasicMachine {
 			}
 			
 		/// \}
+		
+	protected:
+		
+		/// Execute an opcode that's not in the (default) instruction set.
+		/**
+		 * You can override this function by \ref extending the Machine class.
+		 * By default, it does nothing.
+		 */
+		void execute_unknown(Int8 opcode) {
+			// Nop
+		}
+		
 };
 
 /** \cond */
@@ -334,7 +346,10 @@ class Machine : public ExtendedMachine {
 			 * \note Do not use this function when already finished().
 			 */
 			inline void step() {
-				execute(instructions[nextInt8()]);
+				Int8 opcode = nextInt8();
+				Instruction i = instructions[opcode];
+				if (i) execute(i);
+				else execute_unknown(opcode);
 			}
 			
 			/// Check whether the running script (installation or a single run) has finished (true) or not (false).

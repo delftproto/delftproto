@@ -55,6 +55,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#friends">Friends</a>  </div>
   <div class="headertitle">
@@ -67,7 +68,7 @@
 <div class="textblock"><p>A virtual machine. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>This class is <a class="el" href="extensions.html#extending">extensible</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00273">273</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00285">285</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 </div>
 <p>Inherits BasicMachine.</p>
 
@@ -139,6 +140,10 @@ Public Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The state variables.  <a href="#a38193c4b91addc9929a533cf9951fb79"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_neighbour_hood.html">NeighbourHood</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2">hood</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of all the neighbours.  <a href="#ad93cfc43a03588c3ed3a11f873f1bac2"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><b>execute_unknown</b> (<a class="el" href="class_int8.html">Int8</a> opcode)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute an opcode that's not in the (default) instruction set.  <a href="#a369a81f63afcd44cb86d0176304876e0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_script.html">Script</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_machine.html#a14032e40bb84b0351372b102ad35101c">script</a></td></tr>
@@ -191,7 +196,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00285">285</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00297">297</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -219,7 +224,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00298">298</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00310">310</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -240,7 +245,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>Execute the next instruction. </p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Do not use this function when already <a class="el" href="class_machine.html#a5409d7dae8461d62dffd062a41623592" title="Check whether the running script (installation or a single run) has finished (true) or not (false)...">finished()</a>. </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00336">336</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00348">348</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -260,7 +265,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 
 <p>Check whether the running script (installation or a single run) has finished (true) or not (false). </p>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00341">341</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00356">356</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +293,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 </dl>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html" title="All instructions and their opcodes.">Instructions</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00351">351</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00366">366</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -326,7 +331,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00365">365</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00380">380</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -348,7 +353,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <p>If the corresponding call (if any) registered a callback, it will be called.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="namespace_instructions.html#a0e290a78f1adfb600f33eac57013fa1a" title="Return from a function.">Instructions::RET</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00377">377</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00392">392</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
@@ -684,6 +689,28 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Instructions::EXIT</b
 <div class="memdoc">
 
 <p>Definition at line <a class="el" href="machine_8hpp_source.html#l00253">253</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a369a81f63afcd44cb86d0176304876e0"></a><!-- doxytag: member="Machine::execute_unknown" ref="a369a81f63afcd44cb86d0176304876e0" args="(Int8 opcode)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void BasicMachine::execute_unknown </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_int8.html">Int8</a>&#160;</td>
+          <td class="paramname"><em>opcode</em></td><td>)</td>
+          <td><code> [protected, inherited]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Execute an opcode that's not in the (default) instruction set. </p>
+<p>You can override this function by <a class="el" href="extensions.html#extending">Extending the VM</a> the <a class="el" href="class_machine.html" title="A virtual machine.">Machine</a> class. By default, it does nothing. </p>
+
+<p>Definition at line <a class="el" href="machine_8hpp_source.html#l00266">266</a> of file <a class="el" href="machine_8hpp_source.html">machine.hpp</a>.</p>
 
 </div>
 </div>
