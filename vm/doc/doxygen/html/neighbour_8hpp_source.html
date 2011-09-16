@@ -81,13 +81,13 @@
 <a name="l00023"></a>00023     <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00024"></a>00024 <span class="comment">        /// The unique ID of the machine.</span>
 <a name="l00025"></a>00025 <span class="comment"></span><span class="comment">        /** \memberof Neighbour */</span>
-<a name="l00026"></a><a class="code" href="class_neighbour.html#a70871af58debc176bf184a6a81f5c166">00026</a>         <a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> <span class="keyword">const</span> <a class="code" href="class_neighbour.html#a70871af58debc176bf184a6a81f5c166" title="The unique ID of the machine.">id</a>;
+<a name="l00026"></a><a class="code" href="class_neighbour.html#a70871af58debc176bf184a6a81f5c166">00026</a>         <a class="code" href="class_machine_id.html" title="A Machine ID.">MachineId</a> <span class="keyword">const</span> <a class="code" href="class_neighbour.html#a70871af58debc176bf184a6a81f5c166" title="The unique ID of the machine.">id</a>;
 <a name="l00027"></a>00027         <span class="comment"></span>
 <a name="l00028"></a>00028 <span class="comment">        /// The imports from this machine.</span>
 <a name="l00029"></a>00029 <span class="comment"></span><span class="comment">        /** \memberof Neighbour */</span>
 <a name="l00030"></a><a class="code" href="class_neighbour.html#aa633bf50ef63f6753609a9abd78355b0">00030</a>         <a class="code" href="class_array.html">Array&lt;Data&gt;</a> <a class="code" href="class_neighbour.html#aa633bf50ef63f6753609a9abd78355b0" title="The imports from this machine.">imports</a>;
 <a name="l00031"></a>00031         
-<a name="l00032"></a>00032         BasicNeighbour(<a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; <span class="keywordtype">id</span>, <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> imports) : id(id), imports(imports) {}
+<a name="l00032"></a>00032         BasicNeighbour(<a class="code" href="class_machine_id.html" title="A Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; <span class="keywordtype">id</span>, <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> imports) : id(id), imports(imports) {}
 <a name="l00033"></a>00033         
 <a name="l00034"></a>00034 };
 <a name="l00035"></a>00035 <span class="comment"></span>
@@ -109,7 +109,7 @@
 <a name="l00051"></a>00051     
 <a name="l00052"></a>00052     <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00053"></a>00053 <span class="comment">        /// The constructor.</span>
-<a name="l00054"></a><a class="code" href="class_neighbour.html#a7d0860477ee6bca915dd27c19b94fcee">00054</a> <span class="comment"></span>        <a class="code" href="class_neighbour.html#a7d0860477ee6bca915dd27c19b94fcee" title="The constructor.">Neighbour</a>(<a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; <span class="keywordtype">id</span>, <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> <a class="code" href="class_neighbour.html#aa633bf50ef63f6753609a9abd78355b0" title="The imports from this machine.">imports</a>) : ExtendedNeighbour(id, imports) {}
+<a name="l00054"></a><a class="code" href="class_neighbour.html#a7d0860477ee6bca915dd27c19b94fcee">00054</a> <span class="comment"></span>        <a class="code" href="class_neighbour.html#a7d0860477ee6bca915dd27c19b94fcee" title="The constructor.">Neighbour</a>(<a class="code" href="class_machine_id.html" title="A Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; <span class="keywordtype">id</span>, <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> <a class="code" href="class_neighbour.html#aa633bf50ef63f6753609a9abd78355b0" title="The imports from this machine.">imports</a>) : ExtendedNeighbour(id, imports) {}
 <a name="l00055"></a>00055         
 <a name="l00056"></a>00056 };
 <a name="l00057"></a>00057 

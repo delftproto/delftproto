@@ -14,25 +14,10 @@
 #ifndef __MACHINEID_HPP
 #define __MACHINEID_HPP
 
-/// An unique Machine ID.
-/**
- * This is just a dummy implementation for which every ID is equal.
- * Platform specific code should have the 'real' implementation of this class.
- * 
- * It should initialize itself to something unique, and have == and != operators.
- */
-class MachineId {
-	
-	public:
-		
-		bool operator == (MachineId const & m) const {
-			return true;
-		}
-		
-		bool operator != (MachineId const & m) const {
-			return false;
-		}
-		
-};
+#include <types.hpp>
+
+/// \class MachineId
+/// A Machine ID.
+typedef Number MachineId;
 
 #endif

@@ -71,29 +71,14 @@
 <a name="l00013"></a>00013 <span class="comment"></span>
 <a name="l00014"></a>00014 <span class="preprocessor">#ifndef __MACHINEID_HPP</span>
 <a name="l00015"></a>00015 <span class="preprocessor"></span><span class="preprocessor">#define __MACHINEID_HPP</span>
-<a name="l00016"></a>00016 <span class="preprocessor"></span><span class="comment"></span>
-<a name="l00017"></a>00017 <span class="comment">/// An unique Machine ID.</span>
-<a name="l00018"></a>00018 <span class="comment"></span><span class="comment">/**</span>
-<a name="l00019"></a>00019 <span class="comment"> * This is just a dummy implementation for which every ID is equal.</span>
-<a name="l00020"></a>00020 <span class="comment"> * Platform specific code should have the &#39;real&#39; implementation of this class.</span>
-<a name="l00021"></a>00021 <span class="comment"> * </span>
-<a name="l00022"></a>00022 <span class="comment"> * It should initialize itself to something unique, and have == and != operators.</span>
-<a name="l00023"></a>00023 <span class="comment"> */</span>
-<a name="l00024"></a><a class="code" href="class_machine_id.html">00024</a> <span class="keyword">class </span><a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> {
-<a name="l00025"></a>00025     
-<a name="l00026"></a>00026     <span class="keyword">public</span>:
-<a name="l00027"></a>00027         
-<a name="l00028"></a>00028         <span class="keywordtype">bool</span> operator == (<a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; m)<span class="keyword"> const </span>{
-<a name="l00029"></a>00029             <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00030"></a>00030         }
-<a name="l00031"></a>00031         
-<a name="l00032"></a>00032         <span class="keywordtype">bool</span> operator != (<a class="code" href="class_machine_id.html" title="An unique Machine ID.">MachineId</a> <span class="keyword">const</span> &amp; m)<span class="keyword"> const </span>{
-<a name="l00033"></a>00033             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00034"></a>00034         }
-<a name="l00035"></a>00035         
-<a name="l00036"></a>00036 };
-<a name="l00037"></a>00037 
-<a name="l00038"></a>00038 <span class="preprocessor">#endif</span>
+<a name="l00016"></a>00016 <span class="preprocessor"></span>
+<a name="l00017"></a>00017 <span class="preprocessor">#include &lt;<a class="code" href="types_8hpp.html" title="Provides the basic numeric types.">types.hpp</a>&gt;</span>
+<a name="l00018"></a>00018 <span class="comment"></span>
+<a name="l00019"></a>00019 <span class="comment">/// \class MachineId</span>
+<a name="l00020"></a>00020 <span class="comment">/// A Machine ID.</span>
+<a name="l00021"></a>00021 <span class="comment"></span><span class="keyword">typedef</span> <a class="code" href="class_number.html" title="A floating point number.">Number</a> <a class="code" href="class_machine_id.html" title="A Machine ID.">MachineId</a>;
+<a name="l00022"></a>00022 
+<a name="l00023"></a>00023 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
 
