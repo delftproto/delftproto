@@ -95,6 +95,16 @@ namespace Instructions {
 		machine.stack.push(a >= b ? 1 : 0);
 	}
 	
+	/// Get the inverse boolean value of a Number.
+	/**
+	 * \param Number \m{a}
+	 * \return \m{\left\lbrace\begin{array}{ll}1&a=0\\0&a\neq0\end{array}\right.}
+	 */
+	void NOT(Machine & machine){
+		Number a = machine.stack.popNumber();
+		machine.stack.push(a ? 0 : 1);
+	}
+	
 	/// \}
 	
 	/// \name Standard math operator instructions
