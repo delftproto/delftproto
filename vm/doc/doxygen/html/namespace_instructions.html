@@ -297,6 +297,8 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#aac3278c167031edef6ce30671982c9ba">FEEDBACK</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Only here for MIT Proto compatibility, deprecated.  <a href="#aac3278c167031edef6ce30671982c9ba"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Hood instructions</div></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a2ff6a877db25fa873a0e84e1db8b8ce5">MID</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ID of this machine.  <a href="#a2ff6a877db25fa873a0e84e1db8b8ce5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a1ac861288830267d5dea5335dd571d34">FOLD_HOOD</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Fold all imported values for a specific neighbourhood variable and update the corresponding export.  <a href="#a1ac861288830267d5dea5335dd571d34"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34">VFOLD_HOOD</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
@@ -3253,6 +3255,28 @@ template&lt;int value&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a2ff6a877db25fa873a0e84e1db8b8ce5"></a><!-- doxytag: member="Instructions::MID" ref="a2ff6a877db25fa873a0e84e1db8b8ce5" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::MID </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the ID of this machine. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_number.html" title="A floating point number.">Number</a> The (unique) ID of this machine. </dd></dl>
+
+<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00107">107</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a1ac861288830267d5dea5335dd571d34"></a><!-- doxytag: member="Instructions::FOLD_HOOD" ref="a1ac861288830267d5dea5335dd571d34" args="(Machine &amp;machine)" -->
 <div class="memitem">
 <div class="memproto">
@@ -3289,7 +3313,7 @@ template&lt;int value&gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_data.html" title="The main data type of the VM.">Data</a> the result of the folding process. </dd></dl>
 
-<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00134">134</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00142">142</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
 
 </div>
 </div>
@@ -3311,7 +3335,7 @@ template&lt;int value&gt; </div>
 <p>Only here for MIT Proto compatibility, deprecated. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000026">Deprecated:</a></b></dt><dd>Implemented for MIT Proto compatibility. </dd></dl>
 
-<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00139">139</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00147">147</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
 
 </div>
 </div>
@@ -3351,7 +3375,7 @@ template&lt;int value&gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="class_data.html" title="The main data type of the VM.">Data</a> the result of the folding process. </dd></dl>
 
-<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00175">175</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00183">183</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
 
 </div>
 </div>
@@ -3373,7 +3397,7 @@ template&lt;int value&gt; </div>
 <p>Only here for MIT Proto compatibility, deprecated. </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000028">Deprecated:</a></b></dt><dd>Implemented for MIT Proto compatibility. </dd></dl>
 
-<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00180">180</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
+<p>Definition at line <a class="el" href="hood_8cpp_source.html#l00188">188</a> of file <a class="el" href="hood_8cpp_source.html">hood.cpp</a>.</p>
 
 </div>
 </div>

@@ -100,6 +100,14 @@ namespace Instructions {
 	/// \name Hood instructions
 	/// \{
 	
+	/// Get the ID of this machine.
+	/**
+	 * \return Number The (unique) ID of this machine.
+	 */
+	void MID(Machine & machine){
+		machine.stack.push(machine.id);
+	}
+	
 	/// Fold all imported values for a specific neighbourhood variable and update the corresponding export.
 	/**
 	 * The fuse function is used to consecutively fuse the previous fuse result with the import value of the next neighbour.
