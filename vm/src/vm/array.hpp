@@ -67,7 +67,7 @@ template<typename Element> class Array {
 		inline operator Element const * () const { return array; } ///< Constant access to the elements of the Array. 
 		
 		/// The number of elements in the array.
-		inline Size size() { return array_size; }
+		inline Size size() const { return array_size; }
 		
 		/// Deconstruct the elements and deallocate the array.
 		inline ~Array() { reset(); }
