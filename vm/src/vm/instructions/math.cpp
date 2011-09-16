@@ -257,6 +257,16 @@ namespace Instructions {
 		machine.stack.push(ceil(a));
 	}
 	
+	/// Round a Number.
+	/**
+	 * \param Number \m{a}
+	 * \return \m{\left\lfloor a + \frac12 \right\rfloor}
+	 */
+	void ROUND(Machine & machine){
+		Number a = machine.stack.popNumber();
+		machine.stack.push(round(a));
+	}
+	
 	/// Calculate the natural logarithm of a Number.
 	/**
 	 * \param Number \m{a}

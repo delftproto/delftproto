@@ -203,6 +203,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the floor of a <a class="el" href="class_number.html" title="A floating point number.">Number</a>.  <a href="#a6dbe37a73e257779f9d21260fb34bc7d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a4565973069d95d5a6fc470160c461132">CEIL</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the ceiling of a <a class="el" href="class_number.html" title="A floating point number.">Number</a>.  <a href="#a4565973069d95d5a6fc470160c461132"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ac8facadcc4c87be8e5b2d98d2cc630a2">ROUND</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Round a <a class="el" href="class_number.html" title="A floating point number.">Number</a>.  <a href="#ac8facadcc4c87be8e5b2d98d2cc630a2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a33d15bc901660303dc346beb2908a170">LOG</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the natural logarithm of a <a class="el" href="class_number.html" title="A floating point number.">Number</a>.  <a href="#a33d15bc901660303dc346beb2908a170"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a8cb97d6371769b4c893dc5e6908e437d">SQRT</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
@@ -2007,6 +2009,34 @@ template&lt;int value&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ac8facadcc4c87be8e5b2d98d2cc630a2"></a><!-- doxytag: member="Instructions::ROUND" ref="ac8facadcc4c87be8e5b2d98d2cc630a2" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::ROUND </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Round a <a class="el" href="class_number.html" title="A floating point number.">Number</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle a$" src="form_2.png"/> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \left\lfloor a + \frac12 \right\rfloor$" src="form_23.png"/> </dd></dl>
+
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00265">265</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a33d15bc901660303dc346beb2908a170"></a><!-- doxytag: member="Instructions::LOG" ref="a33d15bc901660303dc346beb2908a170" args="(Machine &amp;machine)" -->
 <div class="memitem">
 <div class="memproto">
@@ -2029,9 +2059,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \log_e a$" src="form_23.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \log_e a$" src="form_24.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00265">265</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00275">275</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2057,9 +2087,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sqrt a$" src="form_24.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sqrt a$" src="form_25.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00275">275</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00285">285</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2085,9 +2115,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sin a$" src="form_25.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sin a$" src="form_26.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00285">285</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00295">295</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2113,9 +2143,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \cos a$" src="form_26.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \cos a$" src="form_27.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00295">295</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00305">305</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2141,9 +2171,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \tan a$" src="form_27.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \tan a$" src="form_28.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00305">305</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00315">315</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2169,9 +2199,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sinh a$" src="form_28.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \sinh a$" src="form_29.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00315">315</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00325">325</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2197,9 +2227,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \cosh a$" src="form_29.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \cosh a$" src="form_30.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00325">325</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00335">335</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2225,9 +2255,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \tanh a$" src="form_30.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \tanh a$" src="form_31.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00335">335</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00345">345</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2253,9 +2283,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arcsin a$" src="form_31.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arcsin a$" src="form_32.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00345">345</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00355">355</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2281,9 +2311,9 @@ template&lt;int value&gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arccos a$" src="form_32.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arccos a$" src="form_33.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00355">355</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00365">365</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2305,14 +2335,14 @@ template&lt;int value&gt; </div>
 <p>Calculate the angle of a tangent. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle y$" src="form_33.png"/> </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle x$" src="form_34.png"/> </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle y$" src="form_34.png"/> </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle x$" src="form_35.png"/> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arctan \frac y x$" src="form_35.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle \arctan \frac y x$" src="form_36.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00366">366</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00376">376</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>
@@ -2334,14 +2364,14 @@ template&lt;int value&gt; </div>
 <p>Generate a (pseudo) random number. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle min$" src="form_36.png"/> </td></tr>
-    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle max$" src="form_37.png"/> </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle min$" src="form_37.png"/> </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_number.html" title="A floating point number.">Number</a></td><td><img class="formulaInl" alt="$\displaystyle max$" src="form_38.png"/> </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle x \sim U(min,max)$" src="form_38.png"/> </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><img class="formulaInl" alt="$\displaystyle x \sim U(min,max)$" src="form_39.png"/> </dd></dl>
 
-<p>Definition at line <a class="el" href="math_8cpp_source.html#l00378">378</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
+<p>Definition at line <a class="el" href="math_8cpp_source.html#l00388">388</a> of file <a class="el" href="math_8cpp_source.html">math.cpp</a>.</p>
 
 </div>
 </div>

@@ -21,19 +21,20 @@
 \form#20:$\displaystyle x \equiv a \pmod{|b|},\quad 0 \leq x < |b|$
 \form#21:$\displaystyle \left\lfloor a \right\rfloor$
 \form#22:$\displaystyle \left\lceil a \right\rceil$
-\form#23:$\displaystyle \log_e a$
-\form#24:$\displaystyle \sqrt a$
-\form#25:$\displaystyle \sin a$
-\form#26:$\displaystyle \cos a$
-\form#27:$\displaystyle \tan a$
-\form#28:$\displaystyle \sinh a$
-\form#29:$\displaystyle \cosh a$
-\form#30:$\displaystyle \tanh a$
-\form#31:$\displaystyle \arcsin a$
-\form#32:$\displaystyle \arccos a$
-\form#33:$\displaystyle y$
-\form#34:$\displaystyle x$
-\form#35:$\displaystyle \arctan \frac y x$
-\form#36:$\displaystyle min$
-\form#37:$\displaystyle max$
-\form#38:$\displaystyle x \sim U(min,max)$
+\form#23:$\displaystyle \left\lfloor a + \frac12 \right\rfloor$
+\form#24:$\displaystyle \log_e a$
+\form#25:$\displaystyle \sqrt a$
+\form#26:$\displaystyle \sin a$
+\form#27:$\displaystyle \cos a$
+\form#28:$\displaystyle \tan a$
+\form#29:$\displaystyle \sinh a$
+\form#30:$\displaystyle \cosh a$
+\form#31:$\displaystyle \tanh a$
+\form#32:$\displaystyle \arcsin a$
+\form#33:$\displaystyle \arccos a$
+\form#34:$\displaystyle y$
+\form#35:$\displaystyle x$
+\form#36:$\displaystyle \arctan \frac y x$
+\form#37:$\displaystyle min$
+\form#38:$\displaystyle max$
+\form#39:$\displaystyle x \sim U(min,max)$

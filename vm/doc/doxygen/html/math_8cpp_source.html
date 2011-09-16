@@ -321,133 +321,143 @@
 <a name="l00257"></a>00257         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(ceil(a));
 <a name="l00258"></a>00258     }
 <a name="l00259"></a>00259     <span class="comment"></span>
-<a name="l00260"></a>00260 <span class="comment">    /// Calculate the natural logarithm of a Number.</span>
+<a name="l00260"></a>00260 <span class="comment">    /// Round a Number.</span>
 <a name="l00261"></a>00261 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00262"></a>00262 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00263"></a>00263 <span class="comment">     * \return \m{\log_e a}</span>
+<a name="l00263"></a>00263 <span class="comment">     * \return \m{\left\lfloor a + \frac12 \right\rfloor}</span>
 <a name="l00264"></a>00264 <span class="comment">     */</span>
-<a name="l00265"></a><a class="code" href="namespace_instructions.html#a33d15bc901660303dc346beb2908a170">00265</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a33d15bc901660303dc346beb2908a170" title="Calculate the natural logarithm of a Number.">LOG</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00265"></a><a class="code" href="namespace_instructions.html#ac8facadcc4c87be8e5b2d98d2cc630a2">00265</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac8facadcc4c87be8e5b2d98d2cc630a2" title="Round a Number.">ROUND</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00266"></a>00266         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00267"></a>00267         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(log(a));
+<a name="l00267"></a>00267         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(round(a));
 <a name="l00268"></a>00268     }
 <a name="l00269"></a>00269     <span class="comment"></span>
-<a name="l00270"></a>00270 <span class="comment">    /// Calculate the square root of a Number.</span>
+<a name="l00270"></a>00270 <span class="comment">    /// Calculate the natural logarithm of a Number.</span>
 <a name="l00271"></a>00271 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00272"></a>00272 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00273"></a>00273 <span class="comment">     * \return \m{\sqrt a}</span>
+<a name="l00273"></a>00273 <span class="comment">     * \return \m{\log_e a}</span>
 <a name="l00274"></a>00274 <span class="comment">     */</span>
-<a name="l00275"></a><a class="code" href="namespace_instructions.html#a8cb97d6371769b4c893dc5e6908e437d">00275</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8cb97d6371769b4c893dc5e6908e437d" title="Calculate the square root of a Number.">SQRT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00275"></a><a class="code" href="namespace_instructions.html#a33d15bc901660303dc346beb2908a170">00275</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a33d15bc901660303dc346beb2908a170" title="Calculate the natural logarithm of a Number.">LOG</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00276"></a>00276         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00277"></a>00277         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sqrt(a));
+<a name="l00277"></a>00277         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(log(a));
 <a name="l00278"></a>00278     }
 <a name="l00279"></a>00279     <span class="comment"></span>
-<a name="l00280"></a>00280 <span class="comment">    /// Calculate the sine of an angle.</span>
+<a name="l00280"></a>00280 <span class="comment">    /// Calculate the square root of a Number.</span>
 <a name="l00281"></a>00281 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00282"></a>00282 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00283"></a>00283 <span class="comment">     * \return \m{\sin a}</span>
+<a name="l00283"></a>00283 <span class="comment">     * \return \m{\sqrt a}</span>
 <a name="l00284"></a>00284 <span class="comment">     */</span>
-<a name="l00285"></a><a class="code" href="namespace_instructions.html#ac60869393ae0dd93bf811448ff704f00">00285</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac60869393ae0dd93bf811448ff704f00" title="Calculate the sine of an angle.">SIN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00285"></a><a class="code" href="namespace_instructions.html#a8cb97d6371769b4c893dc5e6908e437d">00285</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a8cb97d6371769b4c893dc5e6908e437d" title="Calculate the square root of a Number.">SQRT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00286"></a>00286         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00287"></a>00287         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sin(a));
+<a name="l00287"></a>00287         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sqrt(a));
 <a name="l00288"></a>00288     }
 <a name="l00289"></a>00289     <span class="comment"></span>
-<a name="l00290"></a>00290 <span class="comment">    /// Calculate the cosine of an angle.</span>
+<a name="l00290"></a>00290 <span class="comment">    /// Calculate the sine of an angle.</span>
 <a name="l00291"></a>00291 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00292"></a>00292 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00293"></a>00293 <span class="comment">     * \return \m{\cos a}</span>
+<a name="l00293"></a>00293 <span class="comment">     * \return \m{\sin a}</span>
 <a name="l00294"></a>00294 <span class="comment">     */</span>
-<a name="l00295"></a><a class="code" href="namespace_instructions.html#a636278140dc05cb386ae180dde81a4fb">00295</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a636278140dc05cb386ae180dde81a4fb" title="Calculate the cosine of an angle.">COS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00295"></a><a class="code" href="namespace_instructions.html#ac60869393ae0dd93bf811448ff704f00">00295</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac60869393ae0dd93bf811448ff704f00" title="Calculate the sine of an angle.">SIN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00296"></a>00296         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00297"></a>00297         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(cos(a));
+<a name="l00297"></a>00297         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sin(a));
 <a name="l00298"></a>00298     }
 <a name="l00299"></a>00299     <span class="comment"></span>
-<a name="l00300"></a>00300 <span class="comment">    /// Calculate the tangent of an angle.</span>
+<a name="l00300"></a>00300 <span class="comment">    /// Calculate the cosine of an angle.</span>
 <a name="l00301"></a>00301 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00302"></a>00302 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00303"></a>00303 <span class="comment">     * \return \m{\tan a}</span>
+<a name="l00303"></a>00303 <span class="comment">     * \return \m{\cos a}</span>
 <a name="l00304"></a>00304 <span class="comment">     */</span>
-<a name="l00305"></a><a class="code" href="namespace_instructions.html#a66198537939fc905d4a7b4c4b4234d20">00305</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a66198537939fc905d4a7b4c4b4234d20" title="Calculate the tangent of an angle.">TAN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00305"></a><a class="code" href="namespace_instructions.html#a636278140dc05cb386ae180dde81a4fb">00305</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a636278140dc05cb386ae180dde81a4fb" title="Calculate the cosine of an angle.">COS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00306"></a>00306         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00307"></a>00307         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(tan(a));
+<a name="l00307"></a>00307         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(cos(a));
 <a name="l00308"></a>00308     }
 <a name="l00309"></a>00309     <span class="comment"></span>
-<a name="l00310"></a>00310 <span class="comment">    /// Calculate the hyperbolic sine of an angle.</span>
+<a name="l00310"></a>00310 <span class="comment">    /// Calculate the tangent of an angle.</span>
 <a name="l00311"></a>00311 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00312"></a>00312 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00313"></a>00313 <span class="comment">     * \return \m{\sinh a}</span>
+<a name="l00313"></a>00313 <span class="comment">     * \return \m{\tan a}</span>
 <a name="l00314"></a>00314 <span class="comment">     */</span>
-<a name="l00315"></a><a class="code" href="namespace_instructions.html#a919f39e08759033148960256ba6c0c26">00315</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a919f39e08759033148960256ba6c0c26" title="Calculate the hyperbolic sine of an angle.">SINH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00315"></a><a class="code" href="namespace_instructions.html#a66198537939fc905d4a7b4c4b4234d20">00315</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a66198537939fc905d4a7b4c4b4234d20" title="Calculate the tangent of an angle.">TAN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00316"></a>00316         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00317"></a>00317         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sinh(a));
+<a name="l00317"></a>00317         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(tan(a));
 <a name="l00318"></a>00318     }
 <a name="l00319"></a>00319     <span class="comment"></span>
-<a name="l00320"></a>00320 <span class="comment">    /// Calculate the hyperbolic cosine of an angle.</span>
+<a name="l00320"></a>00320 <span class="comment">    /// Calculate the hyperbolic sine of an angle.</span>
 <a name="l00321"></a>00321 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00322"></a>00322 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00323"></a>00323 <span class="comment">     * \return \m{\cosh a}</span>
+<a name="l00323"></a>00323 <span class="comment">     * \return \m{\sinh a}</span>
 <a name="l00324"></a>00324 <span class="comment">     */</span>
-<a name="l00325"></a><a class="code" href="namespace_instructions.html#adb86dd95a897b243988425ab2e957b16">00325</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#adb86dd95a897b243988425ab2e957b16" title="Calculate the hyperbolic cosine of an angle.">COSH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00325"></a><a class="code" href="namespace_instructions.html#a919f39e08759033148960256ba6c0c26">00325</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a919f39e08759033148960256ba6c0c26" title="Calculate the hyperbolic sine of an angle.">SINH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00326"></a>00326         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00327"></a>00327         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(cosh(a));
+<a name="l00327"></a>00327         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(sinh(a));
 <a name="l00328"></a>00328     }
 <a name="l00329"></a>00329     <span class="comment"></span>
-<a name="l00330"></a>00330 <span class="comment">    /// Calculate the hyperbolic tangent of an angle.</span>
+<a name="l00330"></a>00330 <span class="comment">    /// Calculate the hyperbolic cosine of an angle.</span>
 <a name="l00331"></a>00331 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00332"></a>00332 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00333"></a>00333 <span class="comment">     * \return \m{\tanh a}</span>
+<a name="l00333"></a>00333 <span class="comment">     * \return \m{\cosh a}</span>
 <a name="l00334"></a>00334 <span class="comment">     */</span>
-<a name="l00335"></a><a class="code" href="namespace_instructions.html#a01bca941331b1a8402213df5fa8ebd6c">00335</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a01bca941331b1a8402213df5fa8ebd6c" title="Calculate the hyperbolic tangent of an angle.">TANH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00335"></a><a class="code" href="namespace_instructions.html#adb86dd95a897b243988425ab2e957b16">00335</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#adb86dd95a897b243988425ab2e957b16" title="Calculate the hyperbolic cosine of an angle.">COSH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00336"></a>00336         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00337"></a>00337         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(tanh(a));
+<a name="l00337"></a>00337         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(cosh(a));
 <a name="l00338"></a>00338     }
 <a name="l00339"></a>00339     <span class="comment"></span>
-<a name="l00340"></a>00340 <span class="comment">    /// Calculate the angle of a sine.</span>
+<a name="l00340"></a>00340 <span class="comment">    /// Calculate the hyperbolic tangent of an angle.</span>
 <a name="l00341"></a>00341 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00342"></a>00342 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00343"></a>00343 <span class="comment">     * \return \m{\arcsin a}</span>
+<a name="l00343"></a>00343 <span class="comment">     * \return \m{\tanh a}</span>
 <a name="l00344"></a>00344 <span class="comment">     */</span>
-<a name="l00345"></a><a class="code" href="namespace_instructions.html#a76c9881fa637d22a4078ce8d04e1416d">00345</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a76c9881fa637d22a4078ce8d04e1416d" title="Calculate the angle of a sine.">ASIN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00345"></a><a class="code" href="namespace_instructions.html#a01bca941331b1a8402213df5fa8ebd6c">00345</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a01bca941331b1a8402213df5fa8ebd6c" title="Calculate the hyperbolic tangent of an angle.">TANH</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00346"></a>00346         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00347"></a>00347         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(asin(a));
+<a name="l00347"></a>00347         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(tanh(a));
 <a name="l00348"></a>00348     }
 <a name="l00349"></a>00349     <span class="comment"></span>
-<a name="l00350"></a>00350 <span class="comment">    /// Calculate the angle of a cosine.</span>
+<a name="l00350"></a>00350 <span class="comment">    /// Calculate the angle of a sine.</span>
 <a name="l00351"></a>00351 <span class="comment"></span><span class="comment">    /**</span>
 <a name="l00352"></a>00352 <span class="comment">     * \param Number \m{a}</span>
-<a name="l00353"></a>00353 <span class="comment">     * \return \m{\arccos a}</span>
+<a name="l00353"></a>00353 <span class="comment">     * \return \m{\arcsin a}</span>
 <a name="l00354"></a>00354 <span class="comment">     */</span>
-<a name="l00355"></a><a class="code" href="namespace_instructions.html#a0df4f954cdb9f461ab6c175cf9db8247">00355</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a0df4f954cdb9f461ab6c175cf9db8247" title="Calculate the angle of a cosine.">ACOS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00355"></a><a class="code" href="namespace_instructions.html#a76c9881fa637d22a4078ce8d04e1416d">00355</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a76c9881fa637d22a4078ce8d04e1416d" title="Calculate the angle of a sine.">ASIN</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00356"></a>00356         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00357"></a>00357         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(acos(a));
+<a name="l00357"></a>00357         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(asin(a));
 <a name="l00358"></a>00358     }
 <a name="l00359"></a>00359     <span class="comment"></span>
-<a name="l00360"></a>00360 <span class="comment">    /// Calculate the angle of a tangent.</span>
+<a name="l00360"></a>00360 <span class="comment">    /// Calculate the angle of a cosine.</span>
 <a name="l00361"></a>00361 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00362"></a>00362 <span class="comment">     * \param Number \m{y}</span>
-<a name="l00363"></a>00363 <span class="comment">     * \param Number \m{x}</span>
-<a name="l00364"></a>00364 <span class="comment">     * \return \m{\arctan \frac y x}</span>
-<a name="l00365"></a>00365 <span class="comment">     */</span>
-<a name="l00366"></a><a class="code" href="namespace_instructions.html#ab181776edebd721554bcfdccbe2085fc">00366</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab181776edebd721554bcfdccbe2085fc" title="Calculate the angle of a tangent.">ATAN2</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00367"></a>00367         <a class="code" href="class_number.html" title="A floating point number.">Number</a> x = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00368"></a>00368         <a class="code" href="class_number.html" title="A floating point number.">Number</a> y = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00369"></a>00369         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(atan2(y,x));
-<a name="l00370"></a>00370     }
-<a name="l00371"></a>00371     <span class="comment"></span>
-<a name="l00372"></a>00372 <span class="comment">    /// Generate a (pseudo) random number.</span>
-<a name="l00373"></a>00373 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00374"></a>00374 <span class="comment">     * \param Number \m{min}</span>
-<a name="l00375"></a>00375 <span class="comment">     * \param Number \m{max}</span>
-<a name="l00376"></a>00376 <span class="comment">     * \return \m{x \sim U(min\,max)}</span>
-<a name="l00377"></a>00377 <span class="comment">     */</span>
-<a name="l00378"></a><a class="code" href="namespace_instructions.html#a93b5c6ea944d9b82448d15d5d5e99e44">00378</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a93b5c6ea944d9b82448d15d5d5e99e44" title="Generate a (pseudo) random number.">RND</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00379"></a>00379         <a class="code" href="class_number.html" title="A floating point number.">Number</a> max = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00380"></a>00380         <a class="code" href="class_number.html" title="A floating point number.">Number</a> min = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00381"></a>00381         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_random.html#a2c321c000ef8a8d3769bdecba468984c" title="Get a random Number.">Random::number</a>(min,max));
-<a name="l00382"></a>00382     }
-<a name="l00383"></a>00383     <span class="comment"></span>
-<a name="l00384"></a>00384 <span class="comment">    /// \}</span>
-<a name="l00385"></a>00385 <span class="comment"></span>    
-<a name="l00386"></a>00386 }
+<a name="l00362"></a>00362 <span class="comment">     * \param Number \m{a}</span>
+<a name="l00363"></a>00363 <span class="comment">     * \return \m{\arccos a}</span>
+<a name="l00364"></a>00364 <span class="comment">     */</span>
+<a name="l00365"></a><a class="code" href="namespace_instructions.html#a0df4f954cdb9f461ab6c175cf9db8247">00365</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a0df4f954cdb9f461ab6c175cf9db8247" title="Calculate the angle of a cosine.">ACOS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00366"></a>00366         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00367"></a>00367         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(acos(a));
+<a name="l00368"></a>00368     }
+<a name="l00369"></a>00369     <span class="comment"></span>
+<a name="l00370"></a>00370 <span class="comment">    /// Calculate the angle of a tangent.</span>
+<a name="l00371"></a>00371 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00372"></a>00372 <span class="comment">     * \param Number \m{y}</span>
+<a name="l00373"></a>00373 <span class="comment">     * \param Number \m{x}</span>
+<a name="l00374"></a>00374 <span class="comment">     * \return \m{\arctan \frac y x}</span>
+<a name="l00375"></a>00375 <span class="comment">     */</span>
+<a name="l00376"></a><a class="code" href="namespace_instructions.html#ab181776edebd721554bcfdccbe2085fc">00376</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab181776edebd721554bcfdccbe2085fc" title="Calculate the angle of a tangent.">ATAN2</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00377"></a>00377         <a class="code" href="class_number.html" title="A floating point number.">Number</a> x = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00378"></a>00378         <a class="code" href="class_number.html" title="A floating point number.">Number</a> y = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00379"></a>00379         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(atan2(y,x));
+<a name="l00380"></a>00380     }
+<a name="l00381"></a>00381     <span class="comment"></span>
+<a name="l00382"></a>00382 <span class="comment">    /// Generate a (pseudo) random number.</span>
+<a name="l00383"></a>00383 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00384"></a>00384 <span class="comment">     * \param Number \m{min}</span>
+<a name="l00385"></a>00385 <span class="comment">     * \param Number \m{max}</span>
+<a name="l00386"></a>00386 <span class="comment">     * \return \m{x \sim U(min\,max)}</span>
+<a name="l00387"></a>00387 <span class="comment">     */</span>
+<a name="l00388"></a><a class="code" href="namespace_instructions.html#a93b5c6ea944d9b82448d15d5d5e99e44">00388</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a93b5c6ea944d9b82448d15d5d5e99e44" title="Generate a (pseudo) random number.">RND</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00389"></a>00389         <a class="code" href="class_number.html" title="A floating point number.">Number</a> max = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00390"></a>00390         <a class="code" href="class_number.html" title="A floating point number.">Number</a> min = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00391"></a>00391         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_random.html#a2c321c000ef8a8d3769bdecba468984c" title="Get a random Number.">Random::number</a>(min,max));
+<a name="l00392"></a>00392     }
+<a name="l00393"></a>00393     <span class="comment"></span>
+<a name="l00394"></a>00394 <span class="comment">    /// \}</span>
+<a name="l00395"></a>00395 <span class="comment"></span>    
+<a name="l00396"></a>00396 }
 </pre></div></div>
 </div>
 
