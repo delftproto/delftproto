@@ -207,6 +207,53 @@ namespace Instructions {
 	}
 #endif
 	
+	namespace {
+		
+		void FUNCALL_end(Machine & machine){
+			Data result    = machine.stack.pop();
+			Size arguments = machine.stack.popNumber();
+			machine.environment.pop(arguments);
+			machine.stack.push(result);
+		}
+		
+	}
+	
+	/// Call a function.
+	/**
+	 * \param Int The number of arguments to pass to the function.
+	 * \param Data <tt>[n]</tt> The arguments.
+	 * \param Address The address of the function.
+	 * \return The return value of the function.
+	 */
+	template<int arguments>
+	void FUNCALL_N(Machine & machine){
+		Address function = machine.stack.popAddress();
+		for(Size i = 0; i < arguments; i++){
+			machine.environment.push(machine.stack.peek(arguments-i-1));
+		}
+		machine.stack.pop(arguments);
+		machine.stack.push(arguments);
+		machine.call(function,FUNCALL_end);
+	}
+	
+	/// Call a function.
+	/**
+	 * \param Int The number of arguments to pass to the function.
+	 * \param Data <tt>[n]</tt> The arguments.
+	 * \param Address The address of the function.
+	 * \return The return value of the function.
+	 */
+	void FUNCALL(Machine & machine){
+		Address function = machine.stack.popAddress();
+		Size arguments = machine.nextInt();
+		for(Size i = 0; i < arguments; i++){
+			machine.environment.push(machine.stack.peek(arguments-i-1));
+		}
+		machine.stack.pop(arguments);
+		machine.stack.push(arguments);
+		machine.call(function,FUNCALL_end);
+	}
+	
 	/// \}
 	
 }

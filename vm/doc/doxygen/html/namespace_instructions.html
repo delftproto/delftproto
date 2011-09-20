@@ -91,6 +91,11 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump to another address.  <a href="#a6b433f777802a63ed362e7460e5583b5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#aa0069d91d3fe550f15532a6bda1a7af0">JMP16</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Jump to another address.  <a href="#aa0069d91d3fe550f15532a6bda1a7af0"></a><br/></td></tr>
+<tr><td class="memTemplParams" colspan="2">template&lt;int arguments&gt; </td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#a7b217aaaa63b806b11c55a30e897b6c6">FUNCALL_N</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function.  <a href="#a7b217aaaa63b806b11c55a30e897b6c6"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ab63a0d8088d6788337613facc8a9a3ac">FUNCALL</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Call a function.  <a href="#ab63a0d8088d6788337613facc8a9a3ac"></a><br/></td></tr>
 <tr><td colspan="2"><div class="groupHeader">Environment stack</div></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;int index&gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespace_instructions.html#ad52122aeb7c42d2e12c16acb18d0c8dd">REF_N</a> (<a class="el" href="class_machine.html">Machine</a> &amp;machine)</td></tr>
@@ -646,6 +651,68 @@ Functions</h2></td></tr>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Implemented for MIT Proto compatibility. New scripts should use the similar <a class="el" href="namespace_instructions.html#a6b433f777802a63ed362e7460e5583b5">JMP</a> instead. </dd></dl>
 
 <p>Definition at line <a class="el" href="flow_8cpp_source.html#l00205">205</a> of file <a class="el" href="flow_8cpp_source.html">flow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b217aaaa63b806b11c55a30e897b6c6"></a><!-- doxytag: member="Instructions::FUNCALL_N" ref="a7b217aaaa63b806b11c55a30e897b6c6" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;int arguments&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::FUNCALL_N </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Call a function. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_int.html" title="A unsigned integer.">Int</a></td><td>The number of arguments to pass to the function. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_data.html" title="The main data type of the VM.">Data</a></td><td><code>[n]</code> The arguments. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a></td><td>The address of the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The return value of the function. </dd></dl>
+
+<p>Definition at line <a class="el" href="flow_8cpp_source.html#l00229">229</a> of file <a class="el" href="flow_8cpp_source.html">flow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab63a0d8088d6788337613facc8a9a3ac"></a><!-- doxytag: member="Instructions::FUNCALL" ref="ab63a0d8088d6788337613facc8a9a3ac" args="(Machine &amp;machine)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Instructions::FUNCALL </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_machine.html">Machine</a> &amp;&#160;</td>
+          <td class="paramname"><em>machine</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Call a function. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname"><a class="el" href="class_int.html" title="A unsigned integer.">Int</a></td><td>The number of arguments to pass to the function. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_data.html" title="The main data type of the VM.">Data</a></td><td><code>[n]</code> The arguments. </td></tr>
+    <tr><td class="paramname"><a class="el" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a></td><td>The address of the function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The return value of the function. </dd></dl>
+
+<p>Definition at line <a class="el" href="flow_8cpp_source.html#l00246">246</a> of file <a class="el" href="flow_8cpp_source.html">flow.cpp</a>.</p>
 
 </div>
 </div>

@@ -270,10 +270,57 @@
 <a name="l00206"></a>00206         machine.skip(machine.nextInt16());
 <a name="l00207"></a>00207     }
 <a name="l00208"></a>00208 <span class="preprocessor">#endif</span>
-<a name="l00209"></a>00209 <span class="preprocessor"></span>    <span class="comment"></span>
-<a name="l00210"></a>00210 <span class="comment">    /// \}</span>
-<a name="l00211"></a>00211 <span class="comment"></span>    
-<a name="l00212"></a>00212 }
+<a name="l00209"></a>00209 <span class="preprocessor"></span>    
+<a name="l00210"></a>00210     <span class="keyword">namespace </span>{
+<a name="l00211"></a>00211         
+<a name="l00212"></a>00212         <span class="keywordtype">void</span> FUNCALL_end(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00213"></a>00213             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result    = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00214"></a>00214             <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> arguments = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00215"></a>00215             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(arguments);
+<a name="l00216"></a>00216             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
+<a name="l00217"></a>00217         }
+<a name="l00218"></a>00218         
+<a name="l00219"></a>00219     }
+<a name="l00220"></a>00220     <span class="comment"></span>
+<a name="l00221"></a>00221 <span class="comment">    /// Call a function.</span>
+<a name="l00222"></a>00222 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00223"></a>00223 <span class="comment">     * \param Int The number of arguments to pass to the function.</span>
+<a name="l00224"></a>00224 <span class="comment">     * \param Data &lt;tt&gt;[n]&lt;/tt&gt; The arguments.</span>
+<a name="l00225"></a>00225 <span class="comment">     * \param Address The address of the function.</span>
+<a name="l00226"></a>00226 <span class="comment">     * \return The return value of the function.</span>
+<a name="l00227"></a>00227 <span class="comment">     */</span>
+<a name="l00228"></a>00228     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> arguments&gt;
+<a name="l00229"></a><a class="code" href="namespace_instructions.html#a7b217aaaa63b806b11c55a30e897b6c6">00229</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a7b217aaaa63b806b11c55a30e897b6c6" title="Call a function.">FUNCALL_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00230"></a>00230         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> <span class="keyword">function</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00231"></a>00231         <span class="keywordflow">for</span>(<a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> i = 0; i &lt; arguments; i++){
+<a name="l00232"></a>00232             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(arguments-i-1));
+<a name="l00233"></a>00233         }
+<a name="l00234"></a>00234         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(arguments);
+<a name="l00235"></a>00235         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(arguments);
+<a name="l00236"></a>00236         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(<span class="keyword">function</span>,FUNCALL_end);
+<a name="l00237"></a>00237     }
+<a name="l00238"></a>00238     <span class="comment"></span>
+<a name="l00239"></a>00239 <span class="comment">    /// Call a function.</span>
+<a name="l00240"></a>00240 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00241"></a>00241 <span class="comment">     * \param Int The number of arguments to pass to the function.</span>
+<a name="l00242"></a>00242 <span class="comment">     * \param Data &lt;tt&gt;[n]&lt;/tt&gt; The arguments.</span>
+<a name="l00243"></a>00243 <span class="comment">     * \param Address The address of the function.</span>
+<a name="l00244"></a>00244 <span class="comment">     * \return The return value of the function.</span>
+<a name="l00245"></a>00245 <span class="comment">     */</span>
+<a name="l00246"></a><a class="code" href="namespace_instructions.html#ab63a0d8088d6788337613facc8a9a3ac">00246</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab63a0d8088d6788337613facc8a9a3ac" title="Call a function.">FUNCALL</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00247"></a>00247         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> <span class="keyword">function</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popAddress();
+<a name="l00248"></a>00248         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> arguments = machine.nextInt();
+<a name="l00249"></a>00249         <span class="keywordflow">for</span>(<a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> i = 0; i &lt; arguments; i++){
+<a name="l00250"></a>00250             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(arguments-i-1));
+<a name="l00251"></a>00251         }
+<a name="l00252"></a>00252         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(arguments);
+<a name="l00253"></a>00253         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(arguments);
+<a name="l00254"></a>00254         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(<span class="keyword">function</span>,FUNCALL_end);
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256     <span class="comment"></span>
+<a name="l00257"></a>00257 <span class="comment">    /// \}</span>
+<a name="l00258"></a>00258 <span class="comment"></span>    
+<a name="l00259"></a>00259 }
 </pre></div></div>
 </div>
 
