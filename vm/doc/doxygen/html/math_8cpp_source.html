@@ -326,7 +326,7 @@
 <a name="l00262"></a>00262 <span class="comment">     */</span>
 <a name="l00263"></a><a class="code" href="namespace_instructions.html#ac8facadcc4c87be8e5b2d98d2cc630a2">00263</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ac8facadcc4c87be8e5b2d98d2cc630a2" title="Round a Number.">ROUND</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
 <a name="l00264"></a>00264         <a class="code" href="class_number.html" title="A floating point number.">Number</a> a = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
-<a name="l00265"></a>00265         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(round(a));
+<a name="l00265"></a>00265         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(rint(a));
 <a name="l00266"></a>00266     }
 <a name="l00267"></a>00267     <span class="comment"></span>
 <a name="l00268"></a>00268 <span class="comment">    /// Calculate the natural logarithm of a Number.</span>

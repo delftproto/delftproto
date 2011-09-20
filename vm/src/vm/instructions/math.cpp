@@ -262,7 +262,7 @@ namespace Instructions {
 	 */
 	void ROUND(Machine & machine){
 		Number a = machine.stack.popNumber();
-		machine.stack.push(round(a));
+		machine.stack.push(rint(a));
 	}
 	
 	/// Calculate the natural logarithm of a Number.
