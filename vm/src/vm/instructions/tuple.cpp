@@ -254,9 +254,9 @@ namespace Instructions {
 	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void VEC_MUL(Machine & machine){
-		Tuple & result = machine.globals[machine.nextInt8()].asTuple() = Tuple();
 		Tuple  b = machine.stack.popTuple ();
 		Number a = machine.stack.popNumber();
+		Tuple result(b.size());
 		for(Index i = 0; i < b.size(); i++) result.push(a * b[i].asNumber());
 		machine.stack.push(result);
 	}
