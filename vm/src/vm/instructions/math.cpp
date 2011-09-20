@@ -209,7 +209,6 @@ namespace Instructions {
 		machine.stack.push(pow(a,b));
 	}
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
 	/// Get the remainder of a Number divided by another.
 	/**
 	 * \param Number \m{a}
@@ -221,7 +220,6 @@ namespace Instructions {
 		Number a = machine.stack.popNumber();
 		machine.stack.push(fmod(a,b));
 	}
-#endif
 	
 	/// Get the (positive) remainder of a Number divided by another.
 	/**
