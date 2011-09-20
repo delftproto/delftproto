@@ -35,7 +35,8 @@ struct HoodInstructions {
 	
 	static void fold_hood_step(Machine & machine) {
 		machine.environment.pop(2);
-		if (++machine.current_neighbour != machine.hood.end()){
+		while(++machine.current_neighbour != machine.hood.end() && !machine.current_neighbour->imports[machine.current_import].isSet());
+		if (machine.current_neighbour != machine.hood.end()){
 			machine.environment.push(machine.stack.pop());
 			machine.environment.push(machine.current_neighbour->imports[machine.current_import]);
 			Address fuse = machine.stack.peek().asAddress();
@@ -63,7 +64,8 @@ struct HoodInstructions {
 	}
 	
 	static void fold_hood_filter_next(Machine & machine){
-		if (++machine.current_neighbour != machine.hood.end()){
+		while(++machine.current_neighbour != machine.hood.end() && !machine.current_neighbour->imports[machine.current_import].isSet());
+		if (machine.current_neighbour != machine.hood.end()){
 			machine.environment.push(machine.current_neighbour->imports[machine.current_import]);
 			Address filter = machine.stack.peek(1).asAddress();
 			machine.call(filter,fold_hood_plus_step_filter);

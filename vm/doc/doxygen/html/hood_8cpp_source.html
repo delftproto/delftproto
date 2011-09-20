@@ -99,164 +99,166 @@
 <a name="l00035"></a>00035     
 <a name="l00036"></a>00036     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_step(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
 <a name="l00037"></a>00037         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
-<a name="l00038"></a>00038         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
-<a name="l00039"></a>00039             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
-<a name="l00040"></a>00040             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
-<a name="l00041"></a>00041             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
-<a name="l00042"></a>00042             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_step);
-<a name="l00043"></a>00043         } <span class="keywordflow">else</span> {
-<a name="l00044"></a>00044             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
-<a name="l00045"></a>00045             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(1);
-<a name="l00046"></a>00046             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
-<a name="l00047"></a>00047         }
-<a name="l00048"></a>00048     }
-<a name="l00049"></a>00049     
-<a name="l00050"></a>00050     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
-<a name="l00051"></a>00051         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.nextInt();
-<a name="l00052"></a>00052         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
-<a name="l00053"></a>00053         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
-<a name="l00054"></a>00054         
-<a name="l00055"></a>00055         machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
-<a name="l00056"></a>00056         
-<a name="l00057"></a>00057         machine.thisMachine().imports[import_index] = export_value;
-<a name="l00058"></a>00058         
-<a name="l00059"></a>00059         machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.begin();
-<a name="l00060"></a>00060         
-<a name="l00061"></a>00061         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(export_value);
-<a name="l00062"></a>00062         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_first_filter);
-<a name="l00063"></a>00063     }
-<a name="l00064"></a>00064     
-<a name="l00065"></a>00065     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_filter_next(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00066"></a>00066         <span class="keywordflow">if</span> (++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
-<a name="l00067"></a>00067             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
-<a name="l00068"></a>00068             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
-<a name="l00069"></a>00069             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_step_filter);
-<a name="l00070"></a>00070         } <span class="keywordflow">else</span> {
-<a name="l00071"></a>00071             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
-<a name="l00072"></a>00072             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(2);
-<a name="l00073"></a>00073             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
-<a name="l00074"></a>00074         }
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076     
-<a name="l00077"></a>00077     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_first_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00078"></a>00078         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
-<a name="l00079"></a>00079         fold_hood_filter_next(machine);
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081     
-<a name="l00082"></a>00082     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00083"></a>00083         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
-<a name="l00084"></a>00084         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> <span class="keyword">import</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
-<a name="l00085"></a>00085         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
-<a name="l00086"></a>00086         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(<span class="keyword">import</span>);
-<a name="l00087"></a>00087         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse   = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
-<a name="l00088"></a>00088         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_plus_step_fuse);
-<a name="l00089"></a>00089     }
-<a name="l00090"></a>00090     
-<a name="l00091"></a>00091     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_fuse(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00092"></a>00092         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
-<a name="l00093"></a>00093         fold_hood_filter_next(machine);
-<a name="l00094"></a>00094     }
-<a name="l00095"></a>00095     
-<a name="l00096"></a>00096 };
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="keyword">namespace </span>Instructions {
-<a name="l00099"></a>00099     <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">    /// \name Hood instructions</span>
-<a name="l00101"></a>00101 <span class="comment">    /// \{</span>
-<a name="l00102"></a>00102 <span class="comment"></span>    <span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">    /// Get the ID of this machine.</span>
-<a name="l00104"></a>00104 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00105"></a>00105 <span class="comment">     * \return Number The (unique) ID of this machine.</span>
-<a name="l00106"></a>00106 <span class="comment">     */</span>
-<a name="l00107"></a><a class="code" href="namespace_instructions.html#a2ff6a877db25fa873a0e84e1db8b8ce5">00107</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2ff6a877db25fa873a0e84e1db8b8ce5" title="Get the ID of this machine.">MID</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00108"></a>00108         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb" title="The ID of this Machine.">id</a>);
-<a name="l00109"></a>00109     }
-<a name="l00110"></a>00110     <span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">    /// Fold all imported values for a specific neighbourhood variable and update the corresponding export.</span>
-<a name="l00112"></a>00112 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00113"></a>00113 <span class="comment">     * The fuse function is used to consecutively fuse the previous fuse result with the import value of the next neighbour.</span>
-<a name="l00114"></a>00114 <span class="comment">     * The import value from the first neighbour (ie. this machine) will be fused with the given starting value.</span>
-<a name="l00115"></a>00115 <span class="comment">     * </span>
-<a name="l00116"></a>00116 <span class="comment">     * The value of the neighbour hood variable (ie. export) of this machine is set before the folding process starts.</span>
+<a name="l00038"></a>00038         <span class="keywordflow">while</span>(++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end() &amp;&amp; !machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>].isSet());
+<a name="l00039"></a>00039         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
+<a name="l00040"></a>00040             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
+<a name="l00041"></a>00041             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
+<a name="l00042"></a>00042             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00043"></a>00043             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_step);
+<a name="l00044"></a>00044         } <span class="keywordflow">else</span> {
+<a name="l00045"></a>00045             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00046"></a>00046             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(1);
+<a name="l00047"></a>00047             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
+<a name="l00048"></a>00048         }
+<a name="l00049"></a>00049     }
+<a name="l00050"></a>00050     
+<a name="l00051"></a>00051     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine) {
+<a name="l00052"></a>00052         <a class="code" href="class_index.html" title="Used to represent positive offsets of memory arrays.">Index</a> import_index = machine.nextInt();
+<a name="l00053"></a>00053         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> export_value = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00054"></a>00054         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asAddress();
+<a name="l00055"></a>00055         
+<a name="l00056"></a>00056         machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a> = import_index;
+<a name="l00057"></a>00057         
+<a name="l00058"></a>00058         machine.thisMachine().imports[import_index] = export_value;
+<a name="l00059"></a>00059         
+<a name="l00060"></a>00060         machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> = machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.begin();
+<a name="l00061"></a>00061         
+<a name="l00062"></a>00062         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(export_value);
+<a name="l00063"></a>00063         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_first_filter);
+<a name="l00064"></a>00064     }
+<a name="l00065"></a>00065     
+<a name="l00066"></a>00066     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_filter_next(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00067"></a>00067         <span class="keywordflow">while</span>(++machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end() &amp;&amp; !machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>].isSet());
+<a name="l00068"></a>00068         <span class="keywordflow">if</span> (machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a> != machine.<a class="code" href="class_machine.html#ad93cfc43a03588c3ed3a11f873f1bac2" title="The list of all the neighbours.">hood</a>.end()){
+<a name="l00069"></a>00069             machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a5fea1fa6f8f8c56d9f630cae52bac72e" title="The current neighbour, when iterating through them.">current_neighbour</a>-&gt;imports[machine.<a class="code" href="class_machine.html#adcc8422a2ed0d485b0f3e9650e156a08" title="The (index of the) current import/export, when executing a hood instruction.">current_import</a>]);
+<a name="l00070"></a>00070             <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> filter = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00071"></a>00071             machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(filter,fold_hood_plus_step_filter);
+<a name="l00072"></a>00072         } <span class="keywordflow">else</span> {
+<a name="l00073"></a>00073             <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> result = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00074"></a>00074             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop(2);
+<a name="l00075"></a>00075             machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(result);
+<a name="l00076"></a>00076         }
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078     
+<a name="l00079"></a>00079     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_first_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00080"></a>00080         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
+<a name="l00081"></a>00081         fold_hood_filter_next(machine);
+<a name="l00082"></a>00082     }
+<a name="l00083"></a>00083     
+<a name="l00084"></a>00084     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_filter(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00085"></a>00085         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(1);
+<a name="l00086"></a>00086         <a class="code" href="class_data.html" title="The main data type of the VM.">Data</a> <span class="keyword">import</span> = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop();
+<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.pop());
+<a name="l00088"></a>00088         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.push(<span class="keyword">import</span>);
+<a name="l00089"></a>00089         <a class="code" href="class_address.html" title="An address of a constant series of bytes in memory.">Address</a> fuse   = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek(1).asAddress();
+<a name="l00090"></a>00090         machine.<a class="code" href="class_machine.html#a58c1609705940043e523283d19a8d4dd" title="Call a function.">call</a>(fuse,fold_hood_plus_step_fuse);
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092     
+<a name="l00093"></a>00093     <span class="keyword">static</span> <span class="keywordtype">void</span> fold_hood_plus_step_fuse(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00094"></a>00094         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.pop(2);
+<a name="l00095"></a>00095         fold_hood_filter_next(machine);
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097     
+<a name="l00098"></a>00098 };
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100 <span class="keyword">namespace </span>Instructions {
+<a name="l00101"></a>00101     <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">    /// \name Hood instructions</span>
+<a name="l00103"></a>00103 <span class="comment">    /// \{</span>
+<a name="l00104"></a>00104 <span class="comment"></span>    <span class="comment"></span>
+<a name="l00105"></a>00105 <span class="comment">    /// Get the ID of this machine.</span>
+<a name="l00106"></a>00106 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00107"></a>00107 <span class="comment">     * \return Number The (unique) ID of this machine.</span>
+<a name="l00108"></a>00108 <span class="comment">     */</span>
+<a name="l00109"></a><a class="code" href="namespace_instructions.html#a2ff6a877db25fa873a0e84e1db8b8ce5">00109</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2ff6a877db25fa873a0e84e1db8b8ce5" title="Get the ID of this machine.">MID</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00110"></a>00110         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.<a class="code" href="class_machine.html#aa5c97abe3cf67980c24f1418745382eb" title="The ID of this Machine.">id</a>);
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112     <span class="comment"></span>
+<a name="l00113"></a>00113 <span class="comment">    /// Fold all imported values for a specific neighbourhood variable and update the corresponding export.</span>
+<a name="l00114"></a>00114 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00115"></a>00115 <span class="comment">     * The fuse function is used to consecutively fuse the previous fuse result with the import value of the next neighbour.</span>
+<a name="l00116"></a>00116 <span class="comment">     * The import value from the first neighbour (ie. this machine) will be fused with the given starting value.</span>
 <a name="l00117"></a>00117 <span class="comment">     * </span>
-<a name="l00118"></a>00118 <span class="comment">     * For example, a neighbourhood with three neighbours (including this machine) is folded like this:</span>
-<a name="l00119"></a>00119 <span class="comment">     * \dot</span>
-<a name="l00120"></a>00120 <span class="comment">     * digraph Folding {</span>
-<a name="l00121"></a>00121 <span class="comment">     *   node [fontsize=10,width=0,height=0];</span>
-<a name="l00122"></a>00122 <span class="comment">     *   start -&gt; a -&gt; b -&gt; c -&gt; result;</span>
-<a name="l00123"></a>00123 <span class="comment">     *   &quot;new export value&quot; -&gt; &quot;export of this machine&quot; -&gt; a;</span>
-<a name="l00124"></a>00124 <span class="comment">     *   &quot;import of neighbour 1&quot; -&gt; b;</span>
-<a name="l00125"></a>00125 <span class="comment">     *   &quot;import of neighbour 2&quot; -&gt; c;</span>
-<a name="l00126"></a>00126 <span class="comment">     *   a [shape=box,label=fuse];</span>
-<a name="l00127"></a>00127 <span class="comment">     *   b [shape=box,label=fuse];</span>
-<a name="l00128"></a>00128 <span class="comment">     *   c [shape=box,label=fuse];</span>
-<a name="l00129"></a>00129 <span class="comment">     * }</span>
-<a name="l00130"></a>00130 <span class="comment">     * \enddot</span>
-<a name="l00131"></a>00131 <span class="comment">     * </span>
-<a name="l00132"></a>00132 <span class="comment">     * \deprecated Implemented for MIT Proto compatibility.</span>
-<a name="l00133"></a>00133 <span class="comment">     * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)</span>
-<a name="l00134"></a>00134 <span class="comment">     * </span>
-<a name="l00135"></a>00135 <span class="comment">     * \param Int The index of the neighbourhood (ie. import/export) variable.</span>
-<a name="l00136"></a>00136 <span class="comment">     * \param Address The (address of the) fuse function. (The fold function must take two parameters.)</span>
-<a name="l00137"></a>00137 <span class="comment">     * \param Data The value to start with.</span>
-<a name="l00138"></a>00138 <span class="comment">     * \param Data The new export value for this Machine.</span>
-<a name="l00139"></a>00139 <span class="comment">     * </span>
-<a name="l00140"></a>00140 <span class="comment">     * \return Data the result of the folding process.</span>
-<a name="l00141"></a>00141 <span class="comment">     */</span>
-<a name="l00142"></a><a class="code" href="namespace_instructions.html#a1ac861288830267d5dea5335dd571d34">00142</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1ac861288830267d5dea5335dd571d34" title="Fold all imported values for a specific neighbourhood variable and update the corresponding export...">FOLD_HOOD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00143"></a>00143         HoodInstructions::fold_hood(machine);
-<a name="l00144"></a>00144     }
-<a name="l00145"></a>00145     <span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">    /// \deprecated_mitproto</span>
-<a name="l00147"></a><a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34">00147</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00148"></a>00148         machine.nextInt();
-<a name="l00149"></a>00149         HoodInstructions::fold_hood(machine);
-<a name="l00150"></a>00150     }
-<a name="l00151"></a>00151     <span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">    /// Filter and fold all imported values for a specific neighbourhood variable and update the corresponding export.</span>
-<a name="l00153"></a>00153 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00154"></a>00154 <span class="comment">     * The fuse function is used to consecutively fuse the previous fuse result with result of the filter applied to the import value of the next neighbour.</span>
-<a name="l00155"></a>00155 <span class="comment">     * </span>
-<a name="l00156"></a>00156 <span class="comment">     * The value of the neighbour hood variable (ie. export) of this machine is set before the folding process starts.</span>
+<a name="l00118"></a>00118 <span class="comment">     * The value of the neighbour hood variable (ie. export) of this machine is set before the folding process starts.</span>
+<a name="l00119"></a>00119 <span class="comment">     * </span>
+<a name="l00120"></a>00120 <span class="comment">     * For example, a neighbourhood with three neighbours (including this machine) is folded like this:</span>
+<a name="l00121"></a>00121 <span class="comment">     * \dot</span>
+<a name="l00122"></a>00122 <span class="comment">     * digraph Folding {</span>
+<a name="l00123"></a>00123 <span class="comment">     *   node [fontsize=10,width=0,height=0];</span>
+<a name="l00124"></a>00124 <span class="comment">     *   start -&gt; a -&gt; b -&gt; c -&gt; result;</span>
+<a name="l00125"></a>00125 <span class="comment">     *   &quot;new export value&quot; -&gt; &quot;export of this machine&quot; -&gt; a;</span>
+<a name="l00126"></a>00126 <span class="comment">     *   &quot;import of neighbour 1&quot; -&gt; b;</span>
+<a name="l00127"></a>00127 <span class="comment">     *   &quot;import of neighbour 2&quot; -&gt; c;</span>
+<a name="l00128"></a>00128 <span class="comment">     *   a [shape=box,label=fuse];</span>
+<a name="l00129"></a>00129 <span class="comment">     *   b [shape=box,label=fuse];</span>
+<a name="l00130"></a>00130 <span class="comment">     *   c [shape=box,label=fuse];</span>
+<a name="l00131"></a>00131 <span class="comment">     * }</span>
+<a name="l00132"></a>00132 <span class="comment">     * \enddot</span>
+<a name="l00133"></a>00133 <span class="comment">     * </span>
+<a name="l00134"></a>00134 <span class="comment">     * \deprecated Implemented for MIT Proto compatibility.</span>
+<a name="l00135"></a>00135 <span class="comment">     * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)</span>
+<a name="l00136"></a>00136 <span class="comment">     * </span>
+<a name="l00137"></a>00137 <span class="comment">     * \param Int The index of the neighbourhood (ie. import/export) variable.</span>
+<a name="l00138"></a>00138 <span class="comment">     * \param Address The (address of the) fuse function. (The fold function must take two parameters.)</span>
+<a name="l00139"></a>00139 <span class="comment">     * \param Data The value to start with.</span>
+<a name="l00140"></a>00140 <span class="comment">     * \param Data The new export value for this Machine.</span>
+<a name="l00141"></a>00141 <span class="comment">     * </span>
+<a name="l00142"></a>00142 <span class="comment">     * \return Data the result of the folding process.</span>
+<a name="l00143"></a>00143 <span class="comment">     */</span>
+<a name="l00144"></a><a class="code" href="namespace_instructions.html#a1ac861288830267d5dea5335dd571d34">00144</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a1ac861288830267d5dea5335dd571d34" title="Fold all imported values for a specific neighbourhood variable and update the corresponding export...">FOLD_HOOD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00145"></a>00145         HoodInstructions::fold_hood(machine);
+<a name="l00146"></a>00146     }
+<a name="l00147"></a>00147     <span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">    /// \deprecated_mitproto</span>
+<a name="l00149"></a><a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34">00149</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab4760f901c7952ba3214a7a914611d34" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00150"></a>00150         machine.nextInt();
+<a name="l00151"></a>00151         HoodInstructions::fold_hood(machine);
+<a name="l00152"></a>00152     }
+<a name="l00153"></a>00153     <span class="comment"></span>
+<a name="l00154"></a>00154 <span class="comment">    /// Filter and fold all imported values for a specific neighbourhood variable and update the corresponding export.</span>
+<a name="l00155"></a>00155 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00156"></a>00156 <span class="comment">     * The fuse function is used to consecutively fuse the previous fuse result with result of the filter applied to the import value of the next neighbour.</span>
 <a name="l00157"></a>00157 <span class="comment">     * </span>
-<a name="l00158"></a>00158 <span class="comment">     * For example, a neighbourhood with three neighbours (including this machine) is folded like this:</span>
-<a name="l00159"></a>00159 <span class="comment">     * \dot</span>
-<a name="l00160"></a>00160 <span class="comment">     * digraph Folding {</span>
-<a name="l00161"></a>00161 <span class="comment">     *   node [fontsize=10,width=0,height=0];</span>
-<a name="l00162"></a>00162 <span class="comment">     *   &quot;new export value&quot; -&gt; &quot;export of this machine&quot; -&gt; x -&gt; b -&gt; c -&gt; result;</span>
-<a name="l00163"></a>00163 <span class="comment">     *   &quot;import of neighbour 1&quot; -&gt; y -&gt; b;</span>
-<a name="l00164"></a>00164 <span class="comment">     *   &quot;import of neighbour 2&quot; -&gt; z -&gt; c;</span>
-<a name="l00165"></a>00165 <span class="comment">     *   b [shape=box,label=fuse];</span>
-<a name="l00166"></a>00166 <span class="comment">     *   c [shape=box,label=fuse];</span>
-<a name="l00167"></a>00167 <span class="comment">     *   x [shape=box,label=filter];</span>
-<a name="l00168"></a>00168 <span class="comment">     *   y [shape=box,label=filter];</span>
-<a name="l00169"></a>00169 <span class="comment">     *   z [shape=box,label=filter];</span>
-<a name="l00170"></a>00170 <span class="comment">     * }</span>
-<a name="l00171"></a>00171 <span class="comment">     * \enddot</span>
-<a name="l00172"></a>00172 <span class="comment">     * </span>
-<a name="l00173"></a>00173 <span class="comment">     * \deprecated Implemented for MIT Proto compatibility.</span>
-<a name="l00174"></a>00174 <span class="comment">     * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)</span>
-<a name="l00175"></a>00175 <span class="comment">     * </span>
-<a name="l00176"></a>00176 <span class="comment">     * \param Int The index of the neighbourhood (ie. import/export) variable.</span>
-<a name="l00177"></a>00177 <span class="comment">     * \param Address The (address of the) fuse function. (The fold function must take two parameters.)</span>
-<a name="l00178"></a>00178 <span class="comment">     * \param Address The (address of the) filter function. (The filter function must take one parameter.)</span>
-<a name="l00179"></a>00179 <span class="comment">     * \param Data The new export value for this Machine.</span>
-<a name="l00180"></a>00180 <span class="comment">     * </span>
-<a name="l00181"></a>00181 <span class="comment">     * \return Data the result of the folding process.</span>
-<a name="l00182"></a>00182 <span class="comment">     */</span>
-<a name="l00183"></a><a class="code" href="namespace_instructions.html#ab745f22299f2069de020c66e81247adb">00183</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab745f22299f2069de020c66e81247adb" title="Filter and fold all imported values for a specific neighbourhood variable and update the correspondin...">FOLD_HOOD_PLUS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00184"></a>00184         HoodInstructions::fold_hood_plus(machine);
-<a name="l00185"></a>00185     }
-<a name="l00186"></a>00186     <span class="comment"></span>
-<a name="l00187"></a>00187 <span class="comment">    /// \deprecated_mitproto</span>
-<a name="l00188"></a><a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484">00188</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD_PLUS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00189"></a>00189         machine.nextInt();
-<a name="l00190"></a>00190         HoodInstructions::fold_hood_plus(machine);
-<a name="l00191"></a>00191     }
-<a name="l00192"></a>00192     <span class="comment"></span>
-<a name="l00193"></a>00193 <span class="comment">    /// \}</span>
-<a name="l00194"></a>00194 <span class="comment"></span>    
-<a name="l00195"></a>00195 }
+<a name="l00158"></a>00158 <span class="comment">     * The value of the neighbour hood variable (ie. export) of this machine is set before the folding process starts.</span>
+<a name="l00159"></a>00159 <span class="comment">     * </span>
+<a name="l00160"></a>00160 <span class="comment">     * For example, a neighbourhood with three neighbours (including this machine) is folded like this:</span>
+<a name="l00161"></a>00161 <span class="comment">     * \dot</span>
+<a name="l00162"></a>00162 <span class="comment">     * digraph Folding {</span>
+<a name="l00163"></a>00163 <span class="comment">     *   node [fontsize=10,width=0,height=0];</span>
+<a name="l00164"></a>00164 <span class="comment">     *   &quot;new export value&quot; -&gt; &quot;export of this machine&quot; -&gt; x -&gt; b -&gt; c -&gt; result;</span>
+<a name="l00165"></a>00165 <span class="comment">     *   &quot;import of neighbour 1&quot; -&gt; y -&gt; b;</span>
+<a name="l00166"></a>00166 <span class="comment">     *   &quot;import of neighbour 2&quot; -&gt; z -&gt; c;</span>
+<a name="l00167"></a>00167 <span class="comment">     *   b [shape=box,label=fuse];</span>
+<a name="l00168"></a>00168 <span class="comment">     *   c [shape=box,label=fuse];</span>
+<a name="l00169"></a>00169 <span class="comment">     *   x [shape=box,label=filter];</span>
+<a name="l00170"></a>00170 <span class="comment">     *   y [shape=box,label=filter];</span>
+<a name="l00171"></a>00171 <span class="comment">     *   z [shape=box,label=filter];</span>
+<a name="l00172"></a>00172 <span class="comment">     * }</span>
+<a name="l00173"></a>00173 <span class="comment">     * \enddot</span>
+<a name="l00174"></a>00174 <span class="comment">     * </span>
+<a name="l00175"></a>00175 <span class="comment">     * \deprecated Implemented for MIT Proto compatibility.</span>
+<a name="l00176"></a>00176 <span class="comment">     * \note There is currently no way of doing this without using deprecated instructions. (This will be fixed soon.)</span>
+<a name="l00177"></a>00177 <span class="comment">     * </span>
+<a name="l00178"></a>00178 <span class="comment">     * \param Int The index of the neighbourhood (ie. import/export) variable.</span>
+<a name="l00179"></a>00179 <span class="comment">     * \param Address The (address of the) fuse function. (The fold function must take two parameters.)</span>
+<a name="l00180"></a>00180 <span class="comment">     * \param Address The (address of the) filter function. (The filter function must take one parameter.)</span>
+<a name="l00181"></a>00181 <span class="comment">     * \param Data The new export value for this Machine.</span>
+<a name="l00182"></a>00182 <span class="comment">     * </span>
+<a name="l00183"></a>00183 <span class="comment">     * \return Data the result of the folding process.</span>
+<a name="l00184"></a>00184 <span class="comment">     */</span>
+<a name="l00185"></a><a class="code" href="namespace_instructions.html#ab745f22299f2069de020c66e81247adb">00185</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ab745f22299f2069de020c66e81247adb" title="Filter and fold all imported values for a specific neighbourhood variable and update the correspondin...">FOLD_HOOD_PLUS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00186"></a>00186         HoodInstructions::fold_hood_plus(machine);
+<a name="l00187"></a>00187     }
+<a name="l00188"></a>00188     <span class="comment"></span>
+<a name="l00189"></a>00189 <span class="comment">    /// \deprecated_mitproto</span>
+<a name="l00190"></a><a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484">00190</a> <span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfa9c5e0b4732033cf351893ac4de484" title="Only here for MIT Proto compatibility, deprecated.">VFOLD_HOOD_PLUS</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00191"></a>00191         machine.nextInt();
+<a name="l00192"></a>00192         HoodInstructions::fold_hood_plus(machine);
+<a name="l00193"></a>00193     }
+<a name="l00194"></a>00194     <span class="comment"></span>
+<a name="l00195"></a>00195 <span class="comment">    /// \}</span>
+<a name="l00196"></a>00196 <span class="comment"></span>    
+<a name="l00197"></a>00197 }
 </pre></div></div>
 </div>
 
