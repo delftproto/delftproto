@@ -74,10 +74,6 @@ class BasicMachine {
 		/** \memberof Machine */
 		Time start_time;
 		
-		/// Boolean indicating whether execution (installation or a single run) has finished.
-		/** \memberof Machine */
-		bool is_finished;
-		
 		/// The callback stack.
 		/**
 		 * \see call
@@ -296,7 +292,6 @@ class Machine : public ExtendedMachine {
 			 */
 			inline void install(Script script) {
 				this->script = script;
-				is_finished = false;
 				jump(Address(script));
 				callbacks.push(0);
 			}
@@ -309,13 +304,11 @@ class Machine : public ExtendedMachine {
 			 */
 			inline void run(Time start) {
 				start_time = start;
-				is_finished = true;
 				for(Size i = 0; i < threads.size(); i++){
 					if (threads[current_thread].pending()){
 						threads[current_thread].untrigger();
 						jump(globals.peek(current_thread).asAddress());
 						callbacks.push(run_callback);
-						is_finished = false;
 						return;
 					}
 					current_thread++;
