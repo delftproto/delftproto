@@ -60,11 +60,12 @@ namespace Instructions {
 #if MIT_COMPATIBILITY != NO_MIT
 	/// \deprecated_mitproto{FAB_TUP}
 	void TUP(Machine & machine){
-		Index index = machine.nextInt8();
+		machine.nextInt8();
 		Size elements = machine.nextInt8();
-		for(Index i = 0; i < elements; i++) machine.globals[index].asTuple()[i] = machine.stack.peek(elements-1-i);
+		Tuple tuple(elements);
+		for(Index i = 0; i < elements; i++) tuple.push(machine.stack.peek(elements-1-i));
 		machine.stack.pop(elements);
-		machine.stack.push(machine.globals[index]);
+		machine.stack.push(tuple);
 	}
 #endif
 	
@@ -120,12 +121,13 @@ namespace Instructions {
 #if MIT_COMPATIBILITY != NO_MIT
 	/// \deprecated_mitproto{VEC_ADD}
 	void VADD(Machine & machine){
+		machine.nextInt8();
 		Tuple b = machine.stack.popTuple();
 		Tuple a = machine.stack.popTuple();
 		Size min_size = a.size() < b.size() ? a.size() : b.size();
 		Size max_size = a.size() < b.size() ? b.size() : a.size();
 		Tuple & largest = a.size() < b.size() ? b : a;
-		Tuple & result = machine.globals[machine.nextInt8()].asTuple() = Tuple(max_size);
+		Tuple result(max_size);
 		for(Index i = 0       ; i < min_size; i++) result.push(a[i].asNumber() + b[i].asNumber());
 		for(Index i = min_size; i < max_size; i++) result.push(largest[i].asNumber());
 		machine.stack.push(result);
@@ -133,13 +135,14 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto{VEC_SUB}
 	void VSUB(Machine & machine){
+		machine.nextInt8();
 		Tuple b = machine.stack.popTuple();
 		Tuple a = machine.stack.popTuple();
 		Size min_size     = a.size() < b.size() ? a.size() : b.size();
 		Size max_size     = a.size() < b.size() ? b.size() : a.size();
 		Tuple & largest     = a.size() < b.size() ? b        : a       ;
 		Number padding_sign = a.size() < b.size() ? -1       : 1       ;
-		Tuple & result = machine.globals[machine.nextInt8()].asTuple() = Tuple(max_size);
+		Tuple result(max_size);
 		for(Index i = 0       ; i < min_size; i++) result.push(a[i].asNumber() - b[i].asNumber());
 		for(Index i = min_size; i < max_size; i++) result.push(padding_sign * largest[i].asNumber());
 		machine.stack.push(result);
@@ -157,21 +160,23 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto{VEC_MUL}
 	void VMUL(Machine & machine){
-		Tuple & result = machine.globals[machine.nextInt8()].asTuple() = Tuple();
+		machine.nextInt8();
 		Tuple  b = machine.stack.popTuple ();
 		Number a = machine.stack.popNumber();
+		Tuple result(b.size());
 		for(Index i = 0; i < b.size(); i++) result.push(a * b[i].asNumber());
 		machine.stack.push(result);
 	}
 	
 	/// \deprecated_mitproto
 	void VSLICE(Machine & machine){
-		Tuple & result = machine.globals[machine.nextInt8()].asTuple() = Tuple();
+		machine.nextInt8();
 		Tuple source = machine.stack.popTuple();
 		Index start = machine.stack.popNumber();
 		Index stop  = machine.stack.popNumber();
 		start = start >= 0 ? start : source.size() + start;
 		stop  = stop  >= 0 ? stop  : source.size() + stop ;
+		Tuple result(stop-start);
 		for(Index i = start; i < stop; i++) result.push(source[i].asNumber());
 		machine.stack.push(result);
 	}
