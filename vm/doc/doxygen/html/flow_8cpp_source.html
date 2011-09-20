@@ -105,7 +105,7 @@
 <a name="l00041"></a>00041         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a>       stack_size = machine.nextInt16();
 <a name="l00042"></a>00042         <a class="code" href="class_size.html" title="Used to represent sizes/counts of things in memory.">Size</a> environment_size = machine.nextInt8 ();
 <a name="l00043"></a>00043         
-<a name="l00044"></a>00044         machine.      stack.reset(      stack_size);
+<a name="l00044"></a>00044         machine.      stack.reset(   stack_size+20); <span class="comment">// MIT Proto calculates the stack size slightly different than how DelftProto uses it. Add 20 to be safe.</span>
 <a name="l00045"></a>00045         machine.<a class="code" href="class_machine.html#a11f99378f85a083c5de1cc60958188ef" title="The environment stack.">environment</a>.reset(environment_size);
 <a name="l00046"></a>00046         machine.    globals.reset(    globals_size);
 <a name="l00047"></a>00047         machine.    threads.reset(               1);
