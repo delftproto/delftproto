@@ -42,7 +42,7 @@ namespace Instructions {
 	 * \warning Currently, the scheduler ignores this setting.
 	 */
 	void SET_DT(Machine & machine){
-		Number dt = machine.stack.popNumber();
+		Number dt = machine.stack.peek().asNumber();
 		machine.currentThread().desired_period = dt;
 	}
 	

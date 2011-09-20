@@ -106,7 +106,7 @@
 <a name="l00042"></a>00042 <span class="comment">     * \warning Currently, the scheduler ignores this setting.</span>
 <a name="l00043"></a>00043 <span class="comment">     */</span>
 <a name="l00044"></a><a class="code" href="namespace_instructions.html#a2d968d1dabd134098e5680d1c0fb322b">00044</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a2d968d1dabd134098e5680d1c0fb322b" title="Set the desired period of a thread.">SET_DT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00045"></a>00045         <a class="code" href="class_number.html" title="A floating point number.">Number</a> dt = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.popNumber();
+<a name="l00045"></a>00045         <a class="code" href="class_number.html" title="A floating point number.">Number</a> dt = machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.peek().asNumber();
 <a name="l00046"></a>00046         machine.currentThread().desired_period = dt;
 <a name="l00047"></a>00047     }
 <a name="l00048"></a>00048     
