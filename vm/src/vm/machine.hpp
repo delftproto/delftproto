@@ -190,9 +190,6 @@ class BasicMachine {
 			 */
 			/** \memberof Machine */
 			inline Int nextInt() {
-#if MIT_COMPATIBILITY == MIT_ONLY
-				return nextInt8();
-#else
 				Int value = 0;
 				while(true){
 					Int8 next = *instruction_pointer++;
@@ -201,7 +198,6 @@ class BasicMachine {
 					else break;
 				}
 				return value;
-#endif
 			}
 			
 			/// Read the next byte as an unsigned 8-bit integer.

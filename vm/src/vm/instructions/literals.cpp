@@ -20,7 +20,6 @@ namespace Instructions {
 	/// \name Literals
 	/// \{
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
 	/// Literal Number.
 	/**
 	 * \param Int The value.
@@ -29,7 +28,6 @@ namespace Instructions {
 	void LIT(Machine & machine){
 		machine.stack.push(machine.nextInt());
 	}
-#endif
 	
 #if MIT_COMPATIBILITY != NO_MIT
 	/// Literal Number.
