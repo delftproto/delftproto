@@ -14,24 +14,6 @@
 #include <machine.hpp>
 #include <instructions.hpp>
 
-namespace {
-	inline int compareVectors(Tuple const & a, Tuple const & b){
-		Size size = a.size() > b.size() ? a.size() : b.size();
-		for(Index i = 0; i < size; i++){
-			Number a_element = i < a.size() ? a[i].asNumber() : 0;
-			Number b_element = i < b.size() ? b[i].asNumber() : 0;
-			if      (a_element < b_element) return -1;
-			else if (a_element > b_element) return  1;
-		}
-		return 0;
-	}
-	int compareVectors(Machine & machine){
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		return compareVectors(a,b);
-	}
-}
-
 namespace Instructions {
 	
 	/// \name Tuple instructions
@@ -113,13 +95,16 @@ namespace Instructions {
 	/**
 	 * \param Tuple The tuple.
 	 * \return Number The number of elements in the tuple.
+	 * 
+	 * \note If a Number was given as parameter, 1 is returned.
 	 */
 	void LEN(Machine & machine){
-		machine.stack.push(machine.stack.popTuple().size());
+		Data a = machine.stack.pop();
+		machine.stack.push(a.type() == Data::Type_number ? 1 : a.asTuple().size());
 	}
 	
 #if MIT_COMPATIBILITY != NO_MIT
-	/// \deprecated_mitproto{VEC_ADD}
+	/// \deprecated_mitproto{ADD}
 	void VADD(Machine & machine){
 		machine.nextInt8();
 		Tuple b = machine.stack.popTuple();
@@ -133,7 +118,7 @@ namespace Instructions {
 		machine.stack.push(result);
 	}
 	
-	/// \deprecated_mitproto{VEC_SUB}
+	/// \deprecated_mitproto{SUB}
 	void VSUB(Machine & machine){
 		machine.nextInt8();
 		Tuple b = machine.stack.popTuple();
@@ -148,7 +133,7 @@ namespace Instructions {
 		machine.stack.push(result);
 	}
 	
-	/// \deprecated_mitproto{VEC_DOT}
+	/// \deprecated_mitproto{DOT}
 	void VDOT(Machine & machine){
 		Number result = 0;
 		Tuple b = machine.stack.popTuple();
@@ -158,7 +143,7 @@ namespace Instructions {
 		machine.stack.push(result);
 	}
 	
-	/// \deprecated_mitproto{VEC_MUL}
+	/// \deprecated_mitproto{MUL}
 	void VMUL(Machine & machine){
 		machine.nextInt8();
 		Tuple  b = machine.stack.popTuple ();
@@ -180,197 +165,42 @@ namespace Instructions {
 		for(Index i = start; i < stop; i++) result.push(source[i].asNumber());
 		machine.stack.push(result);
 	}
-#endif
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
-	/// Element wise addition of two numeric tuples.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Tuple The result of an element wise addition.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VEC_ADD(Machine & machine){
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		Size min_size = a.size() < b.size() ? a.size() : b.size();
-		Size max_size = a.size() < b.size() ? b.size() : a.size();
-		Tuple & largest = a.size() < b.size() ? b : a;
-		Tuple result(max_size);
-		for(Index i = 0       ; i < min_size; i++) result.push(a[i].asNumber() + b[i].asNumber());
-		for(Index i = min_size; i < max_size; i++) result.push(largest[i].asNumber());
-		machine.stack.push(result);
-	}
-	
-	/// Element wise subtraction of two numeric tuples.
-	/**
-	 * \param Tuple The numeric tuple to substract from.
-	 * \param Tuple The numeric tuple to substract.
-	 * 
-	 * \return Tuple The result of an element wise subtraction.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VEC_SUB(Machine & machine){
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		Size min_size     = a.size() < b.size() ? a.size() : b.size();
-		Size max_size     = a.size() < b.size() ? b.size() : a.size();
-		Tuple & largest     = a.size() < b.size() ? b        : a       ;
-		Number padding_sign = a.size() < b.size() ? -1       : 1       ;
-		Tuple result(max_size);
-		for(Index i = 0       ; i < min_size; i++) result.push(a[i].asNumber() - b[i].asNumber());
-		for(Index i = min_size; i < max_size; i++) result.push(padding_sign * largest[i].asNumber());
-		machine.stack.push(result);
-	}
-	
-	/// Dot product of two numeric tuples.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number The result of the dot product.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VEC_DOT(Machine & machine){
-		Number result = 0;
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		Size min_size = a.size() < b.size() ? a.size() : b.size();
-		for(Index i = 0; i < min_size; i++) result += a[i].asNumber() * b[i].asNumber();
-		machine.stack.push(result);
-	}
-	
-	/// Element wise multiplication of two numeric tuples.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Tuple The result of an element wise multiplication.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VEC_MUL(Machine & machine){
-		Tuple  b = machine.stack.popTuple ();
-		Number a = machine.stack.popNumber();
-		Tuple result(b.size());
-		for(Index i = 0; i < b.size(); i++) result.push(a * b[i].asNumber());
-		machine.stack.push(result);
-	}
-#endif
-	
-	/// Check if two numeric tuples are equal.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 1 when the elements in the tuples are equal, 0 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
+	/// \deprecated_mitproto{EQ}
 	void VEQ(Machine & machine){
-		machine.stack.push(compareVectors(machine) == 0 ? 1 : 0);
+		machine.execute(EQ);
 	}
 	
-#if MIT_COMPATIBILITY != MIT_ONLY
-	/// Check if two numeric vectors are unequal.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 0 when the elements in the tuples are equal, 1 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VNEQ(Machine & machine){
-		machine.stack.push(compareVectors(machine) != 0 ? 1 : 0);
+	/// \deprecated_mitproto{LT}
+	void VLT(Machine & machine){
+		machine.execute(LT);
+	}
+	
+	/// \deprecated_mitproto{LTE}
+	void VLTE(Machine & machine){
+		machine.execute(LTE);
+	}
+	
+	/// \deprecated_mitproto{GT}
+	void VGT(Machine & machine){
+		machine.execute(GT);
+	}
+	
+	/// \deprecated_mitproto{GTE}
+	void VGTE(Machine & machine){
+		machine.execute(GTE);
+	}
+	
+	/// \deprecated_mitproto{MIN}
+	void VMIN(Machine & machine){
+		machine.execute(MIN);
+	}
+	
+	/// \deprecated_mitproto{MAX}
+	void VMAX(Machine & machine){
+		machine.execute(MAX);
 	}
 #endif
-	
-	/// Check if a numeric tuple is (lexicographical) less than another.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 1 when when the first tuple is lexicographical less than the second, 0 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VLT(Machine & machine){
-		machine.stack.push(compareVectors(machine) < 0 ? 1 : 0);
-	}
-	
-	/// Check if a numeric tuple is (lexicographical) less than or equal to another.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 1 when when the first tuple is lexicographical less than or equal to the second, 0 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VLTE(Machine & machine){
-		machine.stack.push(compareVectors(machine) <= 0 ? 1 : 0);
-	}
-	
-	/// Check if a numeric tuple is (lexicographical) greater than another.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 1 when when the first tuple is lexicographical greater than the second, 0 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VGT(Machine & machine){
-		machine.stack.push(compareVectors(machine) > 0 ? 1 : 0);
-	}
-	
-	/// Check if a numeric tuple is (lexicographical) greater than or equal to another.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Number 1 when when the first tuple is lexicographical greater than or equal to the second, 0 otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VGTE(Machine & machine){
-		machine.stack.push(compareVectors(machine) >= 0 ? 1 : 0);
-	}
-	
-	/// Pick the (lexicographical) smallest numeric tuple.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Tuple The first tuple when when that tuple is lexicographical less than or equal to the other, the second one otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VMIN(Machine & machine){
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		machine.stack.push(compareVectors(a,b) <= 0 ? a : b);
-	}
-	
-	/// Pick the (lexicographical) biggest numeric tuple.
-	/**
-	 * \param Tuple The first numeric tuple.
-	 * \param Tuple The second numeric tuple.
-	 * 
-	 * \return Tuple The first tuple when when that tuple is lexicographical greater than or equal to the other, the second one otherwise.
-	 * 
-	 * If one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
-	 */
-	void VMAX(Machine & machine){
-		Tuple b = machine.stack.popTuple();
-		Tuple a = machine.stack.popTuple();
-		machine.stack.push(compareVectors(a,b) >= 0 ? a : b);
-	}
 	
 	/// \}
 	

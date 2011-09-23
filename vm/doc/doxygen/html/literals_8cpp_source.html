@@ -83,85 +83,83 @@
 <a name="l00019"></a>00019     <span class="comment"></span>
 <a name="l00020"></a>00020 <span class="comment">    /// \name Literals</span>
 <a name="l00021"></a>00021 <span class="comment">    /// \{</span>
-<a name="l00022"></a>00022 <span class="comment"></span>    
-<a name="l00023"></a>00023 <span class="preprocessor">#if MIT_COMPATIBILITY != MIT_ONLY</span>
-<a name="l00024"></a>00024 <span class="preprocessor"></span><span class="comment">    /// Literal Number.</span>
-<a name="l00025"></a>00025 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00026"></a>00026 <span class="comment">     * \param Int The value.</span>
-<a name="l00027"></a>00027 <span class="comment">     * \return The value as a Number.</span>
-<a name="l00028"></a>00028 <span class="comment">     */</span>
-<a name="l00029"></a><a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188">00029</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188" title="Literal Number.">LIT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00030"></a>00030         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt());
-<a name="l00031"></a>00031     }
-<a name="l00032"></a>00032 <span class="preprocessor">#endif</span>
-<a name="l00033"></a>00033 <span class="preprocessor"></span>    
-<a name="l00034"></a>00034 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
-<a name="l00035"></a>00035 <span class="preprocessor"></span><span class="comment">    /// Literal Number.</span>
-<a name="l00036"></a>00036 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00037"></a>00037 <span class="comment">     * \param Int8 The value.</span>
-<a name="l00038"></a>00038 <span class="comment">     * \return The value as a Number.</span>
-<a name="l00039"></a>00039 <span class="comment">     * </span>
-<a name="l00040"></a>00040 <span class="comment">     * \deprecated_mitproto{LIT}</span>
-<a name="l00041"></a>00041 <span class="comment">     */</span>
-<a name="l00042"></a><a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a">00042</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a" title="Literal Number.">LIT8</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00043"></a>00043         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt8());
-<a name="l00044"></a>00044     }
-<a name="l00045"></a>00045     <span class="comment"></span>
-<a name="l00046"></a>00046 <span class="comment">    /// Literal Number.</span>
-<a name="l00047"></a>00047 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00048"></a>00048 <span class="comment">     * \param Int16 The value.</span>
-<a name="l00049"></a>00049 <span class="comment">     * \return The value as a Number.</span>
-<a name="l00050"></a>00050 <span class="comment">     * </span>
-<a name="l00051"></a>00051 <span class="comment">     * \deprecated_mitproto{LIT}</span>
-<a name="l00052"></a>00052 <span class="comment">     */</span>
-<a name="l00053"></a><a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54">00053</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54" title="Literal Number.">LIT16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00054"></a>00054         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt16());
-<a name="l00055"></a>00055     }
-<a name="l00056"></a>00056 <span class="preprocessor">#endif</span>
-<a name="l00057"></a>00057 <span class="preprocessor"></span>    <span class="comment"></span>
-<a name="l00058"></a>00058 <span class="comment">    /// Literal Number.</span>
-<a name="l00059"></a>00059 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00060"></a>00060 <span class="comment">     * \tparam value The value.</span>
-<a name="l00061"></a>00061 <span class="comment">     * \return The value as a Number.</span>
-<a name="l00062"></a>00062 <span class="comment">     */</span>
-<a name="l00063"></a>00063     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> value&gt;
-<a name="l00064"></a><a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e">00064</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e" title="Literal Number.">LIT_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00065"></a>00065         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(value);
-<a name="l00066"></a>00066     }
-<a name="l00067"></a>00067     <span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">    /// Literal Number.</span>
-<a name="l00069"></a>00069 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00070"></a>00070 <span class="comment">     * \param IEEE754binary32 The value.</span>
-<a name="l00071"></a>00071 <span class="comment">     * \return The value as a Number.</span>
-<a name="l00072"></a>00072 <span class="comment">     */</span>
-<a name="l00073"></a><a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf">00073</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf" title="Literal Number.">LIT_FLO</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00074"></a>00074         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> float_data[4];
-<a name="l00075"></a>00075         float_data[0] = machine.nextInt8();
-<a name="l00076"></a>00076         float_data[1] = machine.nextInt8();
-<a name="l00077"></a>00077         float_data[2] = machine.nextInt8();
-<a name="l00078"></a>00078         float_data[3] = machine.nextInt8();
-<a name="l00079"></a>00079         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_number.html" title="A floating point number.">Number</a>(<a class="code" href="class_i_e_e_e754binary32.html" title="An IEEE 754 binary32 floating point number representation.">IEEE754binary32</a>(float_data)));
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081     <span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">    /// Positive infinity.</span>
-<a name="l00083"></a>00083 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00084"></a>00084 <span class="comment">     * \return \m{+\infty}</span>
-<a name="l00085"></a>00085 <span class="comment">     */</span>
-<a name="l00086"></a><a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01">00086</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01" title="Positive infinity.">INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00087"></a>00087         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(Number_infinity);
-<a name="l00088"></a>00088     }
-<a name="l00089"></a>00089     
-<a name="l00090"></a>00090 <span class="preprocessor">#if MIT_COMPATIBILITY != MIT_ONLY</span>
-<a name="l00091"></a>00091 <span class="preprocessor"></span><span class="comment">    /// Negative infinity.</span>
-<a name="l00092"></a>00092 <span class="comment"></span><span class="comment">    /**</span>
-<a name="l00093"></a>00093 <span class="comment">     * \return \m{-\infty}</span>
-<a name="l00094"></a>00094 <span class="comment">     */</span>
-<a name="l00095"></a><a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622">00095</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622" title="Negative infinity.">NEG_INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
-<a name="l00096"></a>00096         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(-Number_infinity);
-<a name="l00097"></a>00097     }
-<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
-<a name="l00099"></a>00099 <span class="preprocessor"></span>    
-<a name="l00100"></a>00100 }
+<a name="l00022"></a>00022 <span class="comment"></span>    <span class="comment"></span>
+<a name="l00023"></a>00023 <span class="comment">    /// Literal Number.</span>
+<a name="l00024"></a>00024 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00025"></a>00025 <span class="comment">     * \param Int The value.</span>
+<a name="l00026"></a>00026 <span class="comment">     * \return The value as a Number.</span>
+<a name="l00027"></a>00027 <span class="comment">     */</span>
+<a name="l00028"></a><a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188">00028</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a9a700bb87285dddaa4b8bf59ddcfc188" title="Literal Number.">LIT</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00029"></a>00029         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt());
+<a name="l00030"></a>00030     }
+<a name="l00031"></a>00031     
+<a name="l00032"></a>00032 <span class="preprocessor">#if MIT_COMPATIBILITY != NO_MIT</span>
+<a name="l00033"></a>00033 <span class="preprocessor"></span><span class="comment">    /// Literal Number.</span>
+<a name="l00034"></a>00034 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00035"></a>00035 <span class="comment">     * \param Int8 The value.</span>
+<a name="l00036"></a>00036 <span class="comment">     * \return The value as a Number.</span>
+<a name="l00037"></a>00037 <span class="comment">     * </span>
+<a name="l00038"></a>00038 <span class="comment">     * \deprecated_mitproto{LIT}</span>
+<a name="l00039"></a>00039 <span class="comment">     */</span>
+<a name="l00040"></a><a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a">00040</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#acfff44044a7093daea924a654b25c06a" title="Literal Number.">LIT8</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00041"></a>00041         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt8());
+<a name="l00042"></a>00042     }
+<a name="l00043"></a>00043     <span class="comment"></span>
+<a name="l00044"></a>00044 <span class="comment">    /// Literal Number.</span>
+<a name="l00045"></a>00045 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00046"></a>00046 <span class="comment">     * \param Int16 The value.</span>
+<a name="l00047"></a>00047 <span class="comment">     * \return The value as a Number.</span>
+<a name="l00048"></a>00048 <span class="comment">     * </span>
+<a name="l00049"></a>00049 <span class="comment">     * \deprecated_mitproto{LIT}</span>
+<a name="l00050"></a>00050 <span class="comment">     */</span>
+<a name="l00051"></a><a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54">00051</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a4414a191b8c049c61a9a97f7364e1a54" title="Literal Number.">LIT16</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00052"></a>00052         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(machine.nextInt16());
+<a name="l00053"></a>00053     }
+<a name="l00054"></a>00054 <span class="preprocessor">#endif</span>
+<a name="l00055"></a>00055 <span class="preprocessor"></span>    <span class="comment"></span>
+<a name="l00056"></a>00056 <span class="comment">    /// Literal Number.</span>
+<a name="l00057"></a>00057 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00058"></a>00058 <span class="comment">     * \tparam value The value.</span>
+<a name="l00059"></a>00059 <span class="comment">     * \return The value as a Number.</span>
+<a name="l00060"></a>00060 <span class="comment">     */</span>
+<a name="l00061"></a>00061     <span class="keyword">template</span>&lt;<span class="keywordtype">int</span> value&gt;
+<a name="l00062"></a><a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e">00062</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a446b43aa48687cf9e26283b0b8abd15e" title="Literal Number.">LIT_N</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00063"></a>00063         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(value);
+<a name="l00064"></a>00064     }
+<a name="l00065"></a>00065     <span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">    /// Literal Number.</span>
+<a name="l00067"></a>00067 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00068"></a>00068 <span class="comment">     * \param IEEE754binary32 The value.</span>
+<a name="l00069"></a>00069 <span class="comment">     * \return The value as a Number.</span>
+<a name="l00070"></a>00070 <span class="comment">     */</span>
+<a name="l00071"></a><a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf">00071</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a068dd605a8daba1383e6d1775f58aedf" title="Literal Number.">LIT_FLO</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00072"></a>00072         <a class="code" href="class_int8.html" title="An 8 bit unsigned integer (byte).">Int8</a> float_data[4];
+<a name="l00073"></a>00073         float_data[0] = machine.nextInt8();
+<a name="l00074"></a>00074         float_data[1] = machine.nextInt8();
+<a name="l00075"></a>00075         float_data[2] = machine.nextInt8();
+<a name="l00076"></a>00076         float_data[3] = machine.nextInt8();
+<a name="l00077"></a>00077         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(<a class="code" href="class_number.html" title="A floating point number.">Number</a>(<a class="code" href="class_i_e_e_e754binary32.html" title="An IEEE 754 binary32 floating point number representation.">IEEE754binary32</a>(float_data)));
+<a name="l00078"></a>00078     }
+<a name="l00079"></a>00079     <span class="comment"></span>
+<a name="l00080"></a>00080 <span class="comment">    /// Positive infinity.</span>
+<a name="l00081"></a>00081 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00082"></a>00082 <span class="comment">     * \return \m{+\infty}</span>
+<a name="l00083"></a>00083 <span class="comment">     */</span>
+<a name="l00084"></a><a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01">00084</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#a29967595d3c5bd0b4398b244702b1e01" title="Positive infinity.">INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00085"></a>00085         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(Number_infinity);
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087     
+<a name="l00088"></a>00088 <span class="preprocessor">#if MIT_COMPATIBILITY != MIT_ONLY</span>
+<a name="l00089"></a>00089 <span class="preprocessor"></span><span class="comment">    /// Negative infinity.</span>
+<a name="l00090"></a>00090 <span class="comment"></span><span class="comment">    /**</span>
+<a name="l00091"></a>00091 <span class="comment">     * \return \m{-\infty}</span>
+<a name="l00092"></a>00092 <span class="comment">     */</span>
+<a name="l00093"></a><a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622">00093</a>     <span class="keywordtype">void</span> <a class="code" href="namespace_instructions.html#ad1bfbac3924d7d1ff4511045be105622" title="Negative infinity.">NEG_INF</a>(<a class="code" href="class_machine.html" title="A virtual machine.">Machine</a> &amp; machine){
+<a name="l00094"></a>00094         machine.<a class="code" href="class_machine.html#a829f86a6bfa7923d2c58c5a39404a4f5" title="The standard stack.">stack</a>.push(-Number_infinity);
+<a name="l00095"></a>00095     }
+<a name="l00096"></a>00096 <span class="preprocessor">#endif</span>
+<a name="l00097"></a>00097 <span class="preprocessor"></span>    
+<a name="l00098"></a>00098 }
 </pre></div></div>
 </div>
 

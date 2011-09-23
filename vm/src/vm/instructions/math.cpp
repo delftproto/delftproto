@@ -16,86 +16,124 @@
 #include <machine.hpp>
 #include <instructions.hpp>
 
+namespace {
+	
+	Tuple ensureTuple(Data const & d) {
+		if (d.type() == Data::Type_number) {
+			Tuple t(1);
+			t.push(d);
+			return t;
+		}
+		return d.asTuple();
+	}
+	
+	int compare(Data const & a, Data const & b) {
+		if (a.type() == Data::Type_number && b.type() == Data::Type_number) {
+			Number aa = a.asNumber();
+			Number bb = b.asNumber();
+			return aa == bb ? 0 : aa < bb ? -1 : 1;
+		} else {
+			Tuple aa = ensureTuple(a);
+			Tuple bb = ensureTuple(b);
+			Size size = aa.size() > bb.size() ? aa.size() : bb.size();
+			for(Index i = 0; i < size; i++){
+				Number a_element = i < aa.size() ? aa[i].asNumber() : 0;
+				Number b_element = i < bb.size() ? bb[i].asNumber() : 0;
+				if      (a_element < b_element) return -1;
+				else if (a_element > b_element) return  1;
+			}
+			return 0;
+		}
+	}
+	
+	int compare(Machine & machine) {
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		return compare(a, b);
+	}
+	
+}
+
 namespace Instructions {
 	
 	/// \name Comparison instructions
 	/// \{
 	
-	/// Check if a Number is equal to another.
+	/// Check if two numbers or vectors are equal.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a=b\\0&a\neq b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void EQ(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a == b ? 1 : 0);
+		machine.stack.push(compare(machine) == 0 ? 1 : 0);
 	}
 	
 #if MIT_COMPATIBILITY != MIT_ONLY
-	/// Check if a Number is not equal to another.
+	/// Check if two numbers or vectors are equal.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a\neq b\\0&a=b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void NEQ(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a != b ? 1 : 0);
+		machine.stack.push(compare(machine) != 0 ? 1 : 0);
 	}
 #endif
 	
-	/// Check if a Number is less than another.
+	/// Check if a number or vector is (lexicographically) less than another one.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a<b\\0&a\geq b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void LT(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a < b ? 1 : 0);
+		machine.stack.push(compare(machine) == -1 ? 1 : 0);
 	}
 	
-	/// Check if a Number is less than or equal to another.
+	/// Check if a number or vector is (lexicographically) less than or equal to another one.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a\leq b\\0&a>b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void LTE(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a <= b ? 1 : 0);
+		machine.stack.push(compare(machine) != 1 ? 1 : 0);
 	}
 	
-	/// Check if a Number is greater than another.
+	/// Check if a number or vector is (lexicographically) greater than another one.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a>b\\0&a\leq b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void GT(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a > b ? 1 : 0);
+		machine.stack.push(compare(machine) == 1 ? 1 : 0);
 	}
 	
-	/// Check if a Number is greater than or equal to another.
+	/// Check if a number or vector is (lexicographically) greater than or equal to another one.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a\geq b\\0&a<b\end{array}\right.}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void GTE(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a >= b ? 1 : 0);
+		machine.stack.push(compare(machine) != -1 ? 1 : 0);
 	}
 	
-	/// Get the inverse boolean value of a Number.
+	/// Get the inverse boolean value of a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\left\lbrace\begin{array}{ll}1&a=0\\0&a\neq0\end{array}\right.}
@@ -110,52 +148,123 @@ namespace Instructions {
 	/// \name Standard math operator instructions
 	/// \{
 	
-	/// Add a Number to another.
+	/// Add a number or vector (element-wise) to another one
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{a + b}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void ADD(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a + b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		if (a.type() == Data::Type_number && b.type() == Data::Type_number) {
+			Number aa = a.asNumber();
+			Number bb = b.asNumber();
+			machine.stack.push(aa + bb);
+		} else {
+			Tuple aa = ensureTuple(a);
+			Tuple bb = ensureTuple(b);
+			Size size = aa.size() > bb.size() ? aa.size() : bb.size();
+			Tuple result(size);
+			for(Index i = 0; i < size; i++){
+				Number a_element = i < aa.size() ? aa[i].asNumber() : 0;
+				Number b_element = i < bb.size() ? bb[i].asNumber() : 0;
+				result.push(a_element + b_element);
+			}
+			machine.stack.push(result);
+		}
 	}
 	
-	/// Subtract a Number from another.
+	/// Subtract a number or vector (element-wise) from another one.
 	/**
 	 * \param Number \m{a}
 	 * \param Number \m{b}
 	 * \return \m{a - b}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void SUB(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a - b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		if (a.type() == Data::Type_number && b.type() == Data::Type_number) {
+			Number aa = a.asNumber();
+			Number bb = b.asNumber();
+			machine.stack.push(aa - bb);
+		} else {
+			Tuple aa = ensureTuple(a);
+			Tuple bb = ensureTuple(b);
+			Size size = aa.size() > bb.size() ? aa.size() : bb.size();
+			Tuple result(size);
+			for(Index i = 0; i < size; i++){
+				Number a_element = i < aa.size() ? aa[i].asNumber() : 0;
+				Number b_element = i < bb.size() ? bb[i].asNumber() : 0;
+				result.push(a_element - b_element);
+			}
+			machine.stack.push(result);
+		}
 	}
 	
-	/// Multiply a Number with another.
+	/// Multiply a number or vector (element-wise) with a number.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{a \cdot b}
 	 */
 	void MUL(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a * b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		if (a.type() == Data::Type_number && b.type() == Data::Type_number) {
+			Number aa = a.asNumber();
+			Number bb = b.asNumber();
+			machine.stack.push(aa * bb);
+		} else {
+			Number        factor = a.type() == Data::Type_number ? a.asNumber() : b.asNumber();
+			Tuple const & vector = a.type() == Data::Type_number ? b.asTuple () : a.asTuple ();
+			Tuple result(vector.size());
+			for(Index i = 0; i < vector.size(); i++) result.push(vector[i].asNumber() * factor);
+			machine.stack.push(result);
+		}
 	}
 	
-	/// Divide a Number by another.
+	/// Divide a number or vector (element-wise) by another.
 	/**
 	 * \param Number \m{a}
 	 * \param Number \m{b}
 	 * \return \m{\frac a b}
 	 */
 	void DIV(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a / b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		if (a.type() == Data::Type_number) {
+			machine.stack.push(a.asNumber() / b.asNumber());
+		} else {
+			Number        divisor = b.asNumber();
+			Tuple const & vector  = a.asTuple ();
+			Tuple result(vector.size());
+			for(Index i = 0; i < vector.size(); i++) result.push(vector[i].asNumber() / divisor);
+			machine.stack.push(result);
+		}
+	}
+	
+	/// Multiply two vectors (element-wise).
+	/**
+	 * \param Data \m{\vec a}
+	 * \param Data \m{\vec b}
+	 * \return \m{\vec a \cdot \vec b}
+	 */
+	void DOT(Machine & machine){
+		Tuple a = ensureTuple(machine.stack.pop());
+		Tuple b = ensureTuple(machine.stack.pop());
+		Size size = a.size() > b.size() ? a.size() : b.size();
+		Tuple result(size);
+		for(Index i = 0; i < size; i++){
+			Number a_element = i < a.size() ? a[i].asNumber() : 0;
+			Number b_element = i < b.size() ? b[i].asNumber() : 0;
+			result.push(a_element * b_element);
+		}
+		machine.stack.push(result);
 	}
 	
 	/// \}
@@ -163,41 +272,56 @@ namespace Instructions {
 	/// \name Math function instructions
 	/// \{
 	
-	/// Get the absolute value of a Number.
+	/// Get the absolute value of a number, or the magnetude of a vector.
 	/**
-	 * \param Number \m{a}
+	 * \param Data \m{a}
 	 * \return \m{|a|}
 	 */
 	void ABS(Machine & machine){
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a < 0 ? -a : a);
+		Data a = machine.stack.pop();
+		if (a.type() == Data::Type_number) {
+			Number aa = a.asNumber();
+			machine.stack.push(aa < 0 ? -aa : aa);
+		} else {
+			Number s = 0;
+			Tuple const & vector = a.asTuple();
+			for(Index i = 0; i < vector.size(); i++) {
+				Number e = vector[i].asNumber();
+				s += e*e;
+			}
+			machine.stack.push(sqrt(s));
+		}
 	}
 	
-	/// Get the maximum of two \ref Number "Numbers".
+	/// Get the (lexicographical) maximum of two numbers or vectors.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\max\lbrace a\,b\rbrace}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void MAX(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a > b ? a : b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		machine.stack.push(compare(a,b) > 0 ? a : b);
 	}
 	
-	/// get the minimum of two \ref Number "Numbers".
+	/// Get the (lexicographical) minimum of two numbers or vectors.
 	/**
-	 * \param Number \m{a}
-	 * \param Number \m{b}
+	 * \param Data \m{a}
+	 * \param Data \m{b}
 	 * \return \m{\min\lbrace a\,b\rbrace}
+	 * 
+	 * \note If used on tuples, when one of the tuples is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void MIN(Machine & machine){
-		Number b = machine.stack.popNumber();
-		Number a = machine.stack.popNumber();
-		machine.stack.push(a < b ? a : b);
+		Data b = machine.stack.pop();
+		Data a = machine.stack.pop();
+		machine.stack.push(compare(a,b) < 0 ? a : b);
 	}
 	
-	/// Get a Number to the power of another.
+	/// Get a number to the power of another.
 	/**
 	 * \param Number \m{a}
 	 * \param Number \m{b}
@@ -209,7 +333,7 @@ namespace Instructions {
 		machine.stack.push(pow(a,b));
 	}
 	
-	/// Get the remainder of a Number divided by another.
+	/// Get the remainder of a number divided by another.
 	/**
 	 * \param Number \m{a}
 	 * \param Number \m{b}
@@ -221,7 +345,7 @@ namespace Instructions {
 		machine.stack.push(fmod(a,b));
 	}
 	
-	/// Get the (positive) remainder of a Number divided by another.
+	/// Get the (positive) remainder of a number divided by another.
 	/**
 	 * \param Number \m{a}
 	 * \param Number \m{b}
@@ -235,7 +359,7 @@ namespace Instructions {
 		machine.stack.push(x);
 	}
 	
-	/// Get the floor of a Number.
+	/// Get the floor of a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\left\lfloor a \right\rfloor}
@@ -245,7 +369,7 @@ namespace Instructions {
 		machine.stack.push(floor(a));
 	}
 	
-	/// Get the ceiling of a Number.
+	/// Get the ceiling of a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\left\lceil a \right\rceil}
@@ -255,7 +379,7 @@ namespace Instructions {
 		machine.stack.push(ceil(a));
 	}
 	
-	/// Round a Number.
+	/// Round a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\left\lfloor a + \frac12 \right\rfloor}
@@ -265,7 +389,7 @@ namespace Instructions {
 		machine.stack.push(rint(a));
 	}
 	
-	/// Calculate the natural logarithm of a Number.
+	/// Calculate the natural logarithm of a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\log_e a}
@@ -275,7 +399,7 @@ namespace Instructions {
 		machine.stack.push(log(a));
 	}
 	
-	/// Calculate the square root of a Number.
+	/// Calculate the square root of a number.
 	/**
 	 * \param Number \m{a}
 	 * \return \m{\sqrt a}
@@ -377,16 +501,34 @@ namespace Instructions {
 		machine.stack.push(atan2(y,x));
 	}
 	
-	/// Generate a (pseudo) random number.
+	/// Generate a (pseudo) random number or vector.
 	/**
-	 * \param Number \m{min}
-	 * \param Number \m{max}
+	 * \param Data \m{min}
+	 * \param Data \m{max}
 	 * \return \m{x \sim U(min\,max)}
+	 * 
+	 * \note If this instruction is used on vectors, the instruction will operate for every corresponding element in the vectors and give a vector as result.
+	 * \note If used on vectors, when one of the vectors is shorter, the remaining of the elements will be interpreted as 0.
 	 */
 	void RND(Machine & machine){
-		Number max = machine.stack.popNumber();
-		Number min = machine.stack.popNumber();
-		machine.stack.push(Random::number(min,max));
+		Data max = machine.stack.pop();
+		Data min = machine.stack.pop();
+		if (min.type() == Data::Type_number && max.type() == Data::Type_number) {
+			Number a = min.asNumber();
+			Number b = max.asNumber();
+			machine.stack.push(Random::number(a,b));
+		} else {
+			Tuple a = ensureTuple(min);
+			Tuple b = ensureTuple(max);
+			Size size = a.size() > b.size() ? a.size() : b.size();
+			Tuple result(size);
+			for(Index i = 0; i < size; i++){
+				Number a_element = i < a.size() ? a[i].asNumber() : 0;
+				Number b_element = i < b.size() ? b[i].asNumber() : 0;
+				result.push(Random::number(a_element, b_element));
+			}
+			machine.stack.push(result);
+		}
 	}
 	
 	/// \}
