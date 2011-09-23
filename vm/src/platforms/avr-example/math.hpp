@@ -9,3 +9,5 @@
  */
 
 #include <math.h>
+
+float rint(float x);
