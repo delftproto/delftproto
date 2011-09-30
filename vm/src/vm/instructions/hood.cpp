@@ -147,7 +147,7 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD(Machine & machine){
-		machine.nextInt();
+		machine.nextInt8();
 		HoodInstructions::fold_hood(machine);
 	}
 	
@@ -188,7 +188,7 @@ namespace Instructions {
 	
 	/// \deprecated_mitproto
 	void VFOLD_HOOD_PLUS(Machine & machine){
-		machine.nextInt();
+		machine.nextInt8();
 		HoodInstructions::fold_hood_plus(machine);
 	}
 	
