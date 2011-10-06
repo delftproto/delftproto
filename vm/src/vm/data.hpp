@@ -65,7 +65,6 @@ class Data {
 		
 		/// Copy a Data object.
 		inline Data & operator = (Data const & data) {
-			reset();
 			switch(data.type()){
 				case Type_undefined: reset();                 break;
 				case Type_number   : reset(data.asNumber ()); break;
