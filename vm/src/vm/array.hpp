@@ -38,6 +38,11 @@ template<typename Element> class Array {
 		 */
 		explicit Array(Size size = 0) : array(0) { reset(size); }
 		
+		/// Make a copy of an array.
+		Array(Array<Element> const & a) : array(0) {
+			*this = a;
+		}
+		
 		/// Reset the array.
 		/**
 		 * All elements will be deconstructed and the array will be deallocated.
@@ -53,6 +58,21 @@ template<typename Element> class Array {
 			array = new_size ? Memory<Element>::allocate(new_size) : 0;
 			array_size = new_size;
 			for(Size i = 0; i < array_size; i++) new (&array[i]) Element();
+		}
+		
+		/// Copy the contents of an array.
+		/**
+		 * All current elements (if any) will be deconstructed and the array will be deallocated,
+		 * after which a copy of the given array will be made.
+		 */
+		Array<Element> & operator = (Array<Element> const & a) {
+			if (array){
+				for(Size i = 0; i < array_size; i++) array[i].~Element();
+				Memory<Element>::deallocate(array,array_size);
+			}
+			array = a.size() ? Memory<Element>::allocate(a.size()) : 0;
+			array_size = a.size();
+			for(Size i = 0; i < array_size; i++) new (&array[i]) Element(a[i]);
 		}
 		
 		/// Clear the array.
